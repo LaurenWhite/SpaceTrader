@@ -1,16 +1,18 @@
 package edu.gatech.macpack.spacetrader.views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Spinner;
 
 
 import edu.gatech.macpack.spacetrader.R;
-import edu.gatech.macpack.spacetrader.views.UserConfigurationActivity;
 import edu.gatech.macpack.spacetrader.entity.Player;
+
 
 public class UserConfigurationActivity extends AppCompatActivity {
 
@@ -23,6 +25,7 @@ public class UserConfigurationActivity extends AppCompatActivity {
     private TextView traderPoints;
     private TextView engineerPoints;
 
+    private Spinner difficultySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class UserConfigurationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_configuration);
 
         nameField = findViewById(R.id.username_input);
+        nameField.setText("Name");
 
         skillPoints = findViewById(R.id.avail_skillp_label);
         skillPoints.setText("Available Skill Points: " + player.getAvailableSkillPoints());
@@ -45,6 +49,11 @@ public class UserConfigurationActivity extends AppCompatActivity {
 
         engineerPoints = findViewById(R.id.engineer_points);
         engineerPoints.setText(Integer.toString(player.getEngineerPoints()));
+
+        difficultySpinner = findViewById(R.id.difficulty_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Player.difficulties);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        difficultySpinner.setAdapter(adapter);
     }
 
 
@@ -120,6 +129,18 @@ public class UserConfigurationActivity extends AppCompatActivity {
             player.setEngineerPoints(player.getEngineerPoints() + 1);
             player.setAvailableSkillPoints(player.getAvailableSkillPoints() - 1);
             updatePointLabels();
+        }
+    }
+
+    public void createUserPressed(View view) {
+        if(!nameField.getText().toString().equals("") &&
+                !nameField.getText().toString().equals("Name")) {
+
+            player.setName(nameField.getText().toString());
+            System.out.println("*****NEW PLAYER CREATED*******\n" + player);
+
+            Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);
+            startActivity(intent);
         }
     }
 }

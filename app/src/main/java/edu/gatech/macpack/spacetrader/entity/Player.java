@@ -1,5 +1,8 @@
 package edu.gatech.macpack.spacetrader.entity;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Player {
 
     // VARIABLES
@@ -16,18 +19,20 @@ public class Player {
 
     private String spaceship;
 
+    public static List<String> difficulties = Arrays.asList("Beginner", "Easy", "Normal", "Hard", "Impossible");
+
 
     // CONSTRUCTOR
 
     public Player(String aName, int aSkillPoints, int aPilotPoints, int aFighterPoints,
                   int aTraderPoints, int aEngineerPoints) {
         name = aName;
+        credits = 1000;
         availableSkillPoints = aSkillPoints;
         pilotPoints = aPilotPoints;
         fighterPoints = aFighterPoints;
         traderPoints = aTraderPoints;
         engineerPoints = aEngineerPoints;
-        credits = 1000;
         spaceship = "Gnat";
     }
 
@@ -35,6 +40,18 @@ public class Player {
         this("player", 16, 0, 0, 0, 0);
     }
 
+
+    @Override
+    public String toString() {
+        return "Username: " + name +
+                "\nCredits: " + credits +
+                "\nSkill Points: " + availableSkillPoints +
+                "\nPilot Points: " + pilotPoints +
+                "\nFighter Points: " + fighterPoints +
+                "\nTrader Points: " + traderPoints +
+                "\nEngineer Points: " + engineerPoints +
+                "\nSpace Ship: " + spaceship;
+    }
 
 
     // GETTERS
