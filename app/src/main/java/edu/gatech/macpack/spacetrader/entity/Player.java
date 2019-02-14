@@ -31,6 +31,10 @@ public class Player {
         spaceship = "Gnat";
     }
 
+    public Player() {
+        this("player", 16, 0, 0, 0, 0);
+    }
+
 
 
     // GETTERS
