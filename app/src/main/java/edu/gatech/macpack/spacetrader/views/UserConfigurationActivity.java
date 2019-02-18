@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 
 
 import edu.gatech.macpack.spacetrader.R;
@@ -132,6 +134,7 @@ public class UserConfigurationActivity extends AppCompatActivity {
             return true;
         } else {
             // Toast message here
+            Toast.makeText(this, "Please enter a valid username.", Toast.LENGTH_LONG).show();
             return false;
         }
     }
