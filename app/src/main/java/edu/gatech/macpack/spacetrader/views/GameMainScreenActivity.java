@@ -1,7 +1,13 @@
 package edu.gatech.macpack.spacetrader.views;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import edu.gatech.macpack.spacetrader.R;
 
@@ -11,5 +17,28 @@ public class GameMainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_main_screen);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.close:
+                Log.d("DEBUG: ", "Clicked close button in menu bar");
+                closeApplication(findViewById(item.getItemId()));
+                break;
+        }
+
+        return true;
+    }
+
+    public void closeApplication(View view) {
+        finish();
+        moveTaskToBack(true);
     }
 }
