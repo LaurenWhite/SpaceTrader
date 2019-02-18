@@ -92,7 +92,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="24dp"
-        android:onClick="subtractPilotPoint"
+        android:onClick="subtractPilotPointPressed"
         android:text="-"
         app:layout_constraintStart_toEndOf="@+id/pilot_point_label"
         app:layout_constraintTop_toBottomOf="@+id/avail_skillp_label" />
@@ -104,7 +104,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="subtractFighterPoint"
+        android:onClick="subtractFighterPointPressed"
         android:text="-"
         app:layout_constraintStart_toEndOf="@+id/fighter_point_label"
         app:layout_constraintTop_toBottomOf="@+id/subtract_pilot_point" />
@@ -117,7 +117,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="8dp"
-        android:onClick="subtractTraderPoint"
+        android:onClick="subtractTraderPointPressed"
         android:text="-"
         app:layout_constraintStart_toEndOf="@+id/trader_point_label"
         app:layout_constraintTop_toBottomOf="@+id/subtract_fighter_point" />
@@ -130,7 +130,7 @@
         android:layout_marginStart="6dp"
         android:layout_marginLeft="6dp"
         android:layout_marginTop="8dp"
-        android:onClick="subtractEngineerPoint"
+        android:onClick="subtractEngineerPointPressed"
         android:text="-"
         app:layout_constraintStart_toEndOf="@+id/engineer_point_label"
         app:layout_constraintTop_toBottomOf="@+id/subtract_trader_point" />
@@ -142,7 +142,7 @@
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
         android:layout_marginTop="24dp"
-        android:onClick="addPilotPoint"
+        android:onClick="addPilotPointPressed"
         android:text="+"
         app:layout_constraintStart_toEndOf="@+id/pilot_points"
         app:layout_constraintTop_toBottomOf="@+id/avail_skillp_label" />
@@ -154,7 +154,7 @@
         android:layout_marginStart="6dp"
         android:layout_marginLeft="6dp"
         android:layout_marginTop="8dp"
-        android:onClick="addFighterPoint"
+        android:onClick="addFighterPointPressed"
         android:text="+"
         app:layout_constraintStart_toEndOf="@+id/fighter_points"
         app:layout_constraintTop_toBottomOf="@+id/add_pilot_point" />
@@ -166,7 +166,7 @@
         android:layout_marginStart="6dp"
         android:layout_marginLeft="6dp"
         android:layout_marginTop="9dp"
-        android:onClick="addTraderPoint"
+        android:onClick="addTraderPointPressed"
         android:text="+"
         app:layout_constraintStart_toEndOf="@+id/trader_points"
         app:layout_constraintTop_toBottomOf="@+id/add_fighter_point" />
@@ -178,7 +178,7 @@
         android:layout_marginStart="6dp"
         android:layout_marginLeft="6dp"
         android:layout_marginTop="7dp"
-        android:onClick="addEngineerPoint"
+        android:onClick="addEngineerPointPressed"
         android:text="+"
         app:layout_constraintStart_toEndOf="@+id/engineer_points"
         app:layout_constraintTop_toBottomOf="@+id/add_trader_point" />

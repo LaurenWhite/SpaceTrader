@@ -1,5 +1,6 @@
 package edu.gatech.macpack.spacetrader.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,11 +13,14 @@ import android.widget.Spinner;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.Player;
+import edu.gatech.macpack.spacetrader.viewmodel.UserConfigurationViewModel;
 
 
 public class UserConfigurationActivity extends AppCompatActivity {
 
     Player player = new Player();
+
+    private UserConfigurationViewModel viewModel;
 
     private EditText nameField;
     private TextView skillPoints;
@@ -31,6 +35,9 @@ public class UserConfigurationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_configuration);
+
+
+        viewModel = ViewModelProviders.of(this).get(UserConfigurationViewModel.class);
 
         nameField = findViewById(R.id.username_input);
         nameField.setText("Name");
@@ -68,79 +75,64 @@ public class UserConfigurationActivity extends AppCompatActivity {
 
 
 
-    public void subtractPilotPoint(View view) {
-        if (player.getPilotPoints() > 0) {
-            player.setPilotPoints(player.getPilotPoints() - 1);
-            player.setAvailableSkillPoints(player.getAvailableSkillPoints() + 1);
-            updatePointLabels();
-        }
+    public void subtractPilotPointPressed(View view) {
+        viewModel.subtractPilotPoint(player);
+        updatePointLabels();
     }
 
-    public void addPilotPoint(View view) {
-        if (player.getAvailableSkillPoints() > 0) {
-            player.setPilotPoints(player.getPilotPoints() + 1);
-            player.setAvailableSkillPoints(player.getAvailableSkillPoints() - 1);
-            updatePointLabels();
-        }
+    public void addPilotPointPressed(View view) {
+        viewModel.addPilotPoint(player);
+        updatePointLabels();
     }
 
-    public void subtractFighterPoint(View view) {
-        if (player.getFighterPoints() > 0) {
-            player.setFighterPoints(player.getFighterPoints() - 1);
-            player.setAvailableSkillPoints(player.getAvailableSkillPoints() + 1);
-            updatePointLabels();
-        }
+    public void subtractFighterPointPressed(View view) {
+        viewModel.subtractFighterPoint(player);
+        updatePointLabels();
     }
 
-    public void addFighterPoint(View view) {
-        if (player.getAvailableSkillPoints() > 0) {
-            player.setFighterPoints(player.getFighterPoints() + 1);
-            player.setAvailableSkillPoints(player.getAvailableSkillPoints() - 1);
-            updatePointLabels();
-        }
+    public void addFighterPointPressed(View view) {
+        viewModel.addFighterPoint(player);
+        updatePointLabels();
     }
 
-    public void subtractTraderPoint(View view) {
-        if (player.getTraderPoints() > 0) {
-            player.setTraderPoints(player.getTraderPoints() - 1);
-            player.setAvailableSkillPoints(player.getAvailableSkillPoints() + 1);
-            updatePointLabels();
-        }
+    public void subtractTraderPointPressed(View view) {
+        viewModel.subtractTraderPoint(player);
+        updatePointLabels();
     }
 
-    public void addTraderPoint(View view) {
-        if (player.getAvailableSkillPoints() > 0) {
-            player.setTraderPoints(player.getTraderPoints() + 1);
-            player.setAvailableSkillPoints(player.getAvailableSkillPoints() - 1);
-            updatePointLabels();
-        }
+    public void addTraderPointPressed(View view) {
+        viewModel.addTraderPoint(player);
+        updatePointLabels();
     }
 
-    public void subtractEngineerPoint(View view) {
-        if (player.getEngineerPoints() > 0) {
-            player.setEngineerPoints(player.getEngineerPoints() - 1);
-            player.setAvailableSkillPoints(player.getAvailableSkillPoints() + 1);
-            updatePointLabels();
-        }
+    public void subtractEngineerPointPressed(View view) {
+        viewModel.subtractEngineerPoint(player);
+        updatePointLabels();
     }
 
-    public void addEngineerPoint(View view) {
-        if (player.getAvailableSkillPoints() > 0) {
-            player.setEngineerPoints(player.getEngineerPoints() + 1);
-            player.setAvailableSkillPoints(player.getAvailableSkillPoints() - 1);
-            updatePointLabels();
-        }
+    public void addEngineerPointPressed(View view) {
+        viewModel.addEngineerPoint(player);
+        updatePointLabels();
     }
 
     public void createUserPressed(View view) {
-        if(!nameField.getText().toString().equals("") &&
-                !nameField.getText().toString().equals("Name")) {
+
+        if(isValidUsername(nameField.getText().toString())) {
 
             player.setName(nameField.getText().toString());
             System.out.println("*****NEW PLAYER CREATED*******\n" + player);
 
             Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);
             startActivity(intent);
+        }
+    }
+
+    private boolean isValidUsername(String name) {
+        if(name.length() > 0 && !name.equals("Name") && !name.equals("player")) {
+            return true;
+        } else {
+            // Toast message here
+            return false;
         }
     }
 }
