@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Space Trader</string>
+    <string name="close_app">Close App</string>
 </resources>
