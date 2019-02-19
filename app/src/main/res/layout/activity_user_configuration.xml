@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.UserConfigurationActivity"
-    android:background="@drawable/background1">
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/username_text_label"
