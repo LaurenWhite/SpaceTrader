@@ -122,11 +122,13 @@ public class UserConfigurationActivity extends AppCompatActivity {
 
         if(isValidUsername(nameField.getText().toString())) {
 
-            player.setName(nameField.getText().toString());
-            System.out.println("*****NEW PLAYER CREATED*******\n" + player);
+            if (allPointsAllocated()) {
+                player.setName(nameField.getText().toString());
+                System.out.println("*****NEW PLAYER CREATED*******\n" + player);
 
-            Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);
+                startActivity(intent);
+            }
         }
     }
 
@@ -134,8 +136,16 @@ public class UserConfigurationActivity extends AppCompatActivity {
         if(name.length() > 0 && !name.equals("Name") && !name.equals("player")) {
             return true;
         } else {
-            // Toast message here
             Toast.makeText(this, "Please enter a valid username.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+
+    private boolean allPointsAllocated() {
+        if (player.getAvailableSkillPoints() == 0) {
+            return true;
+        } else {
+            Toast.makeText(this, "Allocate all skill points.", Toast.LENGTH_LONG).show();
             return false;
         }
     }
