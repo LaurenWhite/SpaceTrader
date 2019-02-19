@@ -17,7 +17,7 @@ public class Player {
 
     private int credits;
 
-    private String spaceship;
+    private SpaceShip spaceship;
 
     public static List<String> difficulties = Arrays.asList("Beginner", "Easy", "Normal", "Hard", "Impossible");
 
@@ -33,7 +33,7 @@ public class Player {
         fighterPoints = aFighterPoints;
         traderPoints = aTraderPoints;
         engineerPoints = aEngineerPoints;
-        spaceship = "Gnat";
+        spaceship = new SpaceShip(SpaceShipType.GNAT);
     }
 
     public Player() {
@@ -68,6 +68,8 @@ public class Player {
 
     public int getEngineerPoints() { return engineerPoints; }
 
+    public SpaceShip getSpaceShip() { return spaceship; }
+
 
     // SETTERS
 
@@ -82,6 +84,8 @@ public class Player {
     public void setTraderPoints(int newPoints) { traderPoints = newPoints; }
 
     public void setEngineerPoints(int newPoints) { engineerPoints = newPoints; }
+
+    public void setSpaceship(SpaceShipType ship) { spaceship.setShipType(ship);}
 
 
 }
