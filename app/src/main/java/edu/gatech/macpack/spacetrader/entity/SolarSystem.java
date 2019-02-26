@@ -10,7 +10,8 @@ public class SolarSystem {
 
     // List of possible solar system names
     static private List<String> availableNames = new ArrayList<>(
-            Arrays.asList("Insert 10 solar system names here")
+            Arrays.asList("Nix", "Morag", "Xena", "Nobiru", "Vesperia", "Xillia", "Ventus",
+                    "Lapis", "Altair", "Zeno", "Valor", "Therion", "Cyrus", "Gaius")
     );
 
 
