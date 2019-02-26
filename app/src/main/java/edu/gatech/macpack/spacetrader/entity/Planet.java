@@ -30,7 +30,7 @@ public class Planet {
         location = new int[] {r.nextInt(40), r.nextInt(40)};
         // techLevel = TechLevel.valueOf(r.nextInt(8));
         // resource = Resource.valueOf(r.nextInt(13));
-        // traderEventChance = TechLevel.getNumber() + 2; // x 10 = %
+        // traderEventChance = techLevel.getNumber() + 2; // x 10 = %
     }
 
     // GETTERS
