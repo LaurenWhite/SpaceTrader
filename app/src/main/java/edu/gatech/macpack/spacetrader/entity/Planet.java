@@ -9,7 +9,9 @@ public class Planet {
 
     // List of possible solar system names
     static private List<String> availableNames = new ArrayList<>(
-            Arrays.asList("Insert 20 planet names here")
+            Arrays.asList("Azelhart", "Ophilia", "Cassardis", "Grigori", "Diomedes", "Torim",
+                    "Damascus", "Soren", "Valvatorez", "Fenrich", "Archimedes", "Anri", "Sterling",
+                    "Lucis", "Ignis", "Noctis", "Ardyn", "Lunafreya", "Thanatos", "Aranea")
     );
 
 
