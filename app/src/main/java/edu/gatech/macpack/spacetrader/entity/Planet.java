@@ -15,7 +15,7 @@ public class Planet {
     );
 
 
-    
+
     // ATTRIBUTES
     private String name;
     private int[] location;
