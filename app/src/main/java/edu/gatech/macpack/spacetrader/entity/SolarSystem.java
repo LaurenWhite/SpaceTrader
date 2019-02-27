@@ -18,7 +18,9 @@ public class SolarSystem {
     // ATTRIBUTES
     private String name;
     private int[] location;
-    private ArrayList<Planet> planets;
+    private List<Planet> planets;
+
+
 
     // CONSTRUCTOR
     public SolarSystem() {
@@ -31,9 +33,15 @@ public class SolarSystem {
     }
 
 
+
     // GETTERS
     public String getName() { return name; }
+
     public int[] getLocation() { return location; }
+
+    public List<Planet> getPlanets() { return planets; }
+
+
 
 
     // Return a randomly chosen name from available names list, update list
