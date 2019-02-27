@@ -15,12 +15,14 @@ public class Planet {
     );
 
 
+    
     // ATTRIBUTES
     private String name;
     private int[] location;
-    // private TechLevel techLevel;
-    // private Resource resource;
+    private TechLevel techLevel;
+    private ResourceType resource;
     private int traderEventChance;
+
 
 
     // CONSTRUCTOR
@@ -28,17 +30,26 @@ public class Planet {
         Random r = new Random();
         name = chooseName(r.nextInt(availableNames.size()));
         location = new int[] {r.nextInt(40), r.nextInt(40)};
-        // techLevel = TechLevel.valueOf(r.nextInt(8));
-        // resource = Resource.valueOf(r.nextInt(13));
-        // traderEventChance = techLevel.getNumber() + 2; // x 10 = %
+        techLevel = TechLevel.values()[r.nextInt(8)];
+        resource = ResourceType.values()[r.nextInt(13)];
+        traderEventChance = techLevel.getTechNum() + 2; // x 10 = %
     }
+
+
 
     // GETTERS
     public String getName() { return name; }
+
     public int[] getLocation() { return location; }
-    //public TechLevel getTechLevel() { return techLevel; }
-    //public Resource getResource() { return resource; }
+
+    public TechLevel getTechLevel() { return techLevel; }
+
+    public ResourceType getResource() { return resource; }
+
     public int getTraderEventChance() { return traderEventChance; }
+
+
+
 
     // Return a randomly chosen name from available names list, update list
     private String chooseName(int index) {

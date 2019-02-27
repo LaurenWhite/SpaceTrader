@@ -20,6 +20,8 @@ public class SolarSystem {
     private int[] location;
     private ArrayList<Planet> planets;
 
+
+
     // CONSTRUCTOR
     public SolarSystem() {
         Random r = new Random();
