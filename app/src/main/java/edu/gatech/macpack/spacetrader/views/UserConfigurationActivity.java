@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 
 import edu.gatech.macpack.spacetrader.R;
+import edu.gatech.macpack.spacetrader.entity.DifficultyType;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.viewmodel.UserConfigurationViewModel;
 
@@ -61,7 +62,7 @@ public class UserConfigurationActivity extends AppCompatActivity {
         engineerPoints.setText(Integer.toString(player.getEngineerPoints()));
 
         difficultySpinner = findViewById(R.id.difficulty_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, Player.difficulties);
+        ArrayAdapter<DifficultyType> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, DifficultyType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(adapter);
     }
@@ -123,7 +124,9 @@ public class UserConfigurationActivity extends AppCompatActivity {
         if(isValidUsername(nameField.getText().toString())) {
 
             if (allPointsAllocated()) {
-                player.setName(nameField.getText().toString());
+                viewModel.changeName(player, nameField.getText().toString());
+                viewModel.changeDifficulty((DifficultyType) difficultySpinner.getSelectedItem());
+
                 System.out.println("*****NEW PLAYER CREATED*******\n" + player);
 
                 Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);

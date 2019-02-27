@@ -1,8 +1,5 @@
 package edu.gatech.macpack.spacetrader.entity;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Player {
 
     // VARIABLES
@@ -18,8 +15,6 @@ public class Player {
     private int credits;
 
     private SpaceShip spaceship;
-
-    public static List<String> difficulties = Arrays.asList("Beginner", "Easy", "Normal", "Hard", "Impossible");
 
 
     // CONSTRUCTOR

@@ -4,27 +4,33 @@ import java.util.ArrayList;
 
 public class Game {
 
-
+    // Singleton model?
     private static Game instance = new Game();
-
     public static Game getGameInstance() { return instance; }
 
 
     // ATTRIBUTES
     private ArrayList<SolarSystem> solarSystems;
-    //private Difficulty difficulty;
+    private DifficultyType difficulty;
+
 
 
     // CONSTRUCTOR
     public Game() {
         solarSystems = generateSolarSystems();
-        // difficulty = Difficulty.BEGINNER;
+        difficulty = DifficultyType.BEGINNER;
     }
 
 
     // GETTERS
     public ArrayList<SolarSystem> getSolarSystems() { return solarSystems; }
-    //public Difficulty getDifficulty() { return difficulty; }
+
+    public DifficultyType getDifficulty() { return difficulty; }
+
+
+    // SETTERS
+    public void setDifficulty(DifficultyType newDifficulty) { difficulty = newDifficulty; }
+
 
 
     // Create the 10 solar systems that will make up this universe
