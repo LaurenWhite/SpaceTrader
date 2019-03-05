@@ -1,6 +1,7 @@
 package edu.gatech.macpack.spacetrader.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
 
@@ -42,7 +43,25 @@ public class Game {
             systems.add(new SolarSystem());
         }
 
+        universeToString(systems);
+
         return systems;
     }
 
+    // Displays the universe in logcat
+    public void universeToString(List<SolarSystem> systems) {
+        System.out.println("******UNIVERSE GENERATED******");
+        for (SolarSystem system : systems) {
+            System.out.println("***SOLAR SYSTEM***");
+            System.out.println("Solar system: " + system.getName());
+            System.out.println("\nLocation: (" + system.getLocation()[0] + ", " + system.getLocation()[1] + ")");
+            System.out.println("Planets: (" + system.getPlanets().get(0).getName() + ", " + system.getPlanets().get(0).getName() + ")");
+            for (Planet orb : system.getPlanets()) {
+                System.out.println("\n***PLANET***");
+                System.out.println("Planet: " + orb.getName());
+                System.out.println("Tech level: " + orb.getTechLevel());
+                System.out.println("Resource: " + orb.getResource());
+            }
+        }
+    }
 }
