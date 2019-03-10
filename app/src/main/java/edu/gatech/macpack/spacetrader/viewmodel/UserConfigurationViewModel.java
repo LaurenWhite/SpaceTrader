@@ -79,4 +79,8 @@ public class UserConfigurationViewModel extends AndroidViewModel {
     public void changeDifficulty(DifficultyType newDifficulty) {
         game.setDifficulty(newDifficulty);
     }
+
+    public void updatePlayer(Player player) {
+        game.setPlayer(player);
+    }
 }

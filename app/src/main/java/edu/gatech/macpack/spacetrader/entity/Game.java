@@ -8,10 +8,11 @@ public class Game {
     // Singleton model?
     private static Game instance = new Game();
     public static Game getGameInstance() { return instance; }
+    private Player player;
 
 
     // ATTRIBUTES
-    private ArrayList<SolarSystem> solarSystems;
+    private List<SolarSystem> solarSystems;
     private DifficultyType difficulty;
 
 
@@ -24,20 +25,24 @@ public class Game {
 
 
     // GETTERS
-    public ArrayList<SolarSystem> getSolarSystems() { return solarSystems; }
+    public List<SolarSystem> getSolarSystems() { return solarSystems; }
 
     public DifficultyType getDifficulty() { return difficulty; }
+
+    public Player getPlayer() { return player; }
 
 
     // SETTERS
     public void setDifficulty(DifficultyType newDifficulty) { difficulty = newDifficulty; }
 
+    public void setPlayer(Player newPlayer) { player = newPlayer; }
+
 
 
     // Create the 10 solar systems that will make up this universe
-    private ArrayList<SolarSystem> generateSolarSystems() {
+    private List<SolarSystem> generateSolarSystems() {
 
-        ArrayList<SolarSystem> systems = new ArrayList<>();
+        List<SolarSystem> systems = new ArrayList<>();
 
         for(int i = 0; i < 10; i++) {
             systems.add(new SolarSystem());
