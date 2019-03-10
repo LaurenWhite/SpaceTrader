@@ -128,6 +128,7 @@ public class UserConfigurationActivity extends AppCompatActivity {
                 viewModel.changeDifficulty((DifficultyType) difficultySpinner.getSelectedItem());
 
                 System.out.println("*****NEW PLAYER CREATED*******\n" + player);
+                viewModel.updatePlayer(player);
 
                 Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);
                 startActivity(intent);

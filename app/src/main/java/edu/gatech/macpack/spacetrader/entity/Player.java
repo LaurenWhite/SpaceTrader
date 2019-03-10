@@ -53,6 +53,8 @@ public class Player {
 
     public String getName() { return name; }
 
+    public int getCredits() { return credits; }
+
     public int getAvailableSkillPoints() { return availableSkillPoints; }
 
     public int getPilotPoints() { return pilotPoints; }
@@ -70,6 +72,8 @@ public class Player {
 
     public void setName(String newName) { name = newName; }
 
+    public void setCredits(int newCredits) { credits = newCredits; }
+
     public void setAvailableSkillPoints(int newPoints) { availableSkillPoints = newPoints; }
 
     public void setPilotPoints(int newPoints) { pilotPoints = newPoints; }
@@ -83,4 +87,8 @@ public class Player {
     public void setSpaceship(SpaceShipType ship) { spaceship.setShipType(ship);}
 
 
+    // FUNCTIONALITY
+    public boolean sufficientFunds(int price) {
+        return price <= credits;
+    }
 }

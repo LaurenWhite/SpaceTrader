@@ -1,6 +1,5 @@
 package edu.gatech.macpack.spacetrader.entity;
 
-import java.util.Random;
 
 public enum TradeGood {
     WATER(0, 0, 2, 30, 3, 4),

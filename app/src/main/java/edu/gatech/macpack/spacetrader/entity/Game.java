@@ -8,6 +8,7 @@ public class Game {
     // Singleton model?
     private static Game instance = new Game();
     public static Game getGameInstance() { return instance; }
+    private Player player;
 
 
     // ATTRIBUTES
@@ -28,9 +29,13 @@ public class Game {
 
     public DifficultyType getDifficulty() { return difficulty; }
 
+    public Player getPlayer() { return player; }
+
 
     // SETTERS
     public void setDifficulty(DifficultyType newDifficulty) { difficulty = newDifficulty; }
+
+    public void setPlayer(Player newPlayer) { player = newPlayer; }
 
 
 

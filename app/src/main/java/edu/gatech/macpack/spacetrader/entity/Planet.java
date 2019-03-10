@@ -24,7 +24,7 @@ public class Planet {
     private TechLevel techLevel;
     private ResourceType resource;
     private int traderEventChance;
-    private Map<TradeGood, Map<String, Integer>> market;
+    private Map<TradeGood, MarketItem> market;
 
 
 
@@ -53,22 +53,25 @@ public class Planet {
 
     public int getTraderEventChance() { return traderEventChance; }
 
-    public Map<TradeGood, Map<String, Integer>> getMarket() { return market; }
+    public Map<TradeGood, MarketItem> getMarket() { return market; }
+
+
 
     // FUNCTIONALITY
 
-    public void purchaseGood(TradeGood good) {
-        int currentAmount = market.get(good).get("quantity");
+    public void sellToPlayer(TradeGood good) {
+        int currentAmount = market.get(good).getQuantity();
         if(currentAmount > 0) {
-            market.get(good).put("quantity", currentAmount - 1);
-            // put one in cargo hold
+            market.get(good).setQuantity(currentAmount - 1);
         }
     }
 
-    public void sellGood(TradeGood good) {
-        int currentAmount = market.get(good).get("quantity");
-        market.get(good).put("quantity", currentAmount + 1);
+    public void buyFromPlayer(TradeGood good) {
+        int currentAmount = market.get(good).getQuantity();
+        market.get(good).setQuantity(currentAmount - 1);
     }
+
+
 
 
     // Return a randomly chosen name from available names list, update list
@@ -78,9 +81,9 @@ public class Planet {
         return name;
     }
 
-    private Map<TradeGood, Map<String, Integer>> generateMarket() {
+    private Map<TradeGood, MarketItem> generateMarket() {
 
-        Map<TradeGood, Map<String, Integer>> planetGoods = new HashMap<>();
+        Map<TradeGood, MarketItem> planetGoods = new HashMap<>();
         int planetTechLvl = techLevel.getTechNum();
 
         for(TradeGood good : TradeGood.values()) {
@@ -89,11 +92,8 @@ public class Planet {
                 int quantity = (int) Math.round(15 * (good.productionProbability(planetTechLvl)));
                 int price = good.regionalPrice(planetTechLvl);
 
-                HashMap goodInfo = new HashMap<>();
-                goodInfo.put("quantity", quantity);
-                goodInfo.put("price", price);
-
-                planetGoods.put(good, goodInfo);
+                MarketItem newItem = new MarketItem(good, quantity, price);
+                planetGoods.put(good, newItem);
             }
         }
 
@@ -106,8 +106,8 @@ public class Planet {
         for(TradeGood good : TradeGood.values()) {
             if(market.containsKey(good)) {
                 System.out.println("\t\t" + good.name());
-                System.out.println("\t\t\tPrice: " + market.get(good).get("price").toString());
-                System.out.println("\t\t\tQuantity: " + market.get(good).get("quantity").toString());
+                System.out.println("\t\t\tPrice: " + market.get(good).getPrice());
+                System.out.println("\t\t\tQuantity: " + market.get(good).getQuantity());
             }
         }
         System.out.println();

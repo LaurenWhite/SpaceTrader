@@ -13,13 +13,13 @@ public enum SpaceShipType {
     WASP("Wasp");
 
     public String shipType;
-    public int cargoCapacity;
+    public int weightCapacity;
 
     // enum constructor - cannot be public or protected
     SpaceShipType(String shipType) { this.shipType = shipType; }
 
-    SpaceShipType(String shipType, int cargoCapacity) {
+    SpaceShipType(String shipType, int weightCapacity) {
         this.shipType = shipType;
-        this.cargoCapacity = cargoCapacity;
+        this.weightCapacity = weightCapacity;
     }
 }
