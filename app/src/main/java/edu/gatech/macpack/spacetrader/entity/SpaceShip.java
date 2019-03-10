@@ -3,6 +3,7 @@ package edu.gatech.macpack.spacetrader.entity;
 public class SpaceShip {
 
     private SpaceShipType shipType;
+    //private Cargo cargo;
 
     //constructor
     public SpaceShip(SpaceShipType shipType){

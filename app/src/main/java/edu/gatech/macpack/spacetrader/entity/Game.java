@@ -11,7 +11,7 @@ public class Game {
 
 
     // ATTRIBUTES
-    private ArrayList<SolarSystem> solarSystems;
+    private List<SolarSystem> solarSystems;
     private DifficultyType difficulty;
 
 
@@ -24,7 +24,7 @@ public class Game {
 
 
     // GETTERS
-    public ArrayList<SolarSystem> getSolarSystems() { return solarSystems; }
+    public List<SolarSystem> getSolarSystems() { return solarSystems; }
 
     public DifficultyType getDifficulty() { return difficulty; }
 
@@ -35,9 +35,9 @@ public class Game {
 
 
     // Create the 10 solar systems that will make up this universe
-    private ArrayList<SolarSystem> generateSolarSystems() {
+    private List<SolarSystem> generateSolarSystems() {
 
-        ArrayList<SolarSystem> systems = new ArrayList<>();
+        List<SolarSystem> systems = new ArrayList<>();
 
         for(int i = 0; i < 10; i++) {
             systems.add(new SolarSystem());
