@@ -4,9 +4,13 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 
+import edu.gatech.macpack.spacetrader.entity.DifficultyType;
+import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.Player;
 
 public class UserConfigurationViewModel extends AndroidViewModel {
+
+    Game game = Game.getGameInstance();
 
     public UserConfigurationViewModel(@NonNull Application application) {
         super(application);
@@ -66,5 +70,17 @@ public class UserConfigurationViewModel extends AndroidViewModel {
             player.setEngineerPoints(player.getEngineerPoints() + 1);
             player.setAvailableSkillPoints(player.getAvailableSkillPoints() - 1);
         }
+    }
+
+    public void changeName(Player player, String newName) {
+        player.setName(newName);
+    }
+
+    public void changeDifficulty(DifficultyType newDifficulty) {
+        game.setDifficulty(newDifficulty);
+    }
+
+    public void updatePlayer(Player player) {
+        game.setPlayer(player);
     }
 }

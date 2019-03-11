@@ -1,8 +1,5 @@
 package edu.gatech.macpack.spacetrader.entity;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Player {
 
     // VARIABLES
@@ -17,9 +14,7 @@ public class Player {
 
     private int credits;
 
-    private String spaceship;
-
-    public static List<String> difficulties = Arrays.asList("Beginner", "Easy", "Normal", "Hard", "Impossible");
+    private SpaceShip spaceship;
 
 
     // CONSTRUCTOR
@@ -33,7 +28,7 @@ public class Player {
         fighterPoints = aFighterPoints;
         traderPoints = aTraderPoints;
         engineerPoints = aEngineerPoints;
-        spaceship = "Gnat";
+        spaceship = new SpaceShip(SpaceShipType.GNAT);
     }
 
     public Player() {
@@ -58,6 +53,8 @@ public class Player {
 
     public String getName() { return name; }
 
+    public int getCredits() { return credits; }
+
     public int getAvailableSkillPoints() { return availableSkillPoints; }
 
     public int getPilotPoints() { return pilotPoints; }
@@ -68,10 +65,14 @@ public class Player {
 
     public int getEngineerPoints() { return engineerPoints; }
 
+    public SpaceShip getSpaceShip() { return spaceship; }
+
 
     // SETTERS
 
     public void setName(String newName) { name = newName; }
+
+    public void setCredits(int newCredits) { credits = newCredits; }
 
     public void setAvailableSkillPoints(int newPoints) { availableSkillPoints = newPoints; }
 
@@ -83,5 +84,11 @@ public class Player {
 
     public void setEngineerPoints(int newPoints) { engineerPoints = newPoints; }
 
+    public void setSpaceship(SpaceShipType ship) { spaceship.setShipType(ship);}
 
+
+    // FUNCTIONALITY
+    public boolean sufficientFunds(int price) {
+        return price <= credits;
+    }
 }
