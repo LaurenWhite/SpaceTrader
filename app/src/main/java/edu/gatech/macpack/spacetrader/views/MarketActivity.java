@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -22,18 +21,15 @@ import edu.gatech.macpack.spacetrader.entity.Planet;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.entity.SolarSystem;
 import edu.gatech.macpack.spacetrader.entity.TradeGood;
+import edu.gatech.macpack.spacetrader.viewmodel.MarketListAdapter;
 
 public class MarketActivity extends AppCompatActivity {
-
     Game game = Game.getGameInstance();
-    Player player = game.getPlayer();
 
     // create list view obj
     private ListView lvGoods;
     private Map<TradeGood, MarketItem> market;
-    private ArrayList<String> lvGoodsNames;
-    private ArrayList<String> lvGoodsPrices;
-    private ArrayList<String> lvGoodsQuantities;
+    private ArrayList<MarketItem> marketList;
 
     // other information required to generate market
     private SolarSystem system;
@@ -63,33 +59,24 @@ public class MarketActivity extends AppCompatActivity {
 
     private void populateMarketListView() {
         marketItem = findViewById(R.id.market_item);
+        lvGoods = findViewById(R.id.lvGoods);
 
-        // TODO: implement the current planet correctly (apologies in advance for the messy code)
+        // TODO: implement the current planet/market correctly (apologies in advance for the messy code)
         system = game.getSolarSystems().get(0);
         planet = system.getPlanets().get(0);
-
         market = planet.getMarket();
 
-        int ctr = 0;
-        lvGoodsNames = new ArrayList<String>();
-        for(MarketItem good : market.values()) {
-//            lvGoodsNames.add(good.getGood().toString()); // adds a good's "name?" to the name arraylist
-            lvGoodsNames.add("Placeholder: " + ctr++);
-//            lvGoodsPrices.add(String.valueOf(good.getPrice()));
-//            lvGoodsQuantities.add(String.valueOf(good.getQuantity()));
-        }
+        marketList = new ArrayList<>();
+        marketList.addAll(market.values());
 
-        // TODO: Replace ArrayAdapter with a custom marketItemAdapter so more than one view per row can be updated
         // builds the adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                MarketActivity.this, // context
-                R.layout.market_item, // layout of a single market item
-                R.id.tvGoodName, // id of goodName text view within marketItem layout
-                lvGoodsNames // list of goods names
+        MarketListAdapter adapter = new MarketListAdapter(
+                this,
+                R.layout.market_item,
+                marketList
         );
 
         // configures list view
-        lvGoods = findViewById(R.id.lvGoods);
         lvGoods.setAdapter(adapter);
 
         // adds header to the list view
@@ -106,7 +93,7 @@ public class MarketActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 // TODO: highlight item clicked
                 LinearLayout linearLayout = (LinearLayout) viewClicked;
-                String message = "You clicked # " + position + ", which is string: " + lvGoodsNames.get(position - 1);
+                String message = "You clicked # " + position + ", which is string: ";
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
