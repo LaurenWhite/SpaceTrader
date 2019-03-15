@@ -15,21 +15,28 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import edu.gatech.macpack.spacetrader.R;
+import edu.gatech.macpack.spacetrader.entity.CargoItem;
 import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.MarketItem;
 import edu.gatech.macpack.spacetrader.entity.Planet;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.entity.SolarSystem;
+import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 import edu.gatech.macpack.spacetrader.entity.TradeGood;
+import edu.gatech.macpack.spacetrader.viewmodel.CargoListAdapter;
 import edu.gatech.macpack.spacetrader.viewmodel.MarketListAdapter;
 
 public class MarketActivity extends AppCompatActivity {
     Game game = Game.getGameInstance();
 
-    // create list view obj
+    // create list view obj for market items
     private ListView lvGoods;
     private Map<TradeGood, MarketItem> market;
     private ArrayList<MarketItem> marketList;
+    // create list view obj for cargo items
+    private ListView lvCargoItems;
+    private Map<TradeGood,CargoItem> cargo;
+    private ArrayList<CargoItem> cargoList;
 
     // other information required to generate market
     private SolarSystem system;
@@ -47,6 +54,7 @@ public class MarketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_market);
 
         populateMarketListView(); // populates market
+        populateCargoListView();
         registerClickCallBack(); // handles clicks
 
         // initializes the other views in market place screen
@@ -85,6 +93,30 @@ public class MarketActivity extends AppCompatActivity {
 
     }
 
+    private void populateCargoListView() {
+        marketItem = findViewById(R.id.market_item);
+        lvCargoItems = findViewById(R.id.lvCargoItems);
+
+        // get the current player's ship
+        SpaceShip ship = game.getPlayer().getSpaceShip();
+
+        // make a list of its cargo
+        cargoList = new ArrayList<>();
+        cargoList.addAll(ship.getCargo().values());
+
+        CargoListAdapter adapter = new CargoListAdapter(
+                this,
+                R.layout.market_item,
+                cargoList
+        );
+
+        lvCargoItems.setAdapter(adapter);
+
+        View header = getLayoutInflater().inflate(R.layout.market_header, null);
+        lvCargoItems.addHeaderView(header);
+
+    }
+
     // action of clicking on a market item
     private void registerClickCallBack() {
         lvGoods = findViewById(R.id.lvGoods);
@@ -99,14 +131,14 @@ public class MarketActivity extends AppCompatActivity {
         });
     }
 
-    // TODO: implement buy/sell functionality
+    // (oops didn't see buy/sell in planet)
     // TODO: Perform buy/sell method on highlighted/selected item
-    // Buy:
+    // sellToPlayer:
         // sufficientSpace() -> ?
         // sufficientCredits() -> ?
         // addToCargo()
         // updateCredits()
-    // Sell:
+    // buyFromPlayer:
         // sufficient#ofGoodsInInventory() -> ?
         // removeFromCargo()
         // updateCredits()
