@@ -1,5 +1,7 @@
 package edu.gatech.macpack.spacetrader.views;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +35,7 @@ public class MarketActivity extends AppCompatActivity {
     private ListView lvGoods;
     private Map<TradeGood, MarketItem> market;
     private ArrayList<MarketItem> marketList;
+
     // create list view obj for cargo items
     private ListView lvCargoItems;
     private Map<TradeGood,CargoItem> cargo;
@@ -58,8 +61,8 @@ public class MarketActivity extends AppCompatActivity {
         registerClickCallBack(); // handles clicks
 
         // initializes the other views in market place screen
-        flCredits = findViewById(R.id.flCredits);
         tvCredits = findViewById(R.id.tvCredits);
+        tvCredits.setText("Credits: " + game.getPlayer().getCredits());
         btnBuy = findViewById(R.id.btnBuy);
         btnSell = findViewById(R.id.btnSell);
 
@@ -69,7 +72,7 @@ public class MarketActivity extends AppCompatActivity {
         marketItem = findViewById(R.id.market_item);
         lvGoods = findViewById(R.id.lvGoods);
 
-        // TODO: implement the current planet/market correctly (apologies in advance for the messy code)
+        // TODO: implement the current planet/market user is in correctly (apologies in advance for the messy code)
         system = game.getSolarSystems().get(0);
         planet = system.getPlanets().get(0);
         market = planet.getMarket();
@@ -123,7 +126,8 @@ public class MarketActivity extends AppCompatActivity {
         lvGoods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-                // TODO: highlight item clicked
+                // TODO: store the currently highlighted item
+
                 LinearLayout linearLayout = (LinearLayout) viewClicked;
                 String message = "You clicked # " + position + ", which is string: ";
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
