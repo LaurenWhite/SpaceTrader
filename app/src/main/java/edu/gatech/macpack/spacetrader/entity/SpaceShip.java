@@ -16,7 +16,9 @@ public class SpaceShip {
         weight = 0;
     }
 
-    public SpaceShipType getShipType() {return shipType;}
+    public Map<TradeGood, CargoItem> getCargo() { return cargo; }
+
+    public SpaceShipType getShipType() { return shipType; }
 
     public void setShipType(SpaceShipType shipType) { this.shipType = shipType; }
 
