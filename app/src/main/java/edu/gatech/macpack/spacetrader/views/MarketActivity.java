@@ -35,6 +35,7 @@ public class MarketActivity extends AppCompatActivity {
     private ListView lvGoods;
     private Map<TradeGood, MarketItem> market;
     private ArrayList<MarketItem> marketList;
+    private MarketItem selectedItem;
 
     // create list view obj for cargo items
     private ListView lvCargoItems;
@@ -129,10 +130,16 @@ public class MarketActivity extends AppCompatActivity {
                 // TODO: store the currently highlighted item
 
                 LinearLayout linearLayout = (LinearLayout) viewClicked;
-                String message = "You clicked # " + position + ", which is string: ";
+                selectedItem = marketList.get(position - 1);
+                String message = "You clicked # " + position + ", which is item: " + selectedItem;
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+
+    public void buyButtonClicked(View view) {
+        planet.sellToPlayer(selectedItem.getGood());
     }
 
     // (oops didn't see buy/sell in planet)
