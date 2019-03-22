@@ -33,6 +33,9 @@ public enum TradeGood {
         this.variance = variance;
     }
 
+    // GETTERS
+    public int getMTLU() { return mtlu; }
+
 
     // FUNCTIONALITY
     public boolean canProduce(int techLevel) {

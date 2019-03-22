@@ -59,18 +59,31 @@ public class Planet {
 
     // FUNCTIONALITY
 
-    public void sellToPlayer(TradeGood good) {
+    public void sellToPlayer(MarketItem item) {
+        TradeGood good = item.getGood();
         int currentAmount = market.get(good).getQuantity();
-        if(currentAmount > 0) {
-            market.get(good).setQuantity(currentAmount - 1);
+
+        if(currentAmount == item.getQuantity()) {
+            market.remove(good);
+        } else {
+            market.get(good).setQuantity(currentAmount - item.getQuantity());
         }
     }
 
-    public void buyFromPlayer(TradeGood good) {
-        int currentAmount = market.get(good).getQuantity();
-        market.get(good).setQuantity(currentAmount - 1);
+    public void buyFromPlayer(MarketItem item) {
+        TradeGood good = item.getGood();
+
+        if(market.containsKey(good)) {
+            int currentAmount = market.get(good).getQuantity();
+            market.get(good).setQuantity(currentAmount + item.getQuantity());
+        } else {
+            market.put(good, item);
+        }
     }
 
+    public boolean canUse(TradeGood good) {
+        return techLevel.TechNumber >= good.getMTLU();
+    }
 
 
 
