@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -30,11 +31,14 @@ import edu.gatech.macpack.spacetrader.viewmodel.MarketListAdapter;
 
 public class MarketActivity extends AppCompatActivity {
     Game game = Game.getGameInstance();
+    Player player = game.getPlayer();
+    SpaceShip ship = player.getSpaceShip();
 
     // create list view obj for market items
     private ListView lvGoods;
     private Map<TradeGood, MarketItem> market;
     private ArrayList<MarketItem> marketList;
+    private MarketItem selectedItem;
 
     // create list view obj for cargo items
     private ListView lvCargoItems;
@@ -48,6 +52,7 @@ public class MarketActivity extends AppCompatActivity {
     private LinearLayout marketItem;
     private FrameLayout flCredits;
     private TextView tvCredits;
+    private EditText quantityEditText;
     private Button btnBuy;
     private Button btnSell;
 
@@ -65,6 +70,7 @@ public class MarketActivity extends AppCompatActivity {
         tvCredits.setText("Credits: " + game.getPlayer().getCredits());
         btnBuy = findViewById(R.id.btnBuy);
         btnSell = findViewById(R.id.btnSell);
+        quantityEditText = findViewById(R.id.quantity);
 
     }
 
@@ -100,9 +106,6 @@ public class MarketActivity extends AppCompatActivity {
         marketItem = findViewById(R.id.market_item);
         lvCargoItems = findViewById(R.id.lvCargoItems);
 
-        // get the current player's ship
-        SpaceShip ship = game.getPlayer().getSpaceShip();
-
         // make a list of its cargo
         cargoList = new ArrayList<>();
         cargoList.addAll(ship.getCargo().values());
@@ -129,22 +132,68 @@ public class MarketActivity extends AppCompatActivity {
                 // TODO: store the currently highlighted item
 
                 LinearLayout linearLayout = (LinearLayout) viewClicked;
-                String message = "You clicked # " + position + ", which is string: ";
+                selectedItem = marketList.get(position - 1);
+                String message = "You clicked # " + position + ", which is item: " + selectedItem;
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    // (oops didn't see buy/sell in planet)
-    // TODO: Perform buy/sell method on highlighted/selected item
-    // sellToPlayer:
-        // sufficientSpace() -> ?
-        // sufficientCredits() -> ?
-        // addToCargo()
-        // updateCredits()
-    // buyFromPlayer:
-        // sufficient#ofGoodsInInventory() -> ?
-        // removeFromCargo()
-        // updateCredits()
+
+    public void buyButtonClicked(View view) {
+
+        int quantity = Integer.getInteger(quantityEditText.getText().toString());
+        int totalPrice = quantity * selectedItem.getPrice();
+        // TODO: figure out better weight system?
+        int totalWeight = 5 * quantity;
+
+        // Market doesn't have that many items to sell
+        if (quantity < selectedItem.getQuantity()) {
+            String message = "Insufficient amount in market";
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            return;
+        }
+        // Player doesn't have enough funds to make purchase
+        if (!player.sufficientFunds(totalPrice)) {
+            String message = "Credit card declined ://";
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            return;
+        }
+        // Ship doesn't have enough cargo space to store purchased goods
+        if(!ship.sufficientSpace(totalWeight)) {
+            String message = "Insufficient cargo space";
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        planet.sellToPlayer(selectedItem);
+        player.setCredits(player.getCredits() - totalPrice);
+        ship.addToCargo(selectedItem);
+        tvCredits.setText(player.getCredits());
+    }
+
+    public void sellButtonClicked(View view) {
+
+        int quantity = Integer.getInteger(quantityEditText.getText().toString());
+        int totalPrice = quantity * selectedItem.getPrice();
+
+        // Player doesn't have that many items to sell
+        if(quantity > ship.getCargo().get(selectedItem.getGood()).getQuantity()) {
+            String message = "Insufficient amount in player cargo";
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            return;
+        }
+        // Planet tech level isn't high enough to use that good
+        if(!planet.canUse(selectedItem.getGood())) {
+            String message = "Planet not advanced enough for this good";
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        planet.buyFromPlayer(selectedItem);
+        player.setCredits(player.getCredits() + totalPrice);
+        ship.removeFromCargo(selectedItem);
+        tvCredits.setText(player.getCredits());
+    }
 
 }
