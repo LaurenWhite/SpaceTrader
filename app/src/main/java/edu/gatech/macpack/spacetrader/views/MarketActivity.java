@@ -70,7 +70,7 @@ public class MarketActivity extends AppCompatActivity {
         tvCredits.setText("Credits: " + game.getPlayer().getCredits());
         btnBuy = findViewById(R.id.btnBuy);
         btnSell = findViewById(R.id.btnSell);
-        quantityEditText = findViewById(R.id.quantity);
+        quantityEditText = findViewById(R.id.quantityInput);
 
     }
 
