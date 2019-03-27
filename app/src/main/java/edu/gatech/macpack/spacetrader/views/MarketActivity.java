@@ -70,7 +70,7 @@ public class MarketActivity extends AppCompatActivity {
         tvCredits.setText("Credits: " + game.getPlayer().getCredits());
         btnBuy = findViewById(R.id.btnBuy);
         btnSell = findViewById(R.id.btnSell);
-        quantityEditText = findViewById(R.id.quantity);
+        quantityEditText = findViewById(R.id.quantityInput);
 
     }
 
@@ -78,7 +78,7 @@ public class MarketActivity extends AppCompatActivity {
         marketItem = findViewById(R.id.market_item);
         lvGoods = findViewById(R.id.lvGoods);
 
-        // TODO: implement the current planet/market user is in correctly (apologies in advance for the messy code)
+        // TODO: implement the current planet/market user is in correctly
         system = game.getSolarSystems().get(0);
         planet = system.getPlanets().get(0);
         market = planet.getMarket();
@@ -106,9 +106,11 @@ public class MarketActivity extends AppCompatActivity {
         marketItem = findViewById(R.id.market_item);
         lvCargoItems = findViewById(R.id.lvCargoItems);
 
+        cargo = ship.getCargo();
+
         // make a list of its cargo
         cargoList = new ArrayList<>();
-        cargoList.addAll(ship.getCargo().values());
+        cargoList.addAll(cargo.values());
 
         CargoListAdapter adapter = new CargoListAdapter(
                 this,
@@ -129,9 +131,6 @@ public class MarketActivity extends AppCompatActivity {
         lvGoods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-                // TODO: store the currently highlighted item
-
-                LinearLayout linearLayout = (LinearLayout) viewClicked;
                 selectedItem = marketList.get(position - 1);
                 String message = "You clicked # " + position + ", which is item: " + selectedItem;
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
@@ -142,19 +141,28 @@ public class MarketActivity extends AppCompatActivity {
 
     public void buyButtonClicked(View view) {
 
-        int quantity = Integer.getInteger(quantityEditText.getText().toString());
+        // empty quantity
+        if (selectedItem == null) {
+            String message = "Select an item";
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // input type is defined as number only in xml
+        int quantity = Integer.parseInt(quantityEditText.getText().toString());
+
         int totalPrice = quantity * selectedItem.getPrice();
         // TODO: figure out better weight system?
         int totalWeight = 5 * quantity;
 
         // Market doesn't have that many items to sell
-        if (quantity < selectedItem.getQuantity()) {
+        if (quantity > selectedItem.getQuantity()) {
             String message = "Insufficient amount in market";
             Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             return;
         }
         // Player doesn't have enough funds to make purchase
-        if (!player.sufficientFunds(totalPrice)) {
+        if (player.getCredits() < totalPrice) {
             String message = "Credit card declined ://";
             Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             return;
@@ -167,14 +175,21 @@ public class MarketActivity extends AppCompatActivity {
         }
 
         planet.sellToPlayer(selectedItem);
-        player.setCredits(player.getCredits() - totalPrice);
-        ship.addToCargo(selectedItem);
-        tvCredits.setText(player.getCredits());
+        player.setCredits(game.getPlayer().getCredits() - totalPrice);
+        tvCredits.setText("Credits: " + player.getCredits());
+        // TODO: Figure out why clicking buy twice causes crash then nullpointer exception
+
+        // TODO: Figure out why this line gives nullpointer exception
+//        ship.addToCargo(selectedItem);
+
+        // TODO: add to or update cargo view (good name, quantity, price) -> repopulate cargoListView?
+
+        // TODO: update quantity on quantity view for market list
     }
 
     public void sellButtonClicked(View view) {
 
-        int quantity = Integer.getInteger(quantityEditText.getText().toString());
+        int quantity = Integer.parseInt(quantityEditText.getText().toString());
         int totalPrice = quantity * selectedItem.getPrice();
 
         // Player doesn't have that many items to sell
@@ -192,8 +207,8 @@ public class MarketActivity extends AppCompatActivity {
 
         planet.buyFromPlayer(selectedItem);
         player.setCredits(player.getCredits() + totalPrice);
+        tvCredits.setText("Credits: " + player.getCredits());
         ship.removeFromCargo(selectedItem);
-        tvCredits.setText(player.getCredits());
     }
 
 }
