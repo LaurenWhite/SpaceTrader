@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -38,12 +39,14 @@ public class MarketActivity extends AppCompatActivity {
     private ListView lvGoods;
     private Map<TradeGood, MarketItem> market;
     private ArrayList<MarketItem> marketList;
+    private MarketListAdapter marketListAdapter;
     private MarketItem selectedItem;
 
     // create list view obj for cargo items
     private ListView lvCargoItems;
     private Map<TradeGood,CargoItem> cargo;
     private ArrayList<CargoItem> cargoList;
+    private CargoListAdapter cargoListAdapter;
 
     // other information required to generate market
     private SolarSystem system;
@@ -86,15 +89,11 @@ public class MarketActivity extends AppCompatActivity {
         marketList = new ArrayList<>();
         marketList.addAll(market.values());
 
-        // builds the adapter
-        MarketListAdapter adapter = new MarketListAdapter(
-                this,
-                R.layout.market_item,
-                marketList
-        );
+        // Builds adapter
+        marketListAdapter = new MarketListAdapter(this, R.layout.market_item, marketList);
 
         // configures list view
-        lvGoods.setAdapter(adapter);
+        lvGoods.setAdapter(marketListAdapter);
 
         // adds header to the list view
         View header = getLayoutInflater().inflate(R.layout.market_header, null);
@@ -112,13 +111,13 @@ public class MarketActivity extends AppCompatActivity {
         cargoList = new ArrayList<>();
         cargoList.addAll(cargo.values());
 
-        CargoListAdapter adapter = new CargoListAdapter(
+        cargoListAdapter = new CargoListAdapter(
                 this,
                 R.layout.market_item,
                 cargoList
         );
 
-        lvCargoItems.setAdapter(adapter);
+        lvCargoItems.setAdapter(cargoListAdapter);
 
         View header = getLayoutInflater().inflate(R.layout.market_header, null);
         lvCargoItems.addHeaderView(header);
@@ -136,34 +135,41 @@ public class MarketActivity extends AppCompatActivity {
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
+
+        lvCargoItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+                selectedItem = cargoList.get(position - 1);
+                String message = "You clicked # " + position + ", which is item: " + selectedItem;
+                Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
+
 
 
     public void buyButtonClicked(View view) {
 
-        // empty quantity
-        if (selectedItem == null) {
-            String message = "Select an item";
-            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
-            return;
-        }
+        if(!infoEntered()) return;
 
         // input type is defined as number only in xml
         int quantity = Integer.parseInt(quantityEditText.getText().toString());
 
         int totalPrice = quantity * selectedItem.getPrice();
         // TODO: figure out better weight system?
-        int totalWeight = 5 * quantity;
+        int totalWeight = quantity;
+
+        MarketItem purchaseItem = new MarketItem(selectedItem.getGood(), quantity, selectedItem.getPrice());
 
         // Market doesn't have that many items to sell
-        if (quantity > selectedItem.getQuantity()) {
+        if (purchaseItem.getQuantity() > selectedItem.getQuantity()) {
             String message = "Insufficient amount in market";
             Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             return;
         }
         // Player doesn't have enough funds to make purchase
-        if (player.getCredits() < totalPrice) {
-            String message = "Credit card declined ://";
+        if (!player.sufficientFunds(totalPrice)) {
+            String message = "You do not have enough credits";
             Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             return;
         }
@@ -174,41 +180,88 @@ public class MarketActivity extends AppCompatActivity {
             return;
         }
 
-        planet.sellToPlayer(selectedItem);
-        player.setCredits(game.getPlayer().getCredits() - totalPrice);
+        // Make transaction
+        planet.sellToPlayer(purchaseItem);
+        player.setCredits(game.getPlayer().getCredits() - purchaseItem.getPrice());
         tvCredits.setText("Credits: " + player.getCredits());
-        // TODO: Figure out why clicking buy twice causes crash then nullpointer exception
+        ship.addToCargo(purchaseItem);
 
-        // TODO: Figure out why this line gives nullpointer exception
-//        ship.addToCargo(selectedItem);
-
-        // TODO: add to or update cargo view (good name, quantity, price) -> repopulate cargoListView?
-
-        // TODO: update quantity on quantity view for market list
+        // Reload the list views to display changes
+        reloadMarketListView();
+        reloadCargoListView();
+        selectedItem = null;
     }
 
     public void sellButtonClicked(View view) {
 
+        if(!infoEntered()) return;
+
         int quantity = Integer.parseInt(quantityEditText.getText().toString());
         int totalPrice = quantity * selectedItem.getPrice();
 
+        MarketItem sellItem = new MarketItem(selectedItem.getGood(), quantity, selectedItem.getPrice());
+
         // Player doesn't have that many items to sell
-        if(quantity > ship.getCargo().get(selectedItem.getGood()).getQuantity()) {
+        if(sellItem.getQuantity() > ship.getCargo().get(selectedItem.getGood()).getQuantity()) {
             String message = "Insufficient amount in player cargo";
             Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             return;
         }
         // Planet tech level isn't high enough to use that good
-        if(!planet.canUse(selectedItem.getGood())) {
+        if(!planet.canUse(sellItem.getGood())) {
             String message = "Planet not advanced enough for this good";
             Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
             return;
         }
 
-        planet.buyFromPlayer(selectedItem);
+        // Make transaction
+        planet.buyFromPlayer(sellItem);
         player.setCredits(player.getCredits() + totalPrice);
         tvCredits.setText("Credits: " + player.getCredits());
-        ship.removeFromCargo(selectedItem);
+        ship.removeFromCargo(sellItem);
+
+        // Reload the list views to display changes
+        reloadMarketListView();
+        reloadCargoListView();
+        selectedItem = null;
     }
+
+    private boolean infoEntered() {
+        // No item selected
+        if (selectedItem == null) {
+            String message = "Select an item";
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        // No quantity entered
+        if (TextUtils.isEmpty(quantityEditText.getText())) {
+            String message = "Enter a quantity";
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    private void reloadMarketListView() {
+        market = planet.getMarket();
+
+        marketList.clear();
+        marketList.addAll(market.values());
+
+        lvGoods.setAdapter(marketListAdapter);
+    }
+
+    private void reloadCargoListView() {
+        cargo = ship.getCargo();
+
+        cargoList.clear();
+        cargoList.addAll(cargo.values());
+
+        lvCargoItems.setAdapter(cargoListAdapter);
+    }
+
 
 }
