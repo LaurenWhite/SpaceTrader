@@ -35,29 +35,36 @@ public class SpaceShip {
     }
 
     public void addToCargo(MarketItem item) {
-        if(cargo.containsValue(item))  {
-            int currentQuantity = cargo.get(item.getGood()).getQuantity();
-            cargo.get(item.getGood()).setQuantity(currentQuantity + item.getQuantity());
+
+        TradeGood good = item.getGood();
+
+        // If good already in cargo add to quantity, if not add new entry
+        if(cargo.containsKey(good))  {
+            int currentQuantity = cargo.get(good).getQuantity();
+            cargo.get(good).setQuantity(currentQuantity + item.getQuantity());
         } else {
-            CargoItem cargoItem = (CargoItem) item;
-            cargo.put(item.getGood(), cargoItem);
+            CargoItem cargoItem = new CargoItem(item.getGood(), item.getQuantity(), item.getPrice());
+            cargo.put(good, cargoItem);
         }
-        // TODO: decide how weight system will be for each item, 5 current arbitrary value
-        weight += 5 * item.getQuantity();
+        // TODO: decide how weight system will be for each item, 1 for each item
+        weight += item.getQuantity();
     }
 
     public void removeFromCargo(MarketItem item) {
-        CargoItem cargoItem = (CargoItem) item;
-        TradeGood good = cargoItem.getGood();
+
+        TradeGood good = item.getGood();
+
         int currentAmount = cargo.get(good).getQuantity();
 
-        if(cargoItem.getQuantity() == currentAmount) {
+        // If removing all of a cargo item, remove the whole cargo item
+        // If not, subtract from the current quantity
+        if(item.getQuantity() == currentAmount) {
             cargo.remove(good);
         } else {
-            cargo.get(good).setQuantity(currentAmount - cargoItem.getQuantity());
+            cargo.get(good).setQuantity(currentAmount - item.getQuantity());
         }
 
-        weight -= 5 * cargoItem.getQuantity();
+        weight -= item.getQuantity();
     }
 
 
