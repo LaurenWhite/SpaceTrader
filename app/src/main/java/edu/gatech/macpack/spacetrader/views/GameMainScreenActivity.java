@@ -30,6 +30,11 @@ public class GameMainScreenActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onTravelPressed(View view) {
+        Intent intent = new Intent(getBaseContext(), TravelActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
