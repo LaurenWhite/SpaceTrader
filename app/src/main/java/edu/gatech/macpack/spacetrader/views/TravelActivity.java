@@ -2,16 +2,27 @@ package edu.gatech.macpack.spacetrader.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.gatech.macpack.spacetrader.R;
+import edu.gatech.macpack.spacetrader.entity.Game;
+import edu.gatech.macpack.spacetrader.entity.Planet;
+import edu.gatech.macpack.spacetrader.entity.Player;
+import edu.gatech.macpack.spacetrader.entity.SolarSystem;
+import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 
 public class TravelActivity extends AppCompatActivity {
+    Game game = Game.getGameInstance();
+    Player player = game.getPlayer();
+    SpaceShip ship = player.getSpaceShip();
 
     private TextView currentLocationLabel;
     private TextView currentLocation;
@@ -20,6 +31,16 @@ public class TravelActivity extends AppCompatActivity {
     private TextView planet;
     private Spinner planetSpinner;
     private Button go;
+
+    private SolarSystem currentSystem;
+    private Planet currentPlanet;
+    private ArrayList<SolarSystem> systems;
+    private ArrayList<String> solarSystemNames;
+    private ArrayList<String> selectSystem;
+
+    private ArrayList<Planet> planets;
+    private List<String> planetNames;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +54,47 @@ public class TravelActivity extends AppCompatActivity {
         planet = findViewById(R.id.planet);
         planetSpinner = findViewById(R.id.planetSpinner);
         go = findViewById(R.id.go);
+
+        systems = (ArrayList<SolarSystem>) game.getSolarSystems();
+        solarSystemNames = new ArrayList<>();
+        selectSystem = new ArrayList<>();
+
+        for (SolarSystem system : systems) {
+            solarSystemNames.add(system.getName());
+        }
+
+        selectSystem.add("Select a System");
+
+        ArrayAdapter<String> solarAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, solarSystemNames);
+        // sets default text of planet spinner ("Select a System") --> couldn't figure out how to make this show up again upon landing
+        ArrayAdapter<String> planetAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, selectSystem);
+
+        solarAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        solarSystemSpinner.setAdapter(solarAdapter);
+        planetSpinner.setAdapter(planetAdapter);
+
+        solarSystemSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // changes the planets spinner accordingly when solar system is clicked
+
+                planetNames = new ArrayList<>();
+
+                SolarSystem chosenSystem = game.getSolarSystems().get(position);
+                for (Planet planet : chosenSystem.getPlanets()) {
+                    planetNames.add(planet.getName());
+                }
+
+                ArrayAdapter<String> planetAdapter = new ArrayAdapter<String>(TravelActivity.this, R.layout.spinner_item, planetNames);
+                planetSpinner.setAdapter(planetAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 }
