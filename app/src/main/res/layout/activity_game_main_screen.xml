@@ -40,13 +40,14 @@
         android:id="@+id/resource_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/ship_id"
+        android:layout_marginTop="255dp"
         android:text="Resources"
         android:textColor="@color/colorAccent"
+        android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintStart_toStartOf="@id/cargo_id"
-        android:layout_margin="16dp"
-        android:textSize="20dp"/>
+        app:layout_constraintStart_toStartOf="@id/cargo_id" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -135,21 +136,31 @@
         android:id="@+id/marketBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onMarketPressed"
-        android:text="@string/market_btn_text"
-        android:layout_alignBaseline="@+id/resource_id"
+        android:layout_alignBaseline="@+id/btns_baseline"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="45dp" />
+        android:layout_marginRight="45dp"
+        android:onClick="onMarketPressed"
+        android:text="@string/market_btn_text" />
 
 
     <Button
         android:id="@+id/travelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/resource_id"
-        android:layout_toLeftOf="@+id/marketBtn"
+        android:layout_alignBaseline="@+id/btns_baseline"
         android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/marketBtn"
         android:onClick="onTravelPressed"
         android:text="@string/travel_btn_text" />
+
+    <TextView
+        android:id="@+id/btns_baseline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginStart="37dp"
+        android:text="TextView" />
 
 </RelativeLayout>
