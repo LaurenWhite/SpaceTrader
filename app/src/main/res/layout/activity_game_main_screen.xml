@@ -40,14 +40,12 @@
         android:id="@+id/resource_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="400dp"
         android:text="Resources"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
+        android:layout_alignParentBottom="true"
         app:layout_constraintStart_toStartOf="@id/cargo_id"
-        app:layout_constraintTop_toTopOf="@id/cargo_id"
+        android:layout_margin="16dp"
         android:textSize="20dp"/>
 
     <ProgressBar
