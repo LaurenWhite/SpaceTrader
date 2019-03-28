@@ -14,14 +14,10 @@ import edu.gatech.macpack.spacetrader.R;
 
 public class GameMainScreenActivity extends AppCompatActivity {
 
-    private Button marketEntry;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_main_screen);
-
-        marketEntry = findViewById(R.id.tmpMarket);
     }
 
     // temporary market button function for testing

@@ -53,28 +53,27 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="181dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="211dp"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="211dp"
+        android:layout_marginStart="211dp"
         android:layout_marginTop="70dp"
         android:indeterminate="false"
         android:max="100"
-        android:minWidth="200dp"
         android:minHeight="50dp"
+        android:minWidth="200dp"
         android:progress="1"
-        android:progressTint="@color/colorAccent"
         android:progressBackgroundTint="@color/colorAccent"
-        />
+        android:progressTint="@color/colorAccent" />
 
 
     <ProgressBar
         android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="181dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -84,11 +83,11 @@
         android:layout_marginTop="112dp"
         android:indeterminate="false"
         android:max="100"
-        android:minWidth="200dp"
         android:minHeight="50dp"
+        android:minWidth="200dp"
         android:progress="1"
-        android:progressTint="@color/colorAccent"
-        android:progressBackgroundTint="@color/colorAccent"/>
+        android:progressBackgroundTint="@color/colorAccent"
+        android:progressTint="@color/colorAccent" />
 
     <TextView
         android:id="@+id/tank"
@@ -135,25 +134,24 @@
         android:textSize="20dp"/>
 
     <Button
-        android:id="@+id/tmpMarket"
+        android:id="@+id/marketBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onMarketPressed"
-        android:text="Market"
+        android:text="@string/market_btn_text"
+        android:layout_alignBaseline="@+id/resource_id"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="110dp"
-        android:layout_marginTop="650dp"/>
+        android:layout_marginRight="45dp" />
 
 
     <Button
-        android:id="@+id/tmpTravel"
+        android:id="@+id/travelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="230dp"
+        android:layout_alignBaseline="@+id/resource_id"
+        android:layout_toLeftOf="@+id/marketBtn"
+        android:layout_marginRight="10dp"
         android:onClick="onTravelPressed"
-        android:text="Travel"
-        android:layout_marginTop="650dp"/>
+        android:text="@string/travel_btn_text" />
 
 </RelativeLayout>
