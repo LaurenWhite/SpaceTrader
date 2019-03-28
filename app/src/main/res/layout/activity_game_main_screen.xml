@@ -47,46 +47,41 @@
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/cargo_id" />
+        app:layout_constraintStart_toStartOf="@id/cargo_id"
+        android:layout_alignLeft="@+id/ship_id" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/fuelTankBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="181dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="211dp"
-        android:layout_marginStart="211dp"
-        android:layout_marginTop="70dp"
+        android:layout_alignStart="@+id/travelBtn"
+        android:layout_below="@+id/ship_id"
         android:indeterminate="false"
         android:max="100"
         android:minHeight="50dp"
         android:minWidth="200dp"
         android:progress="1"
         android:progressBackgroundTint="@color/colorAccent"
-        android:progressTint="@color/colorAccent" />
+        android:progressTint="@color/colorAccent"
+        android:layout_alignLeft="@+id/travelBtn" />
 
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/shipHealthBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="181dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="211dp"
-        android:layout_marginStart="211dp"
-        android:layout_marginTop="112dp"
+        android:layout_alignStart="@+id/fuelTankBar"
+        android:layout_below="@+id/tank"
         android:indeterminate="false"
         android:max="100"
         android:minHeight="50dp"
         android:minWidth="200dp"
         android:progress="1"
         android:progressBackgroundTint="@color/colorAccent"
-        android:progressTint="@color/colorAccent" />
+        android:progressTint="@color/colorAccent"
+        android:layout_alignLeft="@+id/fuelTankBar" />
 
     <TextView
         android:id="@+id/tank"
@@ -161,6 +156,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="25dp"
         android:layout_marginStart="37dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="37dp" />
 
 </RelativeLayout>
