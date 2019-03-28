@@ -65,9 +65,9 @@ public class TravelActivity extends AppCompatActivity {
 
         selectSystem.add("Select a System");
 
-        ArrayAdapter<String> solarAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, solarSystemNames);
-        // sets default text of planet spinner ("Select a System")
-        ArrayAdapter<String> planetAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, selectSystem);
+        ArrayAdapter<String> solarAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, solarSystemNames);
+        // sets default text of planet spinner ("Select a System") --> couldn't figure out how to make this show up again upon landing
+        ArrayAdapter<String> planetAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, selectSystem);
 
         solarAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
