@@ -6,4 +6,6 @@
     <string name="good_price">Price</string>
     <string name="buy_btn_name">Buy</string>
     <string name="sell_btn_text">Sell</string>
+    <string name="market_btn_text">Market</string>
+    <string name="travel_btn_text">Travel</string>
 </resources>

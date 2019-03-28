@@ -41,13 +41,13 @@
 
     <Spinner
         android:id="@+id/solarSystemSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="110dp"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#FFFFFF"/>
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/planet"
@@ -62,13 +62,13 @@
 
     <Spinner
         android:id="@+id/planetSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="180dp"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#FFFFFF"/>
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/go"
