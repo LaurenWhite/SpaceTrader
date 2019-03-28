@@ -138,11 +138,22 @@
         android:id="@+id/tmpMarket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/resource_id"
         android:onClick="onMarketPressed"
         android:text="Market"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="45dp" />
+        android:layout_marginRight="110dp"
+        android:layout_marginTop="650dp"/>
 
+
+    <Button
+        android:id="@+id/tmpTravel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="230dp"
+        android:onClick="onTravelPressed"
+        android:text="Travel"
+        android:layout_marginTop="650dp"/>
 
 </RelativeLayout>
