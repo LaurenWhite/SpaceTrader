@@ -36,13 +36,15 @@ public class TravelActivity extends AppCompatActivity {
 
     private SolarSystem currentSystem;
     private Planet currentPlanet;
-    private ArrayList<SolarSystem> systems;
+    private List<SolarSystem> systems;
     private ArrayList<String> solarSystemNames;
 
     private ArrayList<Planet> planets;
     private List<String> planetNames;
     private Planet selectedPlanet;
     private SolarSystem chosenSystem;
+
+    private Traveler traveler;
 
 
     @Override
@@ -58,7 +60,14 @@ public class TravelActivity extends AppCompatActivity {
         planetSpinner = findViewById(R.id.planetSpinner);
         go = findViewById(R.id.go);
 
-        systems = (ArrayList<SolarSystem>) game.getSolarSystems();
+        traveler = new Traveler(ship);
+        systems = traveler.systemsInRange();
+
+        currentSystem = ship.getLocation().getParentSystem();
+        currentPlanet = ship.getLocation();
+
+        currentLocationLabel.setText("Current location: " + currentPlanet.getName() + ", " + currentSystem.getName());
+
         solarSystemNames = new ArrayList<>();
 
         for (SolarSystem system : systems) {
@@ -78,7 +87,7 @@ public class TravelActivity extends AppCompatActivity {
 
                 planetNames = new ArrayList<>();
 
-                chosenSystem = game.getSolarSystems().get(position);
+                chosenSystem = systems.get(position);
                 for (Planet planet : chosenSystem.getPlanets()) {
                     planetNames.add(planet.getName());
                 }
@@ -110,13 +119,15 @@ public class TravelActivity extends AppCompatActivity {
     }
 
     public void goButtonClicked(View view) {
-//        Traveler traveler = new Traveler();
-//        try {
-//            traveler.travel();
-//        } catch (Exception e) {
-//            String message = e.getMessage();
-//            Toast.makeText(TravelActivity.this, message, Toast.LENGTH_LONG).show();
-//            return;
-//        }
+        if (selectedPlanet == null) { return; }
+
+        traveler = new Traveler(ship, currentPlanet, selectedPlanet);
+
+        traveler.travel();
+
+        currentPlanet = selectedPlanet;
+        currentSystem = currentPlanet.getParentSystem();
+
+        currentLocationLabel.setText("Current location: " + currentPlanet.getName() + ", " + currentSystem.getName());
     }
 }
