@@ -38,10 +38,11 @@ public class TravelActivity extends AppCompatActivity {
     private Planet currentPlanet;
     private ArrayList<SolarSystem> systems;
     private ArrayList<String> solarSystemNames;
-    private ArrayList<String> selectSystem;
 
     private ArrayList<Planet> planets;
     private List<String> planetNames;
+    private Planet selectedPlanet;
+    private SolarSystem chosenSystem;
 
 
     @Override
@@ -59,22 +60,16 @@ public class TravelActivity extends AppCompatActivity {
 
         systems = (ArrayList<SolarSystem>) game.getSolarSystems();
         solarSystemNames = new ArrayList<>();
-        selectSystem = new ArrayList<>();
 
         for (SolarSystem system : systems) {
             solarSystemNames.add(system.getName());
         }
 
-        selectSystem.add("Select a System");
-
         ArrayAdapter<String> solarAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, solarSystemNames);
-        // sets default text of planet spinner ("Select a System") --> couldn't figure out how to make this show up again upon landing
-        ArrayAdapter<String> planetAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, selectSystem);
 
         solarAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         solarSystemSpinner.setAdapter(solarAdapter);
-        planetSpinner.setAdapter(planetAdapter);
 
         solarSystemSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -83,7 +78,7 @@ public class TravelActivity extends AppCompatActivity {
 
                 planetNames = new ArrayList<>();
 
-                SolarSystem chosenSystem = game.getSolarSystems().get(position);
+                chosenSystem = game.getSolarSystems().get(position);
                 for (Planet planet : chosenSystem.getPlanets()) {
                     planetNames.add(planet.getName());
                 }
@@ -91,6 +86,20 @@ public class TravelActivity extends AppCompatActivity {
                 ArrayAdapter<String> planetAdapter = new ArrayAdapter<String>(TravelActivity.this, R.layout.spinner_item, planetNames);
                 planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 planetSpinner.setAdapter(planetAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        planetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                planets = (ArrayList<Planet>) chosenSystem.getPlanets();
+                selectedPlanet = planets.get(position);
+                
             }
 
             @Override
