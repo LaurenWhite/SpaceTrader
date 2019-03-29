@@ -25,11 +25,12 @@ public class Planet {
     private ResourceType resource;
     private int traderEventChance;
     private Map<TradeGood, MarketItem> market;
+    private SolarSystem parentSystem;
 
 
 
     // CONSTRUCTOR
-    public Planet() {
+    public Planet(SolarSystem parentSystem) {
         Random r = new Random();
         name = chooseName(r.nextInt(availableNames.size()));
         location = new int[] {r.nextInt(40), r.nextInt(40)};
@@ -37,6 +38,7 @@ public class Planet {
         resource = ResourceType.values()[r.nextInt(13)];
         traderEventChance = techLevel.getTechNum() + 2; // x 10 = %
         market = generateMarket();
+        this.parentSystem = parentSystem;
         printMarket(); // for testing
     }
 
@@ -54,6 +56,8 @@ public class Planet {
     public int getTraderEventChance() { return traderEventChance; }
 
     public Map<TradeGood, MarketItem> getMarket() { return market; }
+
+    public SolarSystem getParentSystem() { return parentSystem; }
 
 
 

@@ -2,7 +2,7 @@ package edu.gatech.macpack.spacetrader.entity;
 
 public enum SpaceShipType {
     FLEA("Flea"),
-    GNAT("Gnat", 100, 20, 500),
+    GNAT("Gnat", 100, 20, 50),
     FIREFLY("Firefly"),
     MOSQUITO("Mosquito"),
     BUMBLEBEE("Bumblebee"),

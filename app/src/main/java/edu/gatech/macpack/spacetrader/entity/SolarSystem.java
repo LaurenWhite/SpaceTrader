@@ -28,8 +28,8 @@ public class SolarSystem {
         name = chooseName(r.nextInt(availableNames.size()));
         location = new int[] {r.nextInt(150), r.nextInt(100)};
         planets = new ArrayList<>();
-        planets.add(new Planet());
-        planets.add(new Planet());
+        planets.add(new Planet(this));
+        planets.add(new Planet(this));
     }
 
 
