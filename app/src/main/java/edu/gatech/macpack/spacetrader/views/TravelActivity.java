@@ -27,19 +27,19 @@ public class TravelActivity extends AppCompatActivity {
     SpaceShip ship = player.getSpaceShip();
 
     private TextView currentLocationLabel;
+    private TextView currentFuelLabel;
     private TextView currentLocation;
     private TextView solarSystem;
     private Spinner solarSystemSpinner;
     private TextView planet;
     private Spinner planetSpinner;
-    private Button go;
 
     private SolarSystem currentSystem;
     private Planet currentPlanet;
     private List<SolarSystem> systems;
-    private ArrayList<String> solarSystemNames;
+    private List<String> solarSystemNames;
 
-    private ArrayList<Planet> planets;
+    private List<Planet> planets;
     private List<String> planetNames;
     private Planet selectedPlanet;
     private SolarSystem chosenSystem;
@@ -52,32 +52,30 @@ public class TravelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_travel);
 
+        // Connect UI
         currentLocationLabel = findViewById(R.id.currentLocationLabel);
         currentLocation = findViewById(R.id.currentLocation);
+        currentFuelLabel = findViewById(R.id.currentFuelLabel);
         solarSystem = findViewById(R.id.solarSystem);
         solarSystemSpinner = findViewById(R.id.solarSystemSpinner);
         planet = findViewById(R.id.planet);
         planetSpinner = findViewById(R.id.planetSpinner);
-        go = findViewById(R.id.go);
 
+        // Initialize Variables
         traveler = new Traveler(ship);
         systems = traveler.systemsInRange();
 
         currentSystem = ship.getLocation().getParentSystem();
         currentPlanet = ship.getLocation();
 
-        currentLocationLabel.setText("Current location: " + currentPlanet.getName() + ", " + currentSystem.getName());
-
         solarSystemNames = new ArrayList<>();
+        planetNames = new ArrayList<>();
 
-        for (SolarSystem system : systems) {
-            solarSystemNames.add(system.getName());
-        }
+        // Update current location, current fuel labels, and in range solar systems
+        updateLabels();
 
         ArrayAdapter<String> solarAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, solarSystemNames);
-
         solarAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         solarSystemSpinner.setAdapter(solarAdapter);
 
         solarSystemSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -85,7 +83,7 @@ public class TravelActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // changes the planets spinner accordingly when solar system is clicked
 
-                planetNames = new ArrayList<>();
+                planetNames.clear();
 
                 chosenSystem = systems.get(position);
                 for (Planet planet : chosenSystem.getPlanets()) {
@@ -98,25 +96,36 @@ public class TravelActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         planetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                planets = (ArrayList<Planet>) chosenSystem.getPlanets();
+                planets = chosenSystem.getPlanets();
                 selectedPlanet = planets.get(position);
                 
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
     }
+
+
+    private void updateLabels() {
+        currentLocationLabel.setText("Current location: " + currentPlanet.getName() + ", " + currentSystem.getName());
+        currentFuelLabel.setText("Current fuel: " + ship.getFuel());
+
+        traveler = new Traveler(ship);
+        systems = traveler.systemsInRange();
+
+        solarSystemNames.clear();
+        for (SolarSystem system : systems) {
+            solarSystemNames.add(system.getName());
+        }
+    }
+
 
     public void goButtonClicked(View view) {
         if (selectedPlanet == null) { return; }
@@ -128,6 +137,6 @@ public class TravelActivity extends AppCompatActivity {
         currentPlanet = selectedPlanet;
         currentSystem = currentPlanet.getParentSystem();
 
-        currentLocationLabel.setText("Current location: " + currentPlanet.getName() + ", " + currentSystem.getName());
+        updateLabels();
     }
 }
