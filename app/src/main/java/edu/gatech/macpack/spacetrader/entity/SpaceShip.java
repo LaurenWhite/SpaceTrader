@@ -8,12 +8,16 @@ public class SpaceShip {
     private SpaceShipType shipType;
     private Map<TradeGood, CargoItem> cargo;
     private int weight;
+    private Planet location;
+    private int fuel;
 
     // CONSTRUCTOR
     public SpaceShip(SpaceShipType shipType){
         this.shipType = shipType;
         cargo = new HashMap<>();
         weight = 0;
+        location = Game.getGameInstance().getStartingLocation();
+        fuel = shipType.fuelCapacity;
     }
 
     // GETTERS
@@ -23,11 +27,18 @@ public class SpaceShip {
 
     public int getWeight() { return weight; }
 
+    public Planet getLocation() { return location; }
+
+    public int getMileage() { return shipType.mileage; }
+
+    public int getFuel() { return fuel; }
 
     // SETTERS
     public void setShipType(SpaceShipType shipType) { this.shipType = shipType; }
 
+    public void setLocation(Planet location) { this.location = location; }
 
+    public void setFuel(int fuel) { this.fuel = fuel; }
 
     // FUNCTIONALITY
     public boolean sufficientSpace(int cargoWeight) {

@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import edu.gatech.macpack.spacetrader.entity.Planet;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.entity.SolarSystem;
 import edu.gatech.macpack.spacetrader.entity.SpaceShip;
+import edu.gatech.macpack.spacetrader.entity.Traveler;
 
 public class TravelActivity extends AppCompatActivity {
     Game game = Game.getGameInstance();
@@ -96,5 +98,16 @@ public class TravelActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void goButtonClicked(View view) {
+//        Traveler traveler = new Traveler();
+//        try {
+//            traveler.travel();
+//        } catch (Exception e) {
+//            String message = e.getMessage();
+//            Toast.makeText(TravelActivity.this, message, Toast.LENGTH_LONG).show();
+//            return;
+//        }
     }
 }

@@ -31,6 +31,12 @@ public class Game {
 
     public Player getPlayer() { return player; }
 
+    public Planet getStartingLocation() {
+        SolarSystem firstSolarSystem = solarSystems.get(0);
+        Planet firstPlanet = firstSolarSystem.getPlanets().get(0);
+        return firstPlanet;
+    }
+
 
     // SETTERS
     public void setDifficulty(DifficultyType newDifficulty) { difficulty = newDifficulty; }
