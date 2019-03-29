@@ -55,16 +55,19 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/travelBtn"
         android:layout_below="@+id/ship_id"
+        android:layout_alignStart="@+id/travelBtn"
+        android:layout_alignLeft="@+id/travelBtn"
+        android:layout_marginStart="83dp"
+        android:layout_marginLeft="83dp"
+        android:layout_marginTop="5dp"
         android:indeterminate="false"
         android:max="100"
-        android:minHeight="50dp"
         android:minWidth="200dp"
+        android:minHeight="50dp"
         android:progress="1"
         android:progressBackgroundTint="@color/colorAccent"
-        android:progressTint="@color/colorAccent"
-        android:layout_alignLeft="@+id/travelBtn" />
+        android:progressTint="@color/colorAccent" />
 
 
     <ProgressBar
@@ -72,16 +75,19 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/fuelTankBar"
         android:layout_below="@+id/tank"
+        android:layout_alignStart="@+id/fuelTankBar"
+        android:layout_alignLeft="@+id/fuelTankBar"
+        android:layout_marginStart="-2dp"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="0dp"
         android:indeterminate="false"
         android:max="100"
-        android:minHeight="50dp"
         android:minWidth="200dp"
+        android:minHeight="50dp"
         android:progress="1"
         android:progressBackgroundTint="@color/colorAccent"
-        android:progressTint="@color/colorAccent"
-        android:layout_alignLeft="@+id/fuelTankBar" />
+        android:progressTint="@color/colorAccent" />
 
     <TextView
         android:id="@+id/tank"
@@ -133,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btns_baseline"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="45dp"
+        android:layout_marginRight="100dp"
         android:onClick="onMarketPressed"
         android:text="@string/market_btn_text" />
 
@@ -143,7 +149,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btns_baseline"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="45dp"
         android:layout_toLeftOf="@+id/marketBtn"
         android:onClick="onTravelPressed"
         android:text="@string/travel_btn_text" />
@@ -152,12 +158,12 @@
         android:id="@+id/btns_baseline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginStart="37dp"
-        android:text="TextView"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="37dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginBottom="23dp"
+        android:text="TextView" />
 
 </RelativeLayout>
