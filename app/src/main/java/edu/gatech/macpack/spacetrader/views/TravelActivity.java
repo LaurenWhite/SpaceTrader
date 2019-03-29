@@ -72,7 +72,6 @@ public class TravelActivity extends AppCompatActivity {
         ArrayAdapter<String> planetAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, selectSystem);
 
         solarAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         solarSystemSpinner.setAdapter(solarAdapter);
         planetSpinner.setAdapter(planetAdapter);
@@ -90,6 +89,7 @@ public class TravelActivity extends AppCompatActivity {
                 }
 
                 ArrayAdapter<String> planetAdapter = new ArrayAdapter<String>(TravelActivity.this, R.layout.spinner_item, planetNames);
+                planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 planetSpinner.setAdapter(planetAdapter);
             }
 
