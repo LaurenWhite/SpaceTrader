@@ -19,6 +19,17 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/currentFuelLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="75dp"
+        android:text="Current Fuel:"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"/>
+
+    <TextView
         android:id="@+id/currentLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="130dp"
         android:backgroundTint="#FFFFFF"
         android:textColor="#000000" />
     <TextView
@@ -44,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="110dp"
         android:text="Choose A Solar System"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
@@ -57,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="200dp"
         android:backgroundTint="#FFFFFF"
         android:textColor="#000000"
         app:layout_constraintTop_toBottomOf="@+id/planet"/>
@@ -68,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="180dp"
         android:text="Choose A Planet"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />

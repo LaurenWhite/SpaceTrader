@@ -26,7 +26,7 @@ public class SolarSystem {
     public SolarSystem() {
         Random r = new Random();
         name = chooseName(r.nextInt(availableNames.size()));
-        location = new int[] {r.nextInt(150), r.nextInt(100)};
+        location = new int[] {r.nextInt(500), r.nextInt(500)};
         planets = new ArrayList<>();
         planets.add(new Planet(this));
         planets.add(new Planet(this));
