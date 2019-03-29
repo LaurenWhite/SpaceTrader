@@ -2,7 +2,7 @@ package edu.gatech.macpack.spacetrader.entity;
 
 public enum SpaceShipType {
     FLEA("Flea"),
-    GNAT("Gnat", 100),
+    GNAT("Gnat", 100, 20, 500),
     FIREFLY("Firefly"),
     MOSQUITO("Mosquito"),
     BUMBLEBEE("Bumblebee"),
@@ -14,12 +14,16 @@ public enum SpaceShipType {
 
     public String shipType;
     public int weightCapacity;
+    public int mileage;
+    public int fuelCapacity;
 
     // enum constructor - cannot be public or protected
     SpaceShipType(String shipType) { this.shipType = shipType; }
 
-    SpaceShipType(String shipType, int weightCapacity) {
+    SpaceShipType(String shipType, int weightCapacity, int mileage, int fuelCapacity) {
         this.shipType = shipType;
         this.weightCapacity = weightCapacity;
+        this.mileage = mileage;
+        this.fuelCapacity = fuelCapacity;
     }
 }
