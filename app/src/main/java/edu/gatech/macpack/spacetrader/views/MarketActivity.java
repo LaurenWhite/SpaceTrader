@@ -81,9 +81,7 @@ public class MarketActivity extends AppCompatActivity {
         marketItem = findViewById(R.id.market_item);
         lvGoods = findViewById(R.id.lvGoods);
 
-        // TODO: implement the current planet/market user is in correctly
-        system = game.getSolarSystems().get(0);
-        planet = system.getPlanets().get(0);
+        planet = ship.getLocation();
         market = planet.getMarket();
 
         marketList = new ArrayList<>();
