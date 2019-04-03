@@ -6,7 +6,7 @@ import java.util.List;
 public class Game {
 
     // Singleton model?
-    private static Game instance = new Game();
+    private static Game instance;
     public static Game getGameInstance() { return instance; }
     private Player player;
 
@@ -19,8 +19,13 @@ public class Game {
 
     // CONSTRUCTOR
     public Game() {
+        instance = this;
         solarSystems = generateSolarSystems();
         difficulty = DifficultyType.BEGINNER;
+    }
+
+    public Game(Game loadedInstance) {
+        this.instance = loadedInstance;
     }
 
 
@@ -59,7 +64,7 @@ public class Game {
         return systems;
     }
 
-    // Displays the universe in logcat
+    // Displays the universe in logcat, for testing
     public void universeToString(List<SolarSystem> systems) {
         System.out.println("******UNIVERSE GENERATED******");
         for (SolarSystem system : systems) {
