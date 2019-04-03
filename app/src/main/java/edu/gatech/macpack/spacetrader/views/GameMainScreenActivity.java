@@ -44,9 +44,17 @@ public class GameMainScreenActivity extends AppCompatActivity {
                 Log.d("DEBUG: ", "Clicked close button in menu bar");
                 closeApplication(findViewById(item.getItemId()));
                 break;
+            case R.id.save:
+                Log.d("DEBUG", "Clicked save button in the game main screen menu bar");
+                saveApplication();
+                break;
         }
 
         return true;
+    }
+
+    private void saveApplication() {
+        
     }
 
     public void closeApplication(View view) {
