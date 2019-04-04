@@ -9,4 +9,8 @@
     <string name="market_btn_text">Market</string>
     <string name="travel_btn_text">Travel</string>
     <string name="save_app">Save</string>
+    <string name="new_game">New Game</string>
+    <string name="load_game">Load Game</string>
+    <string name="title_activity_title_screen">TitleScreenActivity</string>
+    <string name="enter_your_username_to_load_a_previous_game">enter your username to load a previous game</string>
 </resources>
