@@ -6,8 +6,9 @@ import java.util.List;
 public class Game {
 
     // Singleton model?
-    private static Game instance;
+    private static Game instance = new Game();
     public static Game getGameInstance() { return instance; }
+
     private Player player;
 
 
@@ -19,13 +20,15 @@ public class Game {
 
     // CONSTRUCTOR
     public Game() {
-        instance = this;
         solarSystems = generateSolarSystems();
         difficulty = DifficultyType.BEGINNER;
     }
 
-    public Game(Game loadedInstance) {
-        this.instance = loadedInstance;
+
+    public void loadGame(Game loadedData) {
+        Game.getGameInstance().setPlayer(loadedData.getPlayer());
+        Game.getGameInstance().setDifficulty(loadedData.getDifficulty());
+        Game.getGameInstance().setSolarSystems(loadedData.getSolarSystems());
     }
 
 
@@ -48,7 +51,7 @@ public class Game {
 
     public void setPlayer(Player newPlayer) { player = newPlayer; }
 
-
+    public void setSolarSystems(List<SolarSystem> newSolarSystems) { solarSystems = newSolarSystems; }
 
     // Create the 10 solar systems that will make up this universe
     private List<SolarSystem> generateSolarSystems() {

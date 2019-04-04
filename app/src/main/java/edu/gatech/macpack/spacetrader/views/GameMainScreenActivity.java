@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import edu.gatech.macpack.spacetrader.R;
+import edu.gatech.macpack.spacetrader.entity.DatabaseInteractor;
+import edu.gatech.macpack.spacetrader.entity.Game;
 
 public class GameMainScreenActivity extends AppCompatActivity {
 
@@ -54,7 +56,11 @@ public class GameMainScreenActivity extends AppCompatActivity {
     }
 
     private void saveApplication() {
-        
+        DatabaseInteractor dbInteractor = new DatabaseInteractor();
+        String username = Game.getGameInstance().getPlayer().getName();
+        dbInteractor.addName(username);
+//        String username = Game.getGameInstance().getPlayer().getName();
+//        dbInteractor.saveGame(username, Game.getGameInstance());
     }
 
     public void closeApplication(View view) {
