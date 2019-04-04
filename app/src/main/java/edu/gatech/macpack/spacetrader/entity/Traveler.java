@@ -11,7 +11,7 @@ import static java.lang.Math.round;
 
 public class Traveler {
 
-    private List<SolarSystem> solarSystems = Game.getGameInstance().getSolarSystems();
+    private List<SolarSystem> solarSystems = DatabaseInteractor.dbInteractor.game.getSolarSystems();
 
     private SpaceShip ship;
     private int distance;

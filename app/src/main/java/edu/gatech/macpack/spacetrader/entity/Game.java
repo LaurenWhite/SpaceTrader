@@ -6,13 +6,12 @@ import java.util.List;
 public class Game {
 
     // Singleton model?
-    private static Game instance = new Game();
-    public static Game getGameInstance() { return instance; }
-
-    private Player player;
+    //private static Game instance;
+    //public Game getGameInstance() { return instance; }
 
 
     // ATTRIBUTES
+    private Player player;
     private List<SolarSystem> solarSystems;
     private DifficultyType difficulty;
 
@@ -24,11 +23,10 @@ public class Game {
         difficulty = DifficultyType.BEGINNER;
     }
 
-
-    public void loadGame(Game loadedData) {
-        Game.getGameInstance().setPlayer(loadedData.getPlayer());
-        Game.getGameInstance().setDifficulty(loadedData.getDifficulty());
-        Game.getGameInstance().setSolarSystems(loadedData.getSolarSystems());
+    public Game(Game game) {
+        player = game.getPlayer();
+        solarSystems = game.getSolarSystems();
+        difficulty = game.getDifficulty();
     }
 
 

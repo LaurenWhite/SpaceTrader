@@ -56,11 +56,9 @@ public class GameMainScreenActivity extends AppCompatActivity {
     }
 
     private void saveApplication() {
-        DatabaseInteractor dbInteractor = new DatabaseInteractor();
-        String username = Game.getGameInstance().getPlayer().getName();
-//        dbInteractor.addName(username);
-//        String username = Game.getGameInstance().getPlayer().getName();
-        dbInteractor.saveGame(username, Game.getGameInstance());
+        Game game = DatabaseInteractor.dbInteractor.game;
+        String username = game.getPlayer().getName();
+        DatabaseInteractor.dbInteractor.saveGame(username, game);
     }
 
     public void closeApplication(View view) {

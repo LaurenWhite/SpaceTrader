@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.macpack.spacetrader.R;
+import edu.gatech.macpack.spacetrader.entity.DatabaseInteractor;
 import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.Planet;
 import edu.gatech.macpack.spacetrader.entity.Player;
@@ -22,7 +23,7 @@ import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 import edu.gatech.macpack.spacetrader.entity.Traveler;
 
 public class TravelActivity extends AppCompatActivity {
-    Game game = Game.getGameInstance();
+    Game game = DatabaseInteractor.dbInteractor.game;
     Player player = game.getPlayer();
     SpaceShip ship = player.getSpaceShip();
 

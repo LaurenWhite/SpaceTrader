@@ -24,15 +24,16 @@ public class TitleScreenActivity extends AppCompatActivity {
     }
 
     public void newGamePressed(View view) {
-        Game.getGameInstance();
+        DatabaseInteractor.dbInteractor.createGame();
         Intent intent = new Intent(getBaseContext(), UserConfigurationActivity.class);
         startActivity(intent);
     }
 
     public void loadGamePressed(View view) {
         String username = usernameEditText.getText().toString();
-        DatabaseInteractor dbInteractor = new DatabaseInteractor();
-        dbInteractor.loadGame(username);
+        DatabaseInteractor.dbInteractor.loadGame(username);
+        Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);
+        startActivity(intent);
     }
 
 }

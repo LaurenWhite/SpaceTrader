@@ -4,13 +4,14 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 
+import edu.gatech.macpack.spacetrader.entity.DatabaseInteractor;
 import edu.gatech.macpack.spacetrader.entity.DifficultyType;
 import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.Player;
 
 public class UserConfigurationViewModel extends AndroidViewModel {
 
-    Game game = Game.getGameInstance();
+    Game game = DatabaseInteractor.dbInteractor.game;
 
     public UserConfigurationViewModel(@NonNull Application application) {
         super(application);

@@ -20,6 +20,7 @@ import java.util.Map;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.CargoItem;
+import edu.gatech.macpack.spacetrader.entity.DatabaseInteractor;
 import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.MarketItem;
 import edu.gatech.macpack.spacetrader.entity.Planet;
@@ -31,7 +32,7 @@ import edu.gatech.macpack.spacetrader.viewmodel.CargoListAdapter;
 import edu.gatech.macpack.spacetrader.viewmodel.MarketListAdapter;
 
 public class MarketActivity extends AppCompatActivity {
-    Game game = Game.getGameInstance();
+    Game game = DatabaseInteractor.dbInteractor.game;
     Player player = game.getPlayer();
     SpaceShip ship = player.getSpaceShip();
 

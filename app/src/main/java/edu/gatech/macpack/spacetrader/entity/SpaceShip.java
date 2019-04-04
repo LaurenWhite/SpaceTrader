@@ -16,7 +16,7 @@ public class SpaceShip {
         this.shipType = shipType;
         cargo = new HashMap<>();
         weight = 0;
-        location = Game.getGameInstance().getStartingLocation();
+        location = DatabaseInteractor.dbInteractor.game.getStartingLocation();
         fuel = shipType.fuelCapacity;
     }
 
