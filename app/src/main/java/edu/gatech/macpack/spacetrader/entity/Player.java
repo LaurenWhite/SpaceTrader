@@ -84,7 +84,7 @@ public class Player {
 
     public void setEngineerPoints(int newPoints) { engineerPoints = newPoints; }
 
-    public void setSpaceship(SpaceShipType ship) { spaceship.setShipType(ship);}
+    public void setSpaceShip(SpaceShipType ship) { spaceship.setShipType(ship);}
 
 
     // FUNCTIONALITY

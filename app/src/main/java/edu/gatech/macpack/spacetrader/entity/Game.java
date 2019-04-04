@@ -6,12 +6,12 @@ import java.util.List;
 public class Game {
 
     // Singleton model?
-    private static Game instance = new Game();
-    public static Game getGameInstance() { return instance; }
-    private Player player;
+    //private static Game instance;
+    //public Game getGameInstance() { return instance; }
 
 
     // ATTRIBUTES
+    private Player player;
     private List<SolarSystem> solarSystems;
     private DifficultyType difficulty;
 
@@ -21,6 +21,12 @@ public class Game {
     public Game() {
         solarSystems = generateSolarSystems();
         difficulty = DifficultyType.BEGINNER;
+    }
+
+    public Game(Game game) {
+        player = game.getPlayer();
+        solarSystems = game.getSolarSystems();
+        difficulty = game.getDifficulty();
     }
 
 
@@ -43,7 +49,7 @@ public class Game {
 
     public void setPlayer(Player newPlayer) { player = newPlayer; }
 
-
+    public void setSolarSystems(List<SolarSystem> newSolarSystems) { solarSystems = newSolarSystems; }
 
     // Create the 10 solar systems that will make up this universe
     private List<SolarSystem> generateSolarSystems() {
@@ -59,13 +65,13 @@ public class Game {
         return systems;
     }
 
-    // Displays the universe in logcat
+    // Displays the universe in logcat, for testing
     public void universeToString(List<SolarSystem> systems) {
         System.out.println("******UNIVERSE GENERATED******");
         for (SolarSystem system : systems) {
             System.out.println("***SOLAR SYSTEM***");
             System.out.println("Solar system: " + system.getName());
-            System.out.println("\nLocation: (" + system.getLocation()[0] + ", " + system.getLocation()[1] + ")");
+            System.out.println("\nLocation: (" + system.getLocation().get(0) + ", " + system.getLocation().get(1) + ")");
             System.out.println("Planets: (" + system.getPlanets().get(0).getName() + ", " + system.getPlanets().get(0).getName() + ")");
             for (Planet orb : system.getPlanets()) {
                 System.out.println("\n***PLANET***");

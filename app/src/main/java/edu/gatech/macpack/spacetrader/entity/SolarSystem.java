@@ -17,7 +17,7 @@ public class SolarSystem {
 
     // ATTRIBUTES
     private String name;
-    private int[] location;
+    private List<Integer> location;
     private List<Planet> planets;
 
 
@@ -26,7 +26,9 @@ public class SolarSystem {
     public SolarSystem() {
         Random r = new Random();
         name = chooseName(r.nextInt(availableNames.size()));
-        location = new int[] {r.nextInt(500), r.nextInt(500)};
+        location = new ArrayList<>();
+        location.add(r.nextInt(500));
+        location.add(r.nextInt(500));
         planets = new ArrayList<>();
         planets.add(new Planet(this));
         planets.add(new Planet(this));
@@ -37,7 +39,7 @@ public class SolarSystem {
     // GETTERS
     public String getName() { return name; }
 
-    public int[] getLocation() { return location; }
+    public List<Integer> getLocation() { return location; }
 
     public List<Planet> getPlanets() { return planets; }
 

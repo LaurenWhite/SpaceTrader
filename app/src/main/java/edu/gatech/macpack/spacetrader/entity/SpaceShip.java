@@ -6,7 +6,7 @@ import java.util.Map;
 public class SpaceShip {
 
     private SpaceShipType shipType;
-    private Map<TradeGood, CargoItem> cargo;
+    private Map<String, CargoItem> cargo;
     private int weight;
     private Planet location;
     private int fuel;
@@ -16,12 +16,12 @@ public class SpaceShip {
         this.shipType = shipType;
         cargo = new HashMap<>();
         weight = 0;
-        location = Game.getGameInstance().getStartingLocation();
+        location = DatabaseInteractor.dbInteractor.game.getStartingLocation();
         fuel = shipType.fuelCapacity;
     }
 
     // GETTERS
-    public Map<TradeGood, CargoItem> getCargo() { return cargo; }
+    public Map<String, CargoItem> getCargo() { return cargo; }
 
     public SpaceShipType getShipType() { return shipType; }
 
@@ -50,12 +50,12 @@ public class SpaceShip {
         TradeGood good = item.getGood();
 
         // If good already in cargo add to quantity, if not add new entry
-        if(cargo.containsKey(good))  {
-            int currentQuantity = cargo.get(good).getQuantity();
-            cargo.get(good).setQuantity(currentQuantity + item.getQuantity());
+        if(cargo.containsKey(good.name()))  {
+            int currentQuantity = cargo.get(good.name()).getQuantity();
+            cargo.get(good.name()).setQuantity(currentQuantity + item.getQuantity());
         } else {
             CargoItem cargoItem = new CargoItem(item.getGood(), item.getQuantity(), item.getPrice());
-            cargo.put(good, cargoItem);
+            cargo.put(good.name(), cargoItem);
         }
         // TODO: decide how weight system will be for each item, 1 for each item
         weight += item.getQuantity();
@@ -65,14 +65,14 @@ public class SpaceShip {
 
         TradeGood good = item.getGood();
 
-        int currentAmount = cargo.get(good).getQuantity();
+        int currentAmount = cargo.get(good.name()).getQuantity();
 
         // If removing all of a cargo item, remove the whole cargo item
         // If not, subtract from the current quantity
         if(item.getQuantity() == currentAmount) {
-            cargo.remove(good);
+            cargo.remove(good.name());
         } else {
-            cargo.get(good).setQuantity(currentAmount - item.getQuantity());
+            cargo.get(good.name()).setQuantity(currentAmount - item.getQuantity());
         }
 
         weight -= item.getQuantity();
