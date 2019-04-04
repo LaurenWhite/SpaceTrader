@@ -11,7 +11,6 @@ import static java.lang.Math.round;
 
 public class Traveler {
 
-    //private SpaceShip ship = Game.getGameInstance().getPlayer().getSpaceShip();
     private List<SolarSystem> solarSystems = Game.getGameInstance().getSolarSystems();
 
     private SpaceShip ship;
@@ -25,18 +24,19 @@ public class Traveler {
         this.ship = ship;
         this.currentLocation = currentLocation;
         this.newLocation = newLocation;
-        distance = calculateDistance(currentLocation.getParentSystem().getLocation(),
-                                        newLocation.getParentSystem().getLocation());
+        distance = calculateDistance(currentLocation.getParentLocation(),
+                                        newLocation.getParentLocation());
         fuelNeeded = calculateFuelNeeded();
     }
 
     public Traveler(SpaceShip ship) { this.ship = ship; }
 
-    private int calculateDistance(int[] curCoordinate, int[] newCoordinate) {
+    private int calculateDistance(List<Integer> curCoordinate, List<Integer> newCoordinate) {
 //        System.out.println("coord1: " + curCoordinate[0] + ", " + curCoordinate[1]);
 //        System.out.println("coord2: " + newCoordinate[0] + ", " + newCoordinate[1]);
 
-        double d = sqrt((abs(newCoordinate[0] - curCoordinate[0]))^2 + (abs(newCoordinate[1] - curCoordinate[1]))^2);
+        double d = sqrt((abs(newCoordinate.get(0) - curCoordinate.get(0)))^2
+                            + (abs(newCoordinate.get(1) - curCoordinate.get(1)))^2);
         int roundedDistance = (int) round(d);
         return roundedDistance;
     }
@@ -67,7 +67,7 @@ public class Traveler {
         List<SolarSystem> inRange = new ArrayList<>();
 
         for(SolarSystem system : solarSystems) {
-            int d = calculateDistance(ship.getLocation().getParentSystem().getLocation(),
+            int d = calculateDistance(ship.getLocation().getParentLocation(),
                                                 system.getLocation());
             if(ship.getFuel() >= calculateFuelNeeded(d)) {
                 inRange.add(system);

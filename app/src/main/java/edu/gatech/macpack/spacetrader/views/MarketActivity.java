@@ -37,14 +37,14 @@ public class MarketActivity extends AppCompatActivity {
 
     // create list view obj for market items
     private ListView lvGoods;
-    private Map<TradeGood, MarketItem> market;
+    private Map<String, MarketItem> market;
     private ArrayList<MarketItem> marketList;
     private MarketListAdapter marketListAdapter;
     private MarketItem selectedItem;
 
     // create list view obj for cargo items
     private ListView lvCargoItems;
-    private Map<TradeGood,CargoItem> cargo;
+    private Map<String, CargoItem> cargo;
     private ArrayList<CargoItem> cargoList;
     private CargoListAdapter cargoListAdapter;
 

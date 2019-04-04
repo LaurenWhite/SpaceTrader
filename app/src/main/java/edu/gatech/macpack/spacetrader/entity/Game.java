@@ -73,7 +73,7 @@ public class Game {
         for (SolarSystem system : systems) {
             System.out.println("***SOLAR SYSTEM***");
             System.out.println("Solar system: " + system.getName());
-            System.out.println("\nLocation: (" + system.getLocation()[0] + ", " + system.getLocation()[1] + ")");
+            System.out.println("\nLocation: (" + system.getLocation().get(0) + ", " + system.getLocation().get(1) + ")");
             System.out.println("Planets: (" + system.getPlanets().get(0).getName() + ", " + system.getPlanets().get(0).getName() + ")");
             for (Planet orb : system.getPlanets()) {
                 System.out.println("\n***PLANET***");

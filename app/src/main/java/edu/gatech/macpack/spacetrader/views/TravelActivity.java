@@ -34,7 +34,6 @@ public class TravelActivity extends AppCompatActivity {
     private TextView planet;
     private Spinner planetSpinner;
 
-    private SolarSystem currentSystem;
     private Planet currentPlanet;
     private List<SolarSystem> systems;
     private List<String> solarSystemNames;
@@ -65,7 +64,6 @@ public class TravelActivity extends AppCompatActivity {
         traveler = new Traveler(ship);
         systems = traveler.systemsInRange();
 
-        currentSystem = ship.getLocation().getParentSystem();
         currentPlanet = ship.getLocation();
 
         solarSystemNames = new ArrayList<>();
@@ -114,7 +112,7 @@ public class TravelActivity extends AppCompatActivity {
 
 
     private void updateLabels() {
-        currentLocationLabel.setText("Current location: " + currentPlanet.getName() + ", " + currentSystem.getName());
+        currentLocationLabel.setText("Current location: " + currentPlanet.getName() + ", " + currentPlanet.getParentName());
         currentFuelLabel.setText("Current fuel: " + ship.getFuel());
 
         traveler = new Traveler(ship);
@@ -135,7 +133,6 @@ public class TravelActivity extends AppCompatActivity {
         traveler.travel();
 
         currentPlanet = selectedPlanet;
-        currentSystem = currentPlanet.getParentSystem();
 
         updateLabels();
     }
