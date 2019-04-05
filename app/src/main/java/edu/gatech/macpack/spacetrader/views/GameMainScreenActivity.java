@@ -7,8 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.DatabaseInteractor;

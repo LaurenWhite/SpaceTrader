@@ -1,5 +1,6 @@
 package edu.gatech.macpack.spacetrader.views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -136,5 +137,18 @@ public class TravelActivity extends AppCompatActivity {
         currentPlanet = selectedPlanet;
 
         updateLabels();
+
+        if (currentPlanet.getTraderEventChance() == 2
+                || currentPlanet.getTraderEventChance() == 3
+                || currentPlanet.getTraderEventChance() == 4
+                || currentPlanet.getTraderEventChance() == 5) {
+            // there was no encounter, show a toast
+            String message = "You did not have an encounter!";
+            Toast.makeText(TravelActivity.this, message, Toast.LENGTH_SHORT).show();
+        } else {
+            // play a sound and wait like 3 seconds
+            Intent intent = new Intent(getBaseContext(), EncounterActivity.class);
+            startActivity(intent);
+        }
     }
 }
