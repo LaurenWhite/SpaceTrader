@@ -131,7 +131,7 @@ public class MarketActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 selectedItem = marketList.get(position - 1);
                 String message = "You clicked # " + position + ", which is item: " + selectedItem;
-                Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -140,7 +140,7 @@ public class MarketActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 selectedItem = cargoList.get(position - 1);
                 String message = "You clicked # " + position + ", which is item: " + selectedItem;
-                Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -163,19 +163,19 @@ public class MarketActivity extends AppCompatActivity {
         // Market doesn't have that many items to sell
         if (purchaseItem.getQuantity() > selectedItem.getQuantity()) {
             String message = "Insufficient amount in market";
-            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
             return;
         }
         // Player doesn't have enough funds to make purchase
         if (!player.sufficientFunds(totalPrice)) {
             String message = "You do not have enough credits";
-            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
             return;
         }
         // Ship doesn't have enough cargo space to store purchased goods
         if(!ship.sufficientSpace(totalWeight)) {
             String message = "Insufficient cargo space";
-            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -203,13 +203,13 @@ public class MarketActivity extends AppCompatActivity {
         // Player doesn't have that many items to sell
         if(sellItem.getQuantity() > ship.getCargo().get(selectedItem.getGood()).getQuantity()) {
             String message = "Insufficient amount in player cargo";
-            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
             return;
         }
         // Planet tech level isn't high enough to use that good
         if(!planet.canUse(sellItem.getGood())) {
             String message = "Planet not advanced enough for this good";
-            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -229,14 +229,14 @@ public class MarketActivity extends AppCompatActivity {
         // No item selected
         if (selectedItem == null) {
             String message = "Select an item";
-            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
             return false;
         }
 
         // No quantity entered
         if (TextUtils.isEmpty(quantityEditText.getText())) {
             String message = "Enter a quantity";
-            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_LONG).show();
+            Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
             return false;
         }
 
