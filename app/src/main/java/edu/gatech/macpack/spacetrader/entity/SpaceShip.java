@@ -20,6 +20,14 @@ public class SpaceShip {
         fuel = shipType.fuelCapacity;
     }
 
+    public SpaceShip(SpaceShipType shipType, Map<String, CargoItem> cargo, int weight, Planet location, int fuel){
+        this.shipType = shipType;
+        this.cargo = cargo;
+        this.weight = weight;
+        this.location = location;
+        this.fuel = shipType.fuelCapacity;
+    }
+
     // GETTERS
     public Map<String, CargoItem> getCargo() { return cargo; }
 

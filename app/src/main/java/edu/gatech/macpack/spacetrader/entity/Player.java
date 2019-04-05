@@ -35,6 +35,18 @@ public class Player {
         this("player", 16, 0, 0, 0, 0);
     }
 
+    public Player(String aName, int aSkillPoints, int aPilotPoints, int aFighterPoints,
+                  int aTraderPoints, int aEngineerPoints, SpaceShip spaceship) {
+        name = aName;
+        credits = 1000;
+        availableSkillPoints = aSkillPoints;
+        pilotPoints = aPilotPoints;
+        fighterPoints = aFighterPoints;
+        traderPoints = aTraderPoints;
+        engineerPoints = aEngineerPoints;
+        this.spaceship = spaceship;
+    }
+
 
     @Override
     public String toString() {
