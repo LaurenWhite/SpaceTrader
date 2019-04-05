@@ -22,7 +22,6 @@ public class EncounterActivity extends AppCompatActivity {
     Player player = game.getPlayer();
     SpaceShip ship = player.getSpaceShip();
 
-    private TextView tvEncounterHeader;
     private TextView tvEncounterLocation;
     private TextView tvEncounterScript;
     private Button continueBtn;
@@ -39,7 +38,6 @@ public class EncounterActivity extends AppCompatActivity {
         String message = "You had an encounter with " + encounterType + "!";
         Toast.makeText(EncounterActivity.this, message, Toast.LENGTH_SHORT).show();
 
-        tvEncounterHeader = findViewById(R.id.tvEncounterHeader);
         tvEncounterLocation = findViewById(R.id.tvEncounterLocation);
         tvEncounterScript = findViewById(R.id.tvEncounterScript);
         continueBtn = findViewById(R.id.continueBtn);
