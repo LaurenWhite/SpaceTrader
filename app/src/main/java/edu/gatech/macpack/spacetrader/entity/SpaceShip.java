@@ -21,6 +21,14 @@ public class SpaceShip {
         // add default location here to prevent crash when selling to market before traveling?
     }
 
+    public SpaceShip(SpaceShipType shipType, Map<String, CargoItem> cargo, int weight, Planet location, int fuel){
+        this.shipType = shipType;
+        this.cargo = cargo;
+        this.weight = weight;
+        this.location = location;
+        this.fuel = shipType.fuelCapacity;
+    }
+
     // GETTERS
     public Map<String, CargoItem> getCargo() { return cargo; }
 

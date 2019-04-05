@@ -34,6 +34,12 @@ public class SolarSystem {
         planets.add(new Planet(this));
     }
 
+    public SolarSystem(String name, List<Integer> location, List<Planet> planets) {
+        this.name = name;
+        this.location = location;
+        this.planets = planets;
+    }
+
 
 
     // GETTERS
@@ -44,7 +50,8 @@ public class SolarSystem {
     public List<Planet> getPlanets() { return planets; }
 
 
-
+    // SETTERS
+    public void setPlanets(List<Planet> planets) { this.planets = planets; }
 
     // Return a randomly chosen name from available names list, update list
     private String chooseName(int index) {

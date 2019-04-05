@@ -20,9 +20,15 @@ public class Game {
 
 
     // CONSTRUCTOR
-    public Game() {
-        solarSystems = generateSolarSystems();
-        difficulty = DifficultyType.BEGINNER;
+    public Game(Boolean newGame) {
+        if(newGame) {
+            solarSystems = generateSolarSystems();
+            difficulty = DifficultyType.BEGINNER;
+        } else {
+            player = null;
+            solarSystems = null;
+            difficulty = null;
+        }
     }
 
     public Game(Game game) {
