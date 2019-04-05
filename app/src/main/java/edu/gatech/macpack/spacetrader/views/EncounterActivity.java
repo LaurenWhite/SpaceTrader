@@ -9,7 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.Map;
+
 import edu.gatech.macpack.spacetrader.R;
+import edu.gatech.macpack.spacetrader.entity.CargoItem;
 import edu.gatech.macpack.spacetrader.entity.DatabaseInteractor;
 import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.Planet;
@@ -44,7 +47,23 @@ public class EncounterActivity extends AppCompatActivity {
 
         updateLocationLabel();
         updateEncounterScript();
+        performEncounter();
 
+    }
+
+    private void performEncounter() {
+        Map<String, CargoItem> cargo = ship.getCargo();
+        if (encounterType.equals("pirates")) {
+            cargo.clear();
+        } else if (encounterType.equals("traders")) {
+            return;
+        } else if (encounterType.equals("police")) {
+            // police take all your assets
+            cargo.clear();
+        } else {
+            // if it's something other than these three for some odd reason, just return
+            return;
+        }
     }
 
     private void computeEncounterType() {
@@ -71,11 +90,11 @@ public class EncounterActivity extends AppCompatActivity {
     }
 
     private void updateEncounterScript() {
-        if (encounterType == "pirates") {
+        if (encounterType.equals("pirates")) {
             tvEncounterScript.setText(String.format(getString(R.string.script_of_police_encounter)));
-        } else if (encounterType == "traders") {
+        } else if (encounterType.equals("traders")) {
             tvEncounterScript.setText(String.format(getString(R.string.script_of_traders_encounter)));
-        } else if (encounterType == "police"){
+        } else if (encounterType.equals("police")) {
             tvEncounterScript.setText(String.format(getString(R.string.script_of_police_encounter)));
         } else {
             // if it's something other than these three for some odd reason, use this default text as the script
