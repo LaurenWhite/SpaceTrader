@@ -7,17 +7,6 @@
     tools:context=".views.EncounterActivity">
 
     <TextView
-        android:id="@+id/tvEncounterHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="@string/encounter_header" />
-
-    <TextView
         android:id="@+id/tvEncounterLocation"
         android:layout_width="234dp"
         android:layout_height="92dp"
