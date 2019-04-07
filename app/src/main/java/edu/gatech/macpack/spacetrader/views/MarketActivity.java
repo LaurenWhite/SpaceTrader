@@ -154,7 +154,6 @@ public class MarketActivity extends AppCompatActivity {
         int quantity = Integer.parseInt(quantityEditText.getText().toString());
 
         int totalPrice = quantity * selectedItem.getPrice();
-        // TODO: figure out better weight system?
         int totalWeight = quantity;
 
         MarketItem purchaseItem = new

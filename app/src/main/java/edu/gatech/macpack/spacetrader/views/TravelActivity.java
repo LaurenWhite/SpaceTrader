@@ -91,8 +91,10 @@ public class TravelActivity extends AppCompatActivity {
                 }
 
                 ArrayAdapter<String> planetAdapter = new
-                        ArrayAdapter<String>(TravelActivity.this, R.layout.spinner_item, planetNames);
-                planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        ArrayAdapter<String>(
+                                TravelActivity.this, R.layout.spinner_item, planetNames);
+                planetAdapter.setDropDownViewResource(
+                        android.R.layout.simple_spinner_dropdown_item);
                 planetSpinner.setAdapter(planetAdapter);
             }
 

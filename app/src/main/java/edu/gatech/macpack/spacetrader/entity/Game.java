@@ -49,7 +49,9 @@ public class Game {
 
     public void setPlayer(Player newPlayer) { player = newPlayer; }
 
-    public void setSolarSystems(List<SolarSystem> newSolarSystems) { solarSystems = newSolarSystems; }
+    public void setSolarSystems(List<SolarSystem> newSolarSystems) {
+        solarSystems = newSolarSystems;
+    }
 
     // Create the 10 solar systems that will make up this universe
     private List<SolarSystem> generateSolarSystems() {
@@ -71,8 +73,16 @@ public class Game {
         for (SolarSystem system : systems) {
             System.out.println("***SOLAR SYSTEM***");
             System.out.println("Solar system: " + system.getName());
-            System.out.println("\nLocation: (" + system.getLocation().get(0) + ", " + system.getLocation().get(1) + ")");
-            System.out.println("Planets: (" + system.getPlanets().get(0).getName() + ", " + system.getPlanets().get(0).getName() + ")");
+            System.out.println("\nLocation: (" + system.getLocation().get(0) +
+                    ", " + system.getLocation().get(1) +
+                    ")")
+            ;
+            System.out.println("Planets: (" +
+                    system.getPlanets().get(0).getName() +
+                    ", " +
+                    system.getPlanets().get(0).getName() +
+                    ")"
+            );
             for (Planet orb : system.getPlanets()) {
                 System.out.println("\n***PLANET***");
                 System.out.println("Planet: " + orb.getName());

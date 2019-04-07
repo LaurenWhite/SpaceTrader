@@ -94,23 +94,28 @@ public class EncounterActivity extends AppCompatActivity {
 
     private void updateLocationLabel() {
         Planet planet = ship.getLocation();
-        tvEncounterLocation.setText(String.format(getString(R.string.encounter_location_label), planet.getName(), encounterType));
+        tvEncounterLocation.setText(String.format(
+                getString(R.string.encounter_location_label), planet.getName(), encounterType));
     }
 
     private void updateEncounterScript() {
         switch (encounterType) {
             case "pirates":
-                tvEncounterScript.setText(String.format(getString(R.string.script_of_police_encounter)));
+                tvEncounterScript.setText(String.format(
+                        getString(R.string.script_of_police_encounter)));
                 break;
             case "traders":
-                tvEncounterScript.setText(String.format(getString(R.string.script_of_traders_encounter)));
+                tvEncounterScript.setText(String.format(
+                        getString(R.string.script_of_traders_encounter)));
                 break;
             case "police":
-                tvEncounterScript.setText(String.format(getString(R.string.script_of_police_encounter)));
+                tvEncounterScript.setText(String.format(
+                        getString(R.string.script_of_police_encounter)));
                 break;
             default:
-                // if it's something other than these three for some odd reason, use this default text as the script
-                tvEncounterScript.setText(String.format(getString(R.string.script_of_default_encounter)));
+                // if it's something other than these three for some odd reason, use this default  
+                tvEncounterScript.setText(String.format(
+                        getString(R.string.script_of_default_encounter)));
                 break;
         }
     }
