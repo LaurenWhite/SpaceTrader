@@ -1,7 +1,5 @@
 package edu.gatech.macpack.spacetrader.views;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,7 +25,6 @@ import edu.gatech.macpack.spacetrader.entity.Planet;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.entity.SolarSystem;
 import edu.gatech.macpack.spacetrader.entity.SpaceShip;
-import edu.gatech.macpack.spacetrader.entity.TradeGood;
 import edu.gatech.macpack.spacetrader.viewmodel.CargoListAdapter;
 import edu.gatech.macpack.spacetrader.viewmodel.MarketListAdapter;
 

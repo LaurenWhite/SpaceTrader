@@ -12,13 +12,12 @@ import java.util.ArrayList;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.CargoItem;
-import edu.gatech.macpack.spacetrader.entity.MarketItem;
 import edu.gatech.macpack.spacetrader.entity.TradeGood;
 
 public class CargoListAdapter extends ArrayAdapter<CargoItem> {
     private static final String TAG = "CargoListAdapter";
-    private Context mContext;
-    private int mResource;
+    private final Context mContext;
+    private final int mResource;
 
     public CargoListAdapter(Context context, int resource, ArrayList<CargoItem> objects) {
         super(context, resource, objects);

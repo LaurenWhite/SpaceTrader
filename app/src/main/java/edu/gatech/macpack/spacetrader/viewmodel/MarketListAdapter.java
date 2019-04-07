@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.MarketItem;
@@ -17,8 +16,8 @@ import edu.gatech.macpack.spacetrader.entity.TradeGood;
 
 public class MarketListAdapter extends ArrayAdapter<MarketItem> {
     private static final String TAG = "MarketListAdapter";
-    private Context mContext;
-    private int mResource;
+    private final Context mContext;
+    private final int mResource;
 
     public MarketListAdapter(Context context, int resource, ArrayList<MarketItem> objects) {
         super(context, resource, objects);
