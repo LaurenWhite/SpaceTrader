@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.CargoItem;
@@ -19,7 +20,7 @@ public class CargoListAdapter extends ArrayAdapter<CargoItem> {
     private final Context mContext;
     private final int mResource;
 
-    public CargoListAdapter(Context context, int resource, ArrayList<CargoItem> objects) {
+    public CargoListAdapter(Context context, int resource, List<CargoItem> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
