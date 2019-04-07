@@ -1,6 +1,7 @@
 package edu.gatech.macpack.spacetrader.views;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -150,6 +151,15 @@ public class TravelActivity extends AppCompatActivity {
             String message = "You did not have an encounter!";
             Toast.makeText(TravelActivity.this, message, Toast.LENGTH_SHORT).show();
         } else {
+            MediaPlayer mp = MediaPlayer.create(this, R.raw.suspense);
+            mp.start();
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             // play a sound and wait like 3 seconds
             Intent intent = new Intent(getBaseContext(), EncounterActivity.class);
             startActivity(intent);
