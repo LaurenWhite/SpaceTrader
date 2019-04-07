@@ -102,7 +102,7 @@ public class EncounterActivity extends AppCompatActivity {
     private void updateEncounterScript() {
         switch (encounterType) {
             case "pirates":
-                tvEncounterScript.setText(getString(R.string.script_of_police_encounter));
+                tvEncounterScript.setText(getString(R.string.script_of_pirates_encounter));
                 break;
             case "traders":
                 tvEncounterScript.setText(getString(R.string.script_of_traders_encounter));

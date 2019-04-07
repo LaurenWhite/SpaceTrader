@@ -11,10 +11,8 @@
     <string name="save_app">Save</string>
     <string name="new_game">New Game</string>
     <string name="load_game">Load Game</string>
-    <string name="title_activity_title_screen">TitleScreenActivity</string>
     <string name="enter_your_username_to_load_a_previous_game">
         enter your username to load a previous game</string>
-    <string name="encounter_header">Encounter</string>
     <string name="continue_main_btn">Continue</string>
     <string name="encounter_location_label">At 20 clicks from %1$s, you encounter %2$s.</string>
     <string name="encounter_location_default_text">Location of Encounter</string>
