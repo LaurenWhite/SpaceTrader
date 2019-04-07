@@ -12,14 +12,19 @@
     <string name="new_game">New Game</string>
     <string name="load_game">Load Game</string>
     <string name="title_activity_title_screen">TitleScreenActivity</string>
-    <string name="enter_your_username_to_load_a_previous_game">enter your username to load a previous game</string>
+    <string name="enter_your_username_to_load_a_previous_game">
+        enter your username to load a previous game</string>
     <string name="encounter_header">Encounter</string>
     <string name="continue_main_btn">Continue</string>
     <string name="encounter_location_label">At 20 clicks from %1$s, you encounter %2$s.</string>
     <string name="encounter_location_default_text">Location of Encounter</string>
     <string name="script_of_encounter_default_text">Script of Encounter</string>
-    <string name="script_of_police_encounter">The local police have taken all of your assets for speeding in a nearby galaxy.</string>
-    <string name="script_of_pirates_encounter">Money-hungry pirates have stolen all of your goods!</string>
-    <string name="script_of_traders_encounter">You have encountered a trader who would like to trade goods.</string>
-    <string name="script_of_default_encounter">You have been encountered! Click continue to see what happens next…</string>
+    <string name="script_of_police_encounter">
+        The local police have taken all of your assets for speeding in a nearby galaxy.</string>
+    <string name="script_of_pirates_encounter">
+        Money-hungry pirates have stolen all of your goods!</string>
+    <string name="script_of_traders_encounter">
+        You have encountered a trader who would like to trade goods.</string>
+    <string name="script_of_default_encounter">
+        You have been encountered! Click continue to see what happens next…</string>
 </resources>

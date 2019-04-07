@@ -73,7 +73,8 @@ public class TravelActivity extends AppCompatActivity {
         // Update current location, current fuel labels, and in range solar systems
         updateLabels();
 
-        ArrayAdapter<String> solarAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, solarSystemNames);
+        ArrayAdapter<String> solarAdapter = new
+                ArrayAdapter<String>(this, R.layout.spinner_item, solarSystemNames);
         solarAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         solarSystemSpinner.setAdapter(solarAdapter);
 
@@ -89,7 +90,8 @@ public class TravelActivity extends AppCompatActivity {
                     planetNames.add(planet.getName());
                 }
 
-                ArrayAdapter<String> planetAdapter = new ArrayAdapter<String>(TravelActivity.this, R.layout.spinner_item, planetNames);
+                ArrayAdapter<String> planetAdapter = new
+                        ArrayAdapter<String>(TravelActivity.this, R.layout.spinner_item, planetNames);
                 planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 planetSpinner.setAdapter(planetAdapter);
             }
@@ -113,7 +115,8 @@ public class TravelActivity extends AppCompatActivity {
 
 
     private void updateLabels() {
-        currentLocationLabel.setText("Current location: " + currentPlanet.getName() + ", " + currentPlanet.getParentName());
+        currentLocationLabel.setText("Current location: " + currentPlanet.getName()
+                + ", " + currentPlanet.getParentName());
         currentFuelLabel.setText("Current fuel: " + ship.getFuel());
 
         traveler = new Traveler(ship);

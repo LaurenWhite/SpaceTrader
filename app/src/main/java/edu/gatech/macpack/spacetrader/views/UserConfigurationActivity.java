@@ -62,7 +62,8 @@ public class UserConfigurationActivity extends AppCompatActivity {
         engineerPoints.setText(Integer.toString(player.getEngineerPoints()));
 
         difficultySpinner = findViewById(R.id.difficulty_spinner);
-        ArrayAdapter<DifficultyType> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, DifficultyType.values());
+        ArrayAdapter<DifficultyType> adapter = new
+                ArrayAdapter<>(this, R.layout.spinner_item, DifficultyType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(adapter);
     }
