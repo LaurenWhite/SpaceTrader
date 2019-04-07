@@ -27,7 +27,8 @@ public class EncounterActivity extends AppCompatActivity {
 
     private TextView tvEncounterLocation;
     private TextView tvEncounterScript;
-    private Button continueBtn;
+
+    Button continueBtn;
 
     private String encounterType;
 
@@ -53,52 +54,66 @@ public class EncounterActivity extends AppCompatActivity {
 
     private void performEncounter() {
         Map<String, CargoItem> cargo = ship.getCargo();
-        if (encounterType.equals("pirates")) {
-            cargo.clear();
-        } else if (encounterType.equals("traders")) {
-            return;
-        } else if (encounterType.equals("police")) {
-            // police take all your assets
-            cargo.clear();
-        } else {
-            // if it's something other than these three for some odd reason, just return
-            return;
+        switch (encounterType) {
+            case "pirates":
+                cargo.clear();
+                break;
+            case "traders":
+                return;
+            case "police":
+                // police take all your assets
+                cargo.clear();
+                break;
+            default:
+                // if it's something other than these three for some odd reason, just return
+                return;
         }
     }
 
     private void computeEncounterType() {
         Planet planet = ship.getLocation();
         int eventTypeNumber = planet.getTraderEventChance();
-        if (eventTypeNumber == 0
-                || eventTypeNumber == 1) {
-            // encounter was of type pirate
-            encounterType = "pirates";
-        } else if (eventTypeNumber == 6) {
-            // encounter was of type trader
-            encounterType = "traders";
-        } else if (eventTypeNumber == 7) {
-            encounterType = "police";
-        } else {
-            // if the number is null for some reason default it to a police encounter
-            encounterType = "police";
+        switch (eventTypeNumber) {
+            case 0:
+            case 1:
+                // encounter was of type pirate
+                encounterType = "pirates";
+                break;
+            case 6:
+                // encounter was of type trader
+                encounterType = "traders";
+                break;
+            case 7:
+                encounterType = "police";
+                break;
+            default:
+                // if the number is null for some reason default it to a police encounter
+                encounterType = "police";
+                break;
         }
     }
 
     private void updateLocationLabel() {
         Planet planet = ship.getLocation();
-        tvEncounterLocation.setText(String.format(getString(R.string.encounter_location_label), planet.getName(), encounterType));
+        tvEncounterLocation.setText(String.format(
+                getString(R.string.encounter_location_label), planet.getName(), encounterType));
     }
 
     private void updateEncounterScript() {
-        if (encounterType.equals("pirates")) {
-            tvEncounterScript.setText(String.format(getString(R.string.script_of_police_encounter)));
-        } else if (encounterType.equals("traders")) {
-            tvEncounterScript.setText(String.format(getString(R.string.script_of_traders_encounter)));
-        } else if (encounterType.equals("police")) {
-            tvEncounterScript.setText(String.format(getString(R.string.script_of_police_encounter)));
-        } else {
-            // if it's something other than these three for some odd reason, use this default text as the script
-            tvEncounterScript.setText(String.format(getString(R.string.script_of_default_encounter)));
+        switch (encounterType) {
+            case "pirates":
+                tvEncounterScript.setText(getString(R.string.script_of_pirates_encounter));
+                break;
+            case "traders":
+                tvEncounterScript.setText(getString(R.string.script_of_traders_encounter));
+                break;
+            case "police":
+                tvEncounterScript.setText(getString(R.string.script_of_police_encounter));
+                break;
+            default:
+                // if it's something other than these three for some odd reason, use this default
+                tvEncounterScript.setText(getString(R.string.script_of_default_encounter));
+                break;
         }
     }
 

@@ -15,7 +15,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="400dp"
-        android:text="Enter Your Username (to load a previous game)"
+        android:text="@string/enter_your_username_to_load_a_previous_game"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
@@ -30,7 +30,6 @@
         android:inputType=""
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:backgroundTint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -42,7 +41,7 @@
         android:layout_marginLeft="150dp"
         android:layout_marginTop="550dp"
         android:onClick="newGamePressed"
-        android:text="New Game" />
+        android:text="@string/new_game" />
 
     <Button
         android:id="@+id/load_game"
@@ -52,7 +51,7 @@
         android:layout_marginLeft="150dp"
         android:layout_marginTop="490dp"
         android:onClick="loadGamePressed"
-        android:text="Load Game" />
+        android:text="@string/load_game" />
 
 
 

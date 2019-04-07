@@ -1,7 +1,5 @@
 package edu.gatech.macpack.spacetrader.views;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,7 +25,6 @@ import edu.gatech.macpack.spacetrader.entity.Planet;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.entity.SolarSystem;
 import edu.gatech.macpack.spacetrader.entity.SpaceShip;
-import edu.gatech.macpack.spacetrader.entity.TradeGood;
 import edu.gatech.macpack.spacetrader.viewmodel.CargoListAdapter;
 import edu.gatech.macpack.spacetrader.viewmodel.MarketListAdapter;
 
@@ -57,8 +54,9 @@ public class MarketActivity extends AppCompatActivity {
     private FrameLayout flCredits;
     private TextView tvCredits;
     private EditText quantityEditText;
-    private Button btnBuy;
-    private Button btnSell;
+
+    Button btnBuy;
+    Button btnSell;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +126,8 @@ public class MarketActivity extends AppCompatActivity {
         lvGoods = findViewById(R.id.lvGoods);
         lvGoods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id)
+            {
                 selectedItem = marketList.get(position - 1);
                 String message = "You clicked # " + position + ", which is item: " + selectedItem;
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -137,7 +136,8 @@ public class MarketActivity extends AppCompatActivity {
 
         lvCargoItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id)
+            {
                 selectedItem = cargoList.get(position - 1);
                 String message = "You clicked # " + position + ", which is item: " + selectedItem;
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -155,10 +155,10 @@ public class MarketActivity extends AppCompatActivity {
         int quantity = Integer.parseInt(quantityEditText.getText().toString());
 
         int totalPrice = quantity * selectedItem.getPrice();
-        // TODO: figure out better weight system?
         int totalWeight = quantity;
 
-        MarketItem purchaseItem = new MarketItem(selectedItem.getGood(), quantity, selectedItem.getPrice());
+        MarketItem purchaseItem = new
+                MarketItem(selectedItem.getGood(), quantity, selectedItem.getPrice());
 
         // Market doesn't have that many items to sell
         if (purchaseItem.getQuantity() > selectedItem.getQuantity()) {
@@ -198,7 +198,8 @@ public class MarketActivity extends AppCompatActivity {
         int quantity = Integer.parseInt(quantityEditText.getText().toString());
         int totalPrice = quantity * selectedItem.getPrice();
 
-        MarketItem sellItem = new MarketItem(selectedItem.getGood(), quantity, selectedItem.getPrice());
+        MarketItem sellItem = new
+                MarketItem(selectedItem.getGood(), quantity, selectedItem.getPrice());
 
         // Player doesn't have that many items to sell
         if(sellItem.getQuantity() > ship.getCargo().get(selectedItem.getGood()).getQuantity()) {

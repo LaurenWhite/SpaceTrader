@@ -54,10 +54,10 @@ public class SpaceShip {
             int currentQuantity = cargo.get(good.name()).getQuantity();
             cargo.get(good.name()).setQuantity(currentQuantity + item.getQuantity());
         } else {
-            CargoItem cargoItem = new CargoItem(item.getGood(), item.getQuantity(), item.getPrice());
+            CargoItem cargoItem = new
+                    CargoItem(item.getGood(), item.getQuantity(), item.getPrice());
             cargo.put(good.name(), cargoItem);
         }
-        // TODO: decide how weight system will be for each item, 1 for each item
         weight += item.getQuantity();
     }
 

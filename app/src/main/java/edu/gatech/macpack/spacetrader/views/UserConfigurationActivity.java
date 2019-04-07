@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -62,7 +63,8 @@ public class UserConfigurationActivity extends AppCompatActivity {
         engineerPoints.setText(Integer.toString(player.getEngineerPoints()));
 
         difficultySpinner = findViewById(R.id.difficulty_spinner);
-        ArrayAdapter<DifficultyType> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, DifficultyType.values());
+        ArrayAdapter<DifficultyType> adapter = new
+                ArrayAdapter<>(this, R.layout.spinner_item, DifficultyType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(adapter);
     }
@@ -127,7 +129,7 @@ public class UserConfigurationActivity extends AppCompatActivity {
                 viewModel.changeName(player, nameField.getText().toString());
                 viewModel.changeDifficulty((DifficultyType) difficultySpinner.getSelectedItem());
 
-                System.out.println("*****NEW PLAYER CREATED*******\n" + player);
+                Log.i("***NEW PLAYER***","*****NEW PLAYER CREATED*******\n" + player);
                 viewModel.updatePlayer(player);
 
                 Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);

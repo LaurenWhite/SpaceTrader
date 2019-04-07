@@ -20,7 +20,7 @@ public class MarketListAdapter extends ArrayAdapter<MarketItem> {
     private Context mContext;
     private int mResource;
 
-    public MarketListAdapter(Context context, int resource, ArrayList<MarketItem> objects) {
+    public MarketListAdapter(Context context, int resource, List<MarketItem> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

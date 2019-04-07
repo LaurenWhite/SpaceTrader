@@ -1,12 +1,12 @@
 package edu.gatech.macpack.spacetrader.views;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,10 +30,10 @@ public class TravelActivity extends AppCompatActivity {
 
     private TextView currentLocationLabel;
     private TextView currentFuelLabel;
-    private TextView currentLocation;
-    private TextView solarSystem;
-    private Spinner solarSystemSpinner;
-    private TextView planet;
+    TextView currentLocation;
+    TextView solarSystem;
+    Spinner solarSystemSpinner;
+    TextView planet;
     private Spinner planetSpinner;
 
     private Planet currentPlanet;
@@ -74,7 +74,8 @@ public class TravelActivity extends AppCompatActivity {
         // Update current location, current fuel labels, and in range solar systems
         updateLabels();
 
-        ArrayAdapter<String> solarAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, solarSystemNames);
+        ArrayAdapter<String> solarAdapter = new
+                ArrayAdapter<String>(this, R.layout.spinner_item, solarSystemNames);
         solarAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         solarSystemSpinner.setAdapter(solarAdapter);
 
@@ -90,8 +91,11 @@ public class TravelActivity extends AppCompatActivity {
                     planetNames.add(planet.getName());
                 }
 
-                ArrayAdapter<String> planetAdapter = new ArrayAdapter<String>(TravelActivity.this, R.layout.spinner_item, planetNames);
-                planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                ArrayAdapter<String> planetAdapter = new
+                        ArrayAdapter<String>(
+                                TravelActivity.this, R.layout.spinner_item, planetNames);
+                planetAdapter.setDropDownViewResource(
+                        android.R.layout.simple_spinner_dropdown_item);
                 planetSpinner.setAdapter(planetAdapter);
             }
 
@@ -114,7 +118,8 @@ public class TravelActivity extends AppCompatActivity {
 
 
     private void updateLabels() {
-        currentLocationLabel.setText("Current location: " + currentPlanet.getName() + ", " + currentPlanet.getParentName());
+        currentLocationLabel.setText("Current location: " + currentPlanet.getName()
+                + ", " + currentPlanet.getParentName());
         currentFuelLabel.setText("Current fuel: " + ship.getFuel());
 
         traveler = new Traveler(ship);
@@ -146,6 +151,15 @@ public class TravelActivity extends AppCompatActivity {
             String message = "You did not have an encounter!";
             Toast.makeText(TravelActivity.this, message, Toast.LENGTH_SHORT).show();
         } else {
+            MediaPlayer mp = MediaPlayer.create(this, R.raw.suspense);
+            mp.start();
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             // play a sound and wait like 3 seconds
             Intent intent = new Intent(getBaseContext(), EncounterActivity.class);
             startActivity(intent);
