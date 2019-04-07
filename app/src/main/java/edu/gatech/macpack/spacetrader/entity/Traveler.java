@@ -17,7 +17,8 @@ public class Traveler {
     private int distance;
     private int fuelNeeded;
     private Planet newLocation;
-    private Planet currentLocation;
+
+    Planet currentLocation;
 
 
     public Traveler(SpaceShip ship, Planet currentLocation, Planet newLocation) {

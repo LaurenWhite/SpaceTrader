@@ -54,8 +54,9 @@ public class MarketActivity extends AppCompatActivity {
     private FrameLayout flCredits;
     private TextView tvCredits;
     private EditText quantityEditText;
-    private Button btnBuy;
-    private Button btnSell;
+
+    Button btnBuy;
+    Button btnSell;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

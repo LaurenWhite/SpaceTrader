@@ -29,10 +29,10 @@ public class TravelActivity extends AppCompatActivity {
 
     private TextView currentLocationLabel;
     private TextView currentFuelLabel;
-    private TextView currentLocation;
-    private TextView solarSystem;
-    private Spinner solarSystemSpinner;
-    private TextView planet;
+    TextView currentLocation;
+    TextView solarSystem;
+    Spinner solarSystemSpinner;
+    TextView planet;
     private Spinner planetSpinner;
 
     private Planet currentPlanet;

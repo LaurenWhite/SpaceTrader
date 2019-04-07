@@ -27,7 +27,8 @@ public class EncounterActivity extends AppCompatActivity {
 
     private TextView tvEncounterLocation;
     private TextView tvEncounterScript;
-    private Button continueBtn;
+
+    Button continueBtn;
 
     private String encounterType;
 
