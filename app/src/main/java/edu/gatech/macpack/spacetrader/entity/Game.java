@@ -1,5 +1,7 @@
 package edu.gatech.macpack.spacetrader.entity;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,25 +71,25 @@ public class Game {
 
     // Displays the universe in logcat, for testing
     public void universeToString(List<SolarSystem> systems) {
-        System.out.println("******UNIVERSE GENERATED******");
+        Log.i("INFO","******UNIVERSE GENERATED******");
         for (SolarSystem system : systems) {
-            System.out.println("***SOLAR SYSTEM***");
-            System.out.println("Solar system: " + system.getName());
-            System.out.println("\nLocation: (" + system.getLocation().get(0) +
+            Log.i("INFO","***SOLAR SYSTEM***");
+            Log.i("INFO","Solar system: " + system.getName());
+            Log.i("INFO","\nLocation: (" + system.getLocation().get(0) +
                     ", " + system.getLocation().get(1) +
                     ")")
             ;
-            System.out.println("Planets: (" +
+            Log.i("INFO","Planets: (" +
                     system.getPlanets().get(0).getName() +
                     ", " +
                     system.getPlanets().get(0).getName() +
                     ")"
             );
             for (Planet orb : system.getPlanets()) {
-                System.out.println("\n***PLANET***");
-                System.out.println("Planet: " + orb.getName());
-                System.out.println("Tech level: " + orb.getTechLevel());
-                System.out.println("Resource: " + orb.getResource());
+                Log.i("INFO","\n***PLANET***");
+                Log.i("INFO","Planet: " + orb.getName());
+                Log.i("INFO","Tech level: " + orb.getTechLevel());
+                Log.i("INFO","Resource: " + orb.getResource());
             }
         }
     }
