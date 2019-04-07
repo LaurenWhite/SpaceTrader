@@ -15,6 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="195dp"
         android:gravity="center_horizontal"
+        android:textColor="@color/colorAccent"
         android:text="@string/encounter_location_default_text"
         android:textSize="20sp" />
 
@@ -26,6 +27,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="291dp"
         android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
         android:text="@string/script_of_encounter_default_text"
         android:textSize="20sp" />
 
