@@ -17,8 +17,8 @@ import edu.gatech.macpack.spacetrader.entity.TradeGood;
 
 public class MarketListAdapter extends ArrayAdapter<MarketItem> {
     private static final String TAG = "MarketListAdapter";
-    private final Context mContext;
-    private final int mResource;
+    private Context mContext;
+    private int mResource;
 
     public MarketListAdapter(Context context, int resource, List<MarketItem> objects) {
         super(context, resource, objects);

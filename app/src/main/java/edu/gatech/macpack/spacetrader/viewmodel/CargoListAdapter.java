@@ -17,8 +17,8 @@ import edu.gatech.macpack.spacetrader.entity.TradeGood;
 
 public class CargoListAdapter extends ArrayAdapter<CargoItem> {
     private static final String TAG = "CargoListAdapter";
-    private final Context mContext;
-    private final int mResource;
+    private Context mContext;
+    private int mResource;
 
     public CargoListAdapter(Context context, int resource, List<CargoItem> objects) {
         super(context, resource, objects);
