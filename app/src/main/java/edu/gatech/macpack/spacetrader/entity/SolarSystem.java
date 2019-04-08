@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 
+/**
+ * This is a class that represents the game's solar system
+ */
 public class SolarSystem {
 
     // List of possible solar system names
@@ -23,6 +26,10 @@ public class SolarSystem {
 
 
     // CONSTRUCTOR
+
+    /**
+     * This is a constructor that creates a solar system with the following random attributes
+     */
     public SolarSystem() {
         Random r = new Random();
         name = chooseName(r.nextInt(availableNames.size()));
@@ -37,10 +44,23 @@ public class SolarSystem {
 
 
     // GETTERS
+
+    /**
+     * This is a getter method that returns the name of the solar system
+     * @return the name
+     */
     public String getName() { return name; }
 
+    /**
+     * This is a getter method that returns the location of the planet
+     * @return planet lcoation
+     */
     public List<Integer> getLocation() { return location; }
 
+    /**
+     * This is a getter method that returns a list of the planets within the solar system
+     * @return list of planets
+     */
     public List<Planet> getPlanets() { return planets; }
 
 

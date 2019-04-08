@@ -1,5 +1,8 @@
 package edu.gatech.macpack.spacetrader.entity;
 
+/**
+ * This is an enumeration for the type of tech levels
+ */
 public enum TechLevel {
     PRE_AGRICULTURE(0),
     AGRICULTURE(1),
@@ -17,6 +20,10 @@ public enum TechLevel {
         this.TechNumber = TechNumber;
     }
 
+    /**
+     * This is a getter that returns the tech number of a tech level enum
+      * @return tech number
+     */
     public int getTechNum() {
         return TechNumber;
     }

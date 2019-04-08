@@ -8,7 +8,9 @@ import static java.lang.Math.sqrt;
 import static java.lang.Math.round;
 
 
-
+/**
+ * This class represents a Traveler as the player goes to different places on the map
+ */
 public class Traveler {
 
     private List<SolarSystem> solarSystems = DatabaseInteractor.dbInteractor.game.getSolarSystems();
@@ -21,6 +23,12 @@ public class Traveler {
     Planet currentLocation;
 
 
+    /**
+     * This is a constructor that creates a traveler with the following attributes
+     * @param ship the Spaceship the player is using
+     * @param currentLocation the current location of where the player is located
+     * @param newLocation the location where the player wants to travel to
+     */
     public Traveler(SpaceShip ship, Planet currentLocation, Planet newLocation) {
         this.ship = ship;
         this.currentLocation = currentLocation;
@@ -30,6 +38,10 @@ public class Traveler {
         fuelNeeded = calculateFuelNeeded();
     }
 
+    /**
+     * This constructor is used to calculate the locations in range of the passed in ship
+     * @param ship ship to find locations in the proximity of.
+     */
     public Traveler(SpaceShip ship) { this.ship = ship; }
 
     private int calculateDistance(List<Integer> curCoordinate, List<Integer> newCoordinate) {
@@ -55,6 +67,9 @@ public class Traveler {
         return (int) round(fuel);
     }
 
+    /**
+     * This method puts the traveler in the new location
+     */
     public void travel() {
         System.out.println("Distance: " + distance);
         System.out.println("Fuel Needed: " + fuelNeeded);
@@ -64,6 +79,10 @@ public class Traveler {
         System.out.println("After fuel: " + ship.getFuel());
     }
 
+    /**
+     * This method checks for solar systems in range of the spaceship
+     * @return a list of the solar systems in range
+     */
     public List<SolarSystem> systemsInRange() {
         List<SolarSystem> inRange = new ArrayList<>();
 

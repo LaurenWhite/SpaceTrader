@@ -1,5 +1,8 @@
 package edu.gatech.macpack.spacetrader.entity;
 
+/**
+ * This is an enumeration for the type of spaceships
+ */
 public enum SpaceShipType {
     FLEA("Flea"),
     GNAT("Gnat", 100, 2, 20),
