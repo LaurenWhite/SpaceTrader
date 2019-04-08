@@ -10,6 +10,9 @@ import android.widget.EditText;
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.DatabaseInteractor;
 
+/**
+ * This is the TitleScreenActivity class that displays the opening screen of the game and inputs/buttons for the user/player
+ */
 public class TitleScreenActivity extends AppCompatActivity {
 
     private EditText usernameEditText;
@@ -25,12 +28,20 @@ public class TitleScreenActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.username);
     }
 
+    /**
+     * This is a method that creates a new game upon the new game button being pressed
+     * @param view UI object
+     */
     public void newGamePressed(View view) {
         DatabaseInteractor.dbInteractor.createGame();
         Intent intent = new Intent(getBaseContext(), UserConfigurationActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * This is a method that loads a previous game upon the load game button being pressed
+     * @param view UI object
+     */
     public void loadGamePressed(View view) {
         String username = usernameEditText.getText().toString();
         DatabaseInteractor.dbInteractor.loadGame(username);

@@ -23,6 +23,9 @@ import edu.gatech.macpack.spacetrader.entity.SolarSystem;
 import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 import edu.gatech.macpack.spacetrader.entity.Traveler;
 
+/**
+ * This is the TravelActivity class that displays the Travel Screen
+ */
 public class TravelActivity extends AppCompatActivity {
     Game game = DatabaseInteractor.dbInteractor.game;
     Player player = game.getPlayer();
@@ -132,6 +135,10 @@ public class TravelActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * This method allows the player to travel to the selected location upon the go button being pressed
+     * @param view UI object
+     */
     public void goButtonClicked(View view) {
         if (selectedPlanet == null) { return; }
 

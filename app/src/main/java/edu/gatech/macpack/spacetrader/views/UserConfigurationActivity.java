@@ -21,6 +21,9 @@ import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.viewmodel.UserConfigurationViewModel;
 
 
+/**
+ * This is the UserConfigurationActivity class that displays the configuration screen and player creation
+ */
 public class UserConfigurationActivity extends AppCompatActivity {
 
     Player player = new Player();
@@ -70,6 +73,9 @@ public class UserConfigurationActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * This method updates the number of points for each skill on the screen as the player adds them and subtracts
+     */
     private void updatePointLabels() {
         skillPoints.setText("Available Skill Points: " + player.getAvailableSkillPoints());
         pilotPoints.setText(Integer.toString(player.getPilotPoints()));
@@ -80,47 +86,82 @@ public class UserConfigurationActivity extends AppCompatActivity {
 
 
 
-
+    /**
+     * This method calls the subtractPilotPoint(Player player) method when the button is pressed
+     * @param view UI object
+     */
     public void subtractPilotPointPressed(View view) {
         viewModel.subtractPilotPoint(player);
         updatePointLabels();
     }
 
+    /**
+     * This method calls the addPilotPoint(Player player) method when the button is pressed
+     * @param view UI object
+     */
     public void addPilotPointPressed(View view) {
         viewModel.addPilotPoint(player);
         updatePointLabels();
     }
 
+    /**
+     * This method calls the subtractFighterPoint(Player player) method when the button is pressed
+     * @param view UI object
+     */
     public void subtractFighterPointPressed(View view) {
         viewModel.subtractFighterPoint(player);
         updatePointLabels();
     }
 
+    /**
+     * This method calls the addFighterPoint(Player player) method when the button is pressed
+     * @param view UI object
+     */
     public void addFighterPointPressed(View view) {
         viewModel.addFighterPoint(player);
         updatePointLabels();
     }
 
+    /**
+     * This method calls the subtractTraderPoint(Player player) method when the button is pressed
+     * @param view UI object
+     */
     public void subtractTraderPointPressed(View view) {
         viewModel.subtractTraderPoint(player);
         updatePointLabels();
     }
 
+    /**
+     * This method calls the addTraderPoint(Player player) method when the button is pressed
+     * @param view UI object
+     */
     public void addTraderPointPressed(View view) {
         viewModel.addTraderPoint(player);
         updatePointLabels();
     }
 
+    /**
+     * This method calls the subtractEngineerPoint(Player player) method when the button is pressed
+     * @param view UI object
+     */
     public void subtractEngineerPointPressed(View view) {
         viewModel.subtractEngineerPoint(player);
         updatePointLabels();
     }
 
+    /**
+     * This method calls the addEngineerPoint(Player player) method when the button is pressed
+     * @param view UI object
+     */
     public void addEngineerPointPressed(View view) {
         viewModel.addEngineerPoint(player);
         updatePointLabels();
     }
 
+    /**
+     * This method creates a player upon the create user button being pressed
+     * @param view UI object
+     */
     public void createUserPressed(View view) {
 
         if(isValidUsername(nameField.getText().toString())) {
@@ -138,6 +179,11 @@ public class UserConfigurationActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method checks to see if the player/user entered a valid username
+     * @param name the string of the inputted name to check
+     * @return true if the user is valid, false if user is not
+     */
     private boolean isValidUsername(String name) {
         if(name.length() > 0 && !name.equals("Name") && !name.equals("player")) {
             return true;
@@ -147,6 +193,10 @@ public class UserConfigurationActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method checks to see if the player has allocated all of their skill points
+     * @return true if all points have been allocated, false if not
+     */
     private boolean allPointsAllocated() {
         if (player.getAvailableSkillPoints() == 0) {
             return true;
