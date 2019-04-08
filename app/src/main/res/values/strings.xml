@@ -25,4 +25,11 @@
         You have encountered a trader who would like to trade goods.</string>
     <string name="script_of_default_encounter">
         You have been encountered! Click continue to see what happens next…</string>
+    <string name="credits_default">Credits: ***default***</string>
+    <string name="default_number">#</string>
+    <string name="market_items_header">Market Items</string>
+    <string name="cargo_items_header">Cargo Items</string>
+    <string name="ship_information_header">Ship Information</string>
+    <string name="cargo_label">Cargo</string>
+    <string name="resources_label">Resources</string>
 </resources>

@@ -7,17 +7,40 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.DatabaseInteractor;
 import edu.gatech.macpack.spacetrader.entity.Game;
+import edu.gatech.macpack.spacetrader.entity.Player;
+import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 
 public class GameMainScreenActivity extends AppCompatActivity {
+
+    Game game = DatabaseInteractor.dbInteractor.game;
+    Player player = game.getPlayer();
+    SpaceShip ship = player.getSpaceShip();
+
+    ProgressBar fuelTank;
+    ProgressBar shipHealhBar;
+    TextView shipType;
+
+    final int DEFAULT_HEALTH = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_main_screen);
+
+        fuelTank = findViewById(R.id.fuelTankBar);
+        shipHealhBar = findViewById(R.id.shipHealthBar);
+        shipType = findViewById(R.id.shipType);
+
+        fuelTank.setProgress(ship.getFuel());
+        // lol never implemented health in ship
+        shipHealhBar.setProgress(DEFAULT_HEALTH);
+        shipType.setText("" + ship.getShipType());
     }
 
     // temporary market button function for testing
