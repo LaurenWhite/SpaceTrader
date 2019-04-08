@@ -29,6 +29,14 @@ public class SpaceShip {
         // add default location here to prevent crash when selling to market before traveling?
     }
 
+    /**
+     * This is a spaceship constructor that creates a spaceship with the following attributes
+     * @param shipType the type of spaceship
+     * @param cargo the cargo on the ship
+     * @param weight the weight the ship can hold
+     * @param location the location of the ship
+     * @param fuel the amount of fuel in the ship
+     */
     public SpaceShip(SpaceShipType shipType, Map<String, CargoItem> cargo, int weight, Planet location, int fuel){
         this.shipType = shipType;
         this.cargo = cargo;

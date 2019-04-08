@@ -78,7 +78,7 @@ public class TravelActivity extends AppCompatActivity {
         updateLabels();
 
         ArrayAdapter<String> solarAdapter = new
-                ArrayAdapter<String>(this, R.layout.spinner_item, solarSystemNames);
+                ArrayAdapter<>(this, R.layout.spinner_item, solarSystemNames);
         solarAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         solarSystemSpinner.setAdapter(solarAdapter);
 
@@ -95,7 +95,7 @@ public class TravelActivity extends AppCompatActivity {
                 }
 
                 ArrayAdapter<String> planetAdapter = new
-                        ArrayAdapter<String>(
+                        ArrayAdapter<>(
                                 TravelActivity.this, R.layout.spinner_item, planetNames);
                 planetAdapter.setDropDownViewResource(
                         android.R.layout.simple_spinner_dropdown_item);

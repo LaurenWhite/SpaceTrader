@@ -23,7 +23,7 @@ public class sellToPlayerTest {
     private Map<String, MarketItem> market;
 
     @Before
-    /**
+    /*
      * Set up variables for testing
      */
     public void setUp() {
@@ -36,7 +36,7 @@ public class sellToPlayerTest {
     }
 
     @Test
-    /**
+    /*
      * Sell part of market stock of an item
      */
     public void sellSomeOfItemStock() {
@@ -51,7 +51,7 @@ public class sellToPlayerTest {
     }
 
     @Test
-    /**
+    /*
      * Sell all of the stock of a market item
      */
     public void sellAllOfItemStock() {
@@ -63,7 +63,7 @@ public class sellToPlayerTest {
     }
 
     @Test
-    /**
+    /*
      * Do not sell any items if requested item is not in market
      */
     public void sellNoneItemUnavailable() {
