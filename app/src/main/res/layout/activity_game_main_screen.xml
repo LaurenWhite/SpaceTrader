@@ -14,8 +14,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="50dp"
-        android:text="Ship Information"
-        android:textSize="20dp"
+        android:text="@string/ship_information_header"
+        android:textSize="20sp"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,8 +29,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="210dp"
-        android:text="Cargo"
-        android:textSize="20dp"
+        android:text="@string/cargo_label"
+        android:textSize="20sp"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/ship_id"
@@ -40,12 +40,11 @@
         android:id="@+id/resource_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/ship_id"
-        android:layout_marginTop="255dp"
-        android:text="Resources"
+        android:layout_below="@+id/cargo_id"
+        android:text="@string/resources_label"
         android:textColor="@color/colorAccent"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/cargo_id"
         android:layout_alignLeft="@+id/ship_id" />
@@ -100,19 +99,20 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="85dp"
         android:textSize="20dp"/>
+
     <TextView
         android:id="@+id/health"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Ship Health"
         android:textColor="@color/colorAccent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="120dp"
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
     <TextView
-        android:id="@+id/shiptype"
+        android:id="@+id/shipTypeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -124,10 +124,9 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:id="@+id/shipName"
+        android:id="@+id/shipType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_marginTop="160dp"
         android:layout_marginLeft="211dp"
         android:textColor="@color/colorAccent"

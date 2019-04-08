@@ -11,7 +11,7 @@
         android:id="@+id/start_of_market_items_divider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Market Items"/>
+        android:text="@string/market_items_header"/>
 
     <ListView
         android:id="@+id/lvGoods"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/lvGoods"
-        android:text="Cargo Items"/>
+        android:text="@string/cargo_items_header"/>
 
     <ListView
         android:id="@+id/lvCargoItems"
@@ -99,7 +99,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="118dp"
             android:layout_toRightOf="@+id/quantity_label"
-            android:hint="#"
+            android:hint="@string/default_number"
             android:inputType="number"
             android:paddingRight="20dp" />
 
@@ -109,13 +109,12 @@
         android:id="@+id/flCredits"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_alignBottom="@+id/rvButtonHolder">
         <TextView
             android:id="@+id/tvCredits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Credits: ***default***"
+            android:text="@string/credits_default"
             android:textAlignment="center"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/colorAccent"/>
