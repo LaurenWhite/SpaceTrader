@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
+/*
  * Example local unit test, which will execute on the development machine (host).
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
 
     @Test
-    /**
+    /*
      * Example unit test method
      */
     public void addition_isCorrect() {

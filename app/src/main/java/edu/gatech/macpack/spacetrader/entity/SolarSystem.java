@@ -41,6 +41,12 @@ public class SolarSystem {
         planets.add(new Planet(this));
     }
 
+    /**
+     * This is a constructor that creates a solar system with the following attributes
+     * @param name the name of the solar system
+     * @param location list of locations
+     * @param planets the list of planets in the solar systems
+     */
     public SolarSystem(String name, List<Integer> location, List<Planet> planets) {
         this.name = name;
         this.location = location;
@@ -71,6 +77,11 @@ public class SolarSystem {
 
 
     // SETTERS
+
+    /**
+     * This is a setter method that sets the list of planets for the solar system
+     * @param planets the list of planets
+     */
     public void setPlanets(List<Planet> planets) { this.planets = planets; }
 
     // Return a randomly chosen name from available names list, update list
