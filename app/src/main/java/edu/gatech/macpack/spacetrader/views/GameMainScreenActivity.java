@@ -16,6 +16,9 @@ import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 
+/**
+ * Activity for displaying the main game screen
+ */
 public class GameMainScreenActivity extends AppCompatActivity {
 
     Game game = DatabaseInteractor.dbInteractor.game;
@@ -23,7 +26,7 @@ public class GameMainScreenActivity extends AppCompatActivity {
     SpaceShip ship = player.getSpaceShip();
 
     ProgressBar fuelTank;
-    ProgressBar shipHealhBar;
+    ProgressBar shipHealthBar;
     TextView shipType;
 
     final int DEFAULT_HEALTH = 1000;
@@ -34,21 +37,30 @@ public class GameMainScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_main_screen);
 
         fuelTank = findViewById(R.id.fuelTankBar);
-        shipHealhBar = findViewById(R.id.shipHealthBar);
+        shipHealthBar = findViewById(R.id.shipHealthBar);
         shipType = findViewById(R.id.shipType);
 
         fuelTank.setProgress(ship.getFuel());
         // lol never implemented health in ship
-        shipHealhBar.setProgress(DEFAULT_HEALTH);
+        shipHealthBar.setProgress(DEFAULT_HEALTH);
         shipType.setText("" + ship.getShipType());
     }
 
-    // temporary market button function for testing
+    /**
+     * Transitions to market activity when Market button pressed
+     *
+     * @param view UI object
+     */
     public void onMarketPressed(View view) {
         Intent intent = new Intent(getBaseContext(), MarketActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Transitions to travel activity when Travel button pressed
+     *
+     * @param view UI object
+     */
     public void onTravelPressed(View view) {
         Intent intent = new Intent(getBaseContext(), TravelActivity.class);
         startActivity(intent);
@@ -82,6 +94,11 @@ public class GameMainScreenActivity extends AppCompatActivity {
         DatabaseInteractor.dbInteractor.saveGame(username, game);
     }
 
+    /**
+     * Closes application when Close option selected
+     *
+     * @param view UI object
+     */
     public void closeApplication(View view) {
         finish();
         moveTaskToBack(true);

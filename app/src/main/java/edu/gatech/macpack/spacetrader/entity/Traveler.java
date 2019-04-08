@@ -33,8 +33,6 @@ public class Traveler {
     public Traveler(SpaceShip ship) { this.ship = ship; }
 
     private int calculateDistance(List<Integer> curCoordinate, List<Integer> newCoordinate) {
-//        System.out.println("coord1: " + curCoordinate[0] + ", " + curCoordinate[1]);
-//        System.out.println("coord2: " + newCoordinate[0] + ", " + newCoordinate[1]);
 
         double d = sqrt((abs(newCoordinate.get(0) - curCoordinate.get(0)))^2
                             + (abs(newCoordinate.get(1) - curCoordinate.get(1)))^2);
