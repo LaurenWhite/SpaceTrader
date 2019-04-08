@@ -187,29 +187,4 @@ public class DatabaseInteractor {
                 });
     }
 
-
-//    public void saveGame(String username, Game game) {
-//        // Create a save entry that stores the game
-//        Map<String, Object> userData = new HashMap<>();
-//        userData.put("game_save", game);
-//        //userData.put("player", game.getPlayer());
-//
-//
-//        // Add a new document with a username as ID
-//        database.collection("user_saves").document(username)
-//                .set(userData)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Log.d(TAG, "Game save successfully written!");
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w(TAG, "Error writing user save ", e);
-//                    }
-//                });
-//    }
-
 }
