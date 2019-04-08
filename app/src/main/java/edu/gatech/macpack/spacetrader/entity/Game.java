@@ -70,7 +70,7 @@ public class Game {
     }
 
     // Displays the universe in logcat, for testing
-    public void universeToString(List<SolarSystem> systems) {
+    public void universeToString(Iterable<SolarSystem> systems) {
         Log.i("INFO","******UNIVERSE GENERATED******");
         for (SolarSystem system : systems) {
             Log.i("INFO","***SOLAR SYSTEM***");

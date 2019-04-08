@@ -23,7 +23,7 @@ public class GameMainScreenActivity extends AppCompatActivity {
     SpaceShip ship = player.getSpaceShip();
 
     ProgressBar fuelTank;
-    ProgressBar shipHealhBar;
+    ProgressBar shipHealthBar;
     TextView shipType;
 
     final int DEFAULT_HEALTH = 1000;
