@@ -19,6 +19,9 @@ import edu.gatech.macpack.spacetrader.entity.Planet;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 
+/**
+ * Activity for launching and handling encounters
+ */
 public class EncounterActivity extends AppCompatActivity {
 
     Game game = DatabaseInteractor.dbInteractor.game;
@@ -59,14 +62,14 @@ public class EncounterActivity extends AppCompatActivity {
                 cargo.clear();
                 break;
             case "traders":
-                return;
+                break;
             case "police":
                 // police take all your assets
                 cargo.clear();
                 break;
             default:
                 // if it's something other than these three for some odd reason, just return
-                return;
+                break;
         }
     }
 
@@ -117,6 +120,11 @@ public class EncounterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Transitions to game main screen when button pressed
+     *
+     * @param view given ui object
+     */
     public void continuePressed(View view) {
         Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);
         startActivity(intent);

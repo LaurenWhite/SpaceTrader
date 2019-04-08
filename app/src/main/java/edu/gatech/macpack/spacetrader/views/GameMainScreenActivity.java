@@ -16,6 +16,9 @@ import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 
+/**
+ * Activity for displaying the main game screen
+ */
 public class GameMainScreenActivity extends AppCompatActivity {
 
     Game game = DatabaseInteractor.dbInteractor.game;
@@ -43,12 +46,21 @@ public class GameMainScreenActivity extends AppCompatActivity {
         shipType.setText("" + ship.getShipType());
     }
 
-    // temporary market button function for testing
+    /**
+     * Transitions to market activity when Market button pressed
+     *
+     * @param view UI object
+     */
     public void onMarketPressed(View view) {
         Intent intent = new Intent(getBaseContext(), MarketActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Transitions to travel activity when Travel button pressed
+     *
+     * @param view UI object
+     */
     public void onTravelPressed(View view) {
         Intent intent = new Intent(getBaseContext(), TravelActivity.class);
         startActivity(intent);
@@ -82,6 +94,11 @@ public class GameMainScreenActivity extends AppCompatActivity {
         DatabaseInteractor.dbInteractor.saveGame(username, game);
     }
 
+    /**
+     * Closes application when Close option selected
+     *
+     * @param view UI object
+     */
     public void closeApplication(View view) {
         finish();
         moveTaskToBack(true);

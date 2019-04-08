@@ -8,18 +8,27 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.CargoItem;
 import edu.gatech.macpack.spacetrader.entity.TradeGood;
 
+/**
+ * Creates list adapter for cargo list
+ */
 public class CargoListAdapter extends ArrayAdapter<CargoItem> {
     private static final String TAG = "CargoListAdapter";
     private Context mContext;
     private int mResource;
 
+    /**
+     * Creates cargo list adapter object
+     *
+     * @param context  the context of the adapter
+     * @param resource the resource of thne adapter
+     * @param objects  the given objects
+     */
     public CargoListAdapter(Context context, int resource, List<CargoItem> objects) {
         super(context, resource, objects);
         mContext = context;

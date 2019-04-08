@@ -1,5 +1,8 @@
 package edu.gatech.macpack.spacetrader.entity;
 
+/**
+ * Enumeration for different types of planet resources
+ */
 public enum ResourceType {
     NON_SPECIAL_RESOURCES(0),
     MINERAL_RICH(1),
@@ -16,13 +19,15 @@ public enum ResourceType {
     WARLIKE(12);
 
 
-
     public int ResourceNumber;
 
     ResourceType(int ResourceNumber) {
         this.ResourceNumber = ResourceNumber;
     }
 
+    /**
+     * @return resource number of type
+     */
     public int getResourceNumber() {
         return ResourceNumber;
     }
