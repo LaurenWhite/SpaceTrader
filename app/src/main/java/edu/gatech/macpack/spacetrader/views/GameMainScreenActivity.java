@@ -34,12 +34,12 @@ public class GameMainScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_main_screen);
 
         fuelTank = findViewById(R.id.fuelTankBar);
-        shipHealhBar = findViewById(R.id.shipHealthBar);
+        shipHealthBar = findViewById(R.id.shipHealthBar);
         shipType = findViewById(R.id.shipType);
 
         fuelTank.setProgress(ship.getFuel());
         // lol never implemented health in ship
-        shipHealhBar.setProgress(DEFAULT_HEALTH);
+        shipHealthBar.setProgress(DEFAULT_HEALTH);
         shipType.setText("" + ship.getShipType());
     }
 
