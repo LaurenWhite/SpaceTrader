@@ -5,6 +5,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Creates game object class
+ */
 public class Game {
 
     // Singleton model?
@@ -18,8 +21,14 @@ public class Game {
     private DifficultyType difficulty;
 
 
-
     // CONSTRUCTOR
+
+    /**
+     * Creates a new game from generated values if the game is completely new or
+     * create an empty game object if being loaded
+     *
+     * @param newGame flag for if the game object is new or loaded
+     */
     public Game(Boolean newGame) {
         if(newGame) {
             solarSystems = generateSolarSystems();
@@ -31,34 +40,57 @@ public class Game {
         }
     }
 
-    public Game(Game game) {
-        player = game.getPlayer();
-        solarSystems = game.getSolarSystems();
-        difficulty = game.getDifficulty();
-    }
-
 
     // GETTERS
+
+    /**
+     * @return solar system object
+     */
     public List<SolarSystem> getSolarSystems() { return solarSystems; }
 
+    /**
+     * @param newSolarSystems new solar system object
+     */
+    public void setSolarSystems(List<SolarSystem> newSolarSystems) {
+        solarSystems = newSolarSystems;
+    }
+
+    /**
+     * @return difficulty object
+     */
     public DifficultyType getDifficulty() { return difficulty; }
 
-    public Player getPlayer() { return player; }
-
-    public Planet getStartingLocation() {
-        SolarSystem firstSolarSystem = solarSystems.get(0);
-        Planet firstPlanet = firstSolarSystem.getPlanets().get(0);
-        return firstPlanet;
+    /**
+     * @param newDifficulty new difficulty setting
+     */
+    public void setDifficulty(DifficultyType newDifficulty) {
+        difficulty = newDifficulty;
     }
 
 
     // SETTERS
-    public void setDifficulty(DifficultyType newDifficulty) { difficulty = newDifficulty; }
 
-    public void setPlayer(Player newPlayer) { player = newPlayer; }
+    /**
+     * @return player object
+     */
+    public Player getPlayer() { return player; }
 
-    public void setSolarSystems(List<SolarSystem> newSolarSystems) {
-        solarSystems = newSolarSystems;
+    /**
+     * @param newPlayer new player object
+     */
+    public void setPlayer(Player newPlayer) {
+        player = newPlayer;
+    }
+
+    /**
+     * Gets the first planet in the game to start player on
+     *
+     * @return first planet created
+     */
+    public Planet getStartingLocation() {
+        SolarSystem firstSolarSystem = solarSystems.get(0);
+        Planet firstPlanet = firstSolarSystem.getPlanets().get(0);
+        return firstPlanet;
     }
 
     // Create the 10 solar systems that will make up this universe
@@ -75,7 +107,11 @@ public class Game {
         return systems;
     }
 
-    // Displays the universe in logcat, for testing
+    /**
+     * Prints given solar system in LOGCAT, for testing
+     *
+     * @param systems solar system to print
+     */
     public void universeToString(List<SolarSystem> systems) {
         Log.i("INFO","******UNIVERSE GENERATED******");
         for (SolarSystem system : systems) {

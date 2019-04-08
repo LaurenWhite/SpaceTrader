@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * Planet object class
+ */
 public class Planet {
 
     // List of possible solar system names
@@ -15,7 +18,6 @@ public class Planet {
                     "Damascus", "Soren", "Valvatorez", "Fenrich", "Archimedes", "Anri", "Sterling",
                     "Lucis", "Ignis", "Noctis", "Ardyn", "Lunafreya", "Thanatos", "Aranea")
     );
-
 
 
     // ATTRIBUTES
@@ -29,8 +31,13 @@ public class Planet {
     private List<Integer> parentLocation;
 
 
-
     // CONSTRUCTOR
+
+    /**
+     * Creates a new planet object with generated values
+     *
+     * @param parentSystem solar system the planet is in
+     */
     public Planet(SolarSystem parentSystem) {
         Random r = new Random();
         name = chooseName(r.nextInt(availableNames.size()));
@@ -47,31 +54,66 @@ public class Planet {
     }
 
 
-
     // GETTERS
+
+    /**
+     * @return planet name
+     */
     public String getName() { return name; }
 
+    /**
+     * @return location of planet
+     */
     public List<Integer> getLocation() { return location; }
 
+    /**
+     * @return planet tech level
+     */
     public TechLevel getTechLevel() { return techLevel; }
 
+    /**
+     * @return planet resource type
+     */
     public ResourceType getResource() { return resource; }
 
+    /**
+     * @return trader event chance on planet
+     */
     public int getTraderEventChance() { return traderEventChance; }
 
+    /**
+     * @return planet market
+     */
     public Map<String, MarketItem> getMarket() { return market; }
 
-    public String getParentName() { return parentName; }
+    /**
+     * @param market planet market
+     */
+    public void setMarket(Map<String, MarketItem> market) {
+        this.market = market;
+    }
 
-    public List<Integer> getParentLocation() { return parentLocation; }
+    /**
+     * @return parent solar system name
+     */
+    public String getParentName() { return parentName; }
 
 
     // SETTERS
-    public void setMarket(Map<String, MarketItem> market) { this.market = market; }
+
+    /**
+     * @return parent solar system location
+     */
+    public List<Integer> getParentLocation() { return parentLocation; }
 
 
     // FUNCTIONALITY
 
+    /**
+     * Sell market item to a player
+     *
+     * @param item item to sell
+     */
     public void sellToPlayer(MarketItem item) {
 
         TradeGood good = item.getGood();
@@ -87,6 +129,11 @@ public class Planet {
         }
     }
 
+    /**
+     * Buy a market item from the player
+     *
+     * @param item item to buy
+     */
     public void buyFromPlayer(MarketItem item) {
         TradeGood good = item.getGood();
 
@@ -98,10 +145,15 @@ public class Planet {
         }
     }
 
+    /**
+     * Determine if a good can be used on this planet
+     *
+     * @param good good to be determined
+     * @return if it can be used
+     */
     public boolean canUse(TradeGood good) {
         return techLevel.TechNumber >= good.getMTLU();
     }
-
 
 
     // Return a randomly chosen name from available names list, update list

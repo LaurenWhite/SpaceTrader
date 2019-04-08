@@ -22,6 +22,9 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * Creates an interactor class for the database
+ */
 public class DatabaseInteractor {
 
     public static DatabaseInteractor dbInteractor = new DatabaseInteractor();
@@ -34,10 +37,18 @@ public class DatabaseInteractor {
         database = FirebaseFirestore.getInstance();
     }
 
+    /**
+     * Creates a new game object with generated values
+     */
     public void createGame() {
         game = new Game(true);
     }
 
+    /**
+     * Loads game information from the Firebase Cloud Storage
+     *
+     * @param username key to the game data in the database
+     */
     public void loadGame(String username) {
         DocumentReference docRef = database.collection("user_saves").document(username);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -144,7 +155,12 @@ public class DatabaseInteractor {
 
     //private Planet loadPlanet() {}
 
-
+    /**
+     * Writes game data to the Firebase Cloud Storage using username as a key
+     *
+     * @param username key to entry, user's unique name
+     * @param game     data to write to Firebase entry
+     */
     public void saveGame(String username, Game game) {
         // Create a save entry that stores the game
         Map<String, Object> userData = new HashMap<>();

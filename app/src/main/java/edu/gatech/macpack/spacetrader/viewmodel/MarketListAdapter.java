@@ -15,11 +15,22 @@ import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.MarketItem;
 import edu.gatech.macpack.spacetrader.entity.TradeGood;
 
+/**
+ * Creates list adapter for a market list
+ */
 public class MarketListAdapter extends ArrayAdapter<MarketItem> {
+
     private static final String TAG = "MarketListAdapter";
     private Context mContext;
     private int mResource;
 
+    /**
+     * Creates new market list adapter
+     *
+     * @param context  the context of the adapter
+     * @param resource the resource of the adapter
+     * @param objects  objects in adapter
+     */
     public MarketListAdapter(Context context, int resource, List<MarketItem> objects) {
         super(context, resource, objects);
         mContext = context;

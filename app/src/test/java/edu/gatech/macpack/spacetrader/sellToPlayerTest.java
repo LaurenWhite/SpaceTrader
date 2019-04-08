@@ -13,6 +13,9 @@ import edu.gatech.macpack.spacetrader.entity.TradeGood;
 
 import static org.junit.Assert.*;
 
+/**
+ * Unit test for sellToPlayer method
+ */
 public class sellToPlayerTest {
 
     private Planet testPlanet;
@@ -20,6 +23,9 @@ public class sellToPlayerTest {
     private Map<String, MarketItem> market;
 
     @Before
+    /**
+     * Set up variables for testing
+     */
     public void setUp() {
         testPlanet = new Planet(new SolarSystem());
 
@@ -30,6 +36,9 @@ public class sellToPlayerTest {
     }
 
     @Test
+    /**
+     * Sell part of market stock of an item
+     */
     public void sellSomeOfItemStock() {
         purchaseItem = new MarketItem(TradeGood.FOOD, 3, 100);
 
@@ -42,6 +51,9 @@ public class sellToPlayerTest {
     }
 
     @Test
+    /**
+     * Sell all of the stock of a market item
+     */
     public void sellAllOfItemStock() {
         purchaseItem = new MarketItem(TradeGood.FOOD, 10, 100);
 
@@ -51,6 +63,9 @@ public class sellToPlayerTest {
     }
 
     @Test
+    /**
+     * Do not sell any items if requested item is not in market
+     */
     public void sellNoneItemUnavailable() {
         purchaseItem = new MarketItem(TradeGood.WATER, 4, 50);
 

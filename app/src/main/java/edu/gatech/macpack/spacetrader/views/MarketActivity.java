@@ -28,6 +28,9 @@ import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 import edu.gatech.macpack.spacetrader.viewmodel.CargoListAdapter;
 import edu.gatech.macpack.spacetrader.viewmodel.MarketListAdapter;
 
+/**
+ * Activity for displaying the planet market
+ */
 public class MarketActivity extends AppCompatActivity {
     Game game = DatabaseInteractor.dbInteractor.game;
     Player player = game.getPlayer();
@@ -126,8 +129,7 @@ public class MarketActivity extends AppCompatActivity {
         lvGoods = findViewById(R.id.lvGoods);
         lvGoods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id)
-            {
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 selectedItem = marketList.get(position - 1);
                 String message = "You clicked # " + position + ", which is item: " + selectedItem;
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -136,8 +138,7 @@ public class MarketActivity extends AppCompatActivity {
 
         lvCargoItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id)
-            {
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 selectedItem = cargoList.get(position - 1);
                 String message = "You clicked # " + position + ", which is item: " + selectedItem;
                 Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -146,7 +147,11 @@ public class MarketActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Player purchases item when buy button pressed
+     *
+     * @param view UI object
+     */
     public void buyButtonClicked(View view) {
 
         if(!infoEntered()) return;
@@ -191,6 +196,11 @@ public class MarketActivity extends AppCompatActivity {
         selectedItem = null;
     }
 
+    /**
+     * Player sells item when sell button pressed
+     *
+     * @param view UI object
+     */
     public void sellButtonClicked(View view) {
 
         if(!infoEntered()) return;
