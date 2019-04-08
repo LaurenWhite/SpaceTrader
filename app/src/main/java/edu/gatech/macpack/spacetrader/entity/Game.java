@@ -107,6 +107,7 @@ public class Game {
         return systems;
     }
 
+  
     /**
      * Prints given solar system in LOGCAT, for testing
      *
