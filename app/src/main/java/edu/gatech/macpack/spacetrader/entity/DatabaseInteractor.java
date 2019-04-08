@@ -69,10 +69,10 @@ public class DatabaseInteractor {
         });
     }
 
-    private List<SolarSystem>  loadSolarSystems(ArrayList<Object> solarSystemData) {
+    private List<SolarSystem> loadSolarSystems(ArrayList<Object> solarSystemData) {
         List<SolarSystem> systems = new ArrayList<>();
 
-        for(int i = 0; i < solarSystemData.size(); i++) {
+        for (int i = 0; i < solarSystemData.size(); i++) {
 
             HashMap<String, Object> data = (HashMap<String, Object>) solarSystemData.get(i);
             String name = (String) data.get("name");
@@ -113,9 +113,9 @@ public class DatabaseInteractor {
         SpaceShip shipObj = loadSpaceShip(spaceshipData);
 
         Player player = new Player(name,
-                                    availableSkillPoints,
-                                    pilotPoints, fighterPoints, traderPoints, engineerPoints,
-                                    shipObj);
+                availableSkillPoints,
+                pilotPoints, fighterPoints, traderPoints, engineerPoints,
+                shipObj);
         return player;
     }
 
@@ -123,7 +123,15 @@ public class DatabaseInteractor {
         SpaceShipType shipType = SpaceShipType.valueOf((String) shipData.get("shipType"));
         //TODO: Really load cargo
         Map<String, CargoItem> cargo = new HashMap<>();
-        HashMap<String, Object> cargoData = (HashMap<String, Object>) shipData.get(cargo);
+        HashMap<String, Object> cargoData = (HashMap<String, Object>) shipData.get("cargo");
+
+        for (String key : cargoData.keySet()) {
+            HashMap<String, Object> data = (HashMap<String, Object>) cargoData.get(key);
+            int quanitity = ((Long) data.get("quantity")).intValue();
+            int price = ((Long) data.get("price")).intValue();
+            TradeGood good = TradeGood.valueOf(key);
+            cargo.put(key, new CargoItem(good, quanitity, price));
+        }
 
 
         int weight = ((Long) shipData.get("weight")).intValue();

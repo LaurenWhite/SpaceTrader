@@ -32,4 +32,17 @@ public class MarketItem {
     public String toString() {
         return good.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) { return true; }
+
+        if (!(obj instanceof MarketItem)) { return false; }
+
+        MarketItem item = (MarketItem) obj;
+
+        return this.good.equals(item.good)
+                && this.price == item.price
+                && this.quantity == item.quantity;
+    }
 }

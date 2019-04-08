@@ -66,6 +66,9 @@ public class Planet {
     public List<Integer> getParentLocation() { return parentLocation; }
 
 
+    // SETTERS
+    public void setMarket(Map<String, MarketItem> market) { this.market = market; }
+
 
     // FUNCTIONALITY
 
@@ -73,13 +76,13 @@ public class Planet {
 
         TradeGood good = item.getGood();
 
-        if(market.containsKey(good)) {
-            int currentAmount = market.get(good).getQuantity();
+        if(market.containsKey(good.name())) {
+            int currentAmount = market.get(good.name()).getQuantity();
 
             if (currentAmount == item.getQuantity()) {
-                market.remove(good);
+                market.remove(good.name());
             } else {
-                market.get(good).setQuantity(currentAmount - item.getQuantity());
+                market.get(good.name()).setQuantity(currentAmount - item.getQuantity());
             }
         }
     }
