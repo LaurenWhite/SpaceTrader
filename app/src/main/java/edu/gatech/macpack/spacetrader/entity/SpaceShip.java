@@ -18,6 +18,7 @@ public class SpaceShip {
         weight = 0;
         location = DatabaseInteractor.dbInteractor.game.getStartingLocation();
         fuel = shipType.fuelCapacity;
+        // add default location here to prevent crash when selling to market before traveling?
     }
 
     // GETTERS

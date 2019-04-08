@@ -59,14 +59,14 @@ public class EncounterActivity extends AppCompatActivity {
                 cargo.clear();
                 break;
             case "traders":
-                return;
+                break;
             case "police":
                 // police take all your assets
                 cargo.clear();
                 break;
             default:
                 // if it's something other than these three for some odd reason, just return
-                return;
+                break;
         }
     }
 
