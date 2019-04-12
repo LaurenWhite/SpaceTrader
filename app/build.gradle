@@ -1,3 +1,5 @@
+import com.google.gms.googleservices.GoogleServicesPlugin
+
 apply plugin: 'com.android.application'
 
 android {
@@ -37,4 +39,4 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
-com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
+GoogleServicesPlugin.config.disableVersionCheck = true

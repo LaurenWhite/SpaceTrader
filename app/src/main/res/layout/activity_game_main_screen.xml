@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="50dp"
         android:text="@string/ship_information_header"
         android:textSize="20sp"
@@ -27,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="210dp"
         android:text="@string/cargo_label"
         android:textSize="20sp"
@@ -46,8 +44,7 @@
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/cargo_id"
-        android:layout_alignLeft="@+id/ship_id" />
+        app:layout_constraintStart_toStartOf="@id/cargo_id" />
 
     <ProgressBar
         android:id="@+id/fuelTankBar"
@@ -56,9 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ship_id"
         android:layout_alignStart="@+id/travelBtn"
-        android:layout_alignLeft="@+id/travelBtn"
         android:layout_marginStart="83dp"
-        android:layout_marginLeft="83dp"
         android:layout_marginTop="5dp"
         android:indeterminate="false"
         android:max="100"
@@ -76,9 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tank"
         android:layout_alignStart="@+id/fuelTankBar"
-        android:layout_alignLeft="@+id/fuelTankBar"
         android:layout_marginStart="-2dp"
-        android:layout_marginLeft="-2dp"
         android:layout_marginTop="0dp"
         android:indeterminate="false"
         android:max="100"
@@ -93,52 +86,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Fuel Tank"
+        android:text="@string/fuel_tank_label"
         android:textColor="@color/colorAccent"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="85dp"
-        android:textSize="20dp"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/health"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="120dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Ship Health"
+        android:text="@string/ship_health_label"
         android:textColor="@color/colorAccent"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
+
     <TextView
         android:id="@+id/shipTypeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Ship Type"
-        android:textColor="@color/colorAccent"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart = "15dp"
         android:layout_marginTop="160dp"
-        android:textSize="20dp"/>
+        android:ems="10"
+        android:text="@string/ship_type_label"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/shipType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
-        android:layout_marginLeft="211dp"
+        android:layout_marginStart="211dp"
         android:textColor="@color/colorAccent"
-        android:textSize="20dp"/>
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/marketBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btns_baseline"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="100dp"
+        android:layout_alignBaseline="@+id/buttons_baseline"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="100dp"
         android:onClick="onMarketPressed"
         android:text="@string/market_btn_text" />
 
@@ -147,22 +138,20 @@
         android:id="@+id/travelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btns_baseline"
-        android:layout_marginRight="45dp"
-        android:layout_toLeftOf="@+id/marketBtn"
+        android:layout_alignBaseline="@+id/buttons_baseline"
+        android:layout_marginEnd="45dp"
+        android:layout_toStartOf="@+id/marketBtn"
         android:onClick="onTravelPressed"
-        android:text="@string/travel_btn_text" />
+        android:text="@string/travel_btn_text"
+        tools:ignore="RelativeOverlap" />
 
     <TextView
-        android:id="@+id/btns_baseline"
+        android:id="@+id/buttons_baseline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginBottom="23dp"
-        android:text="TextView" />
+        android:layout_marginBottom="23dp" />
 
 </RelativeLayout>

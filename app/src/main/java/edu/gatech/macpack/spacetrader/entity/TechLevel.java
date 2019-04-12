@@ -14,7 +14,7 @@ public enum TechLevel {
     HI_TECH(7);
 
 
-    public int TechNumber;
+    public final int TechNumber;
 
     TechLevel(int TechNumber) {
         this.TechNumber = TechNumber;

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Objects;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.CargoItem;
@@ -18,15 +19,14 @@ import edu.gatech.macpack.spacetrader.entity.TradeGood;
  * Creates list adapter for cargo list
  */
 public class CargoListAdapter extends ArrayAdapter<CargoItem> {
-    private static final String TAG = "CargoListAdapter";
-    private Context mContext;
-    private int mResource;
+    private final Context mContext;
+    private final int mResource;
 
     /**
      * Creates cargo list adapter object
      *
      * @param context  the context of the adapter
-     * @param resource the resource of thne adapter
+     * @param resource the resource of the adapter
      * @param objects  the given objects
      */
     public CargoListAdapter(Context context, int resource, List<CargoItem> objects) {
@@ -37,25 +37,25 @@ public class CargoListAdapter extends ArrayAdapter<CargoItem> {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         // get good information
-        TradeGood good = getItem(position).getGood();
-        int quantity = getItem(position).getQuantity();
-        int price = getItem(position).getPrice();
+        TradeGood good = Objects.requireNonNull(Objects.requireNonNull(getItem(position))).getGood();
+        int quantity = Objects.requireNonNull(Objects.requireNonNull(getItem(position))).getQuantity();
+        int price = Objects.requireNonNull(Objects.requireNonNull(getItem(position))).getPrice();
 
         // create cargoItem object with information
         CargoItem item = new CargoItem(good, quantity, price);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(mResource, parent, false);
+        if (convertView == null) { convertView = inflater.inflate(mResource, parent, false); }
 
         TextView tvGoodName = convertView.findViewById(R.id.tvGoodName);
         TextView tvGoodQuantity = convertView.findViewById(R.id.tvGoodQuantity);
         TextView tvGoodPrice = convertView.findViewById(R.id.tvGoodPrice);
 
         tvGoodName.setText(item.getGood().toString());
-        tvGoodQuantity.setText("" + item.getQuantity());
-        tvGoodPrice.setText("" + item.getPrice());
+        tvGoodQuantity.setText(mContext.getString(R.string.quantity, item.getQuantity()));
+        tvGoodPrice.setText(mContext.getString(R.string.price, item.getPrice()));
 
         return convertView;
     }

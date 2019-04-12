@@ -1,24 +1,19 @@
 package edu.gatech.macpack.spacetrader.entity;
 
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Space;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
 
@@ -27,12 +22,12 @@ import static android.content.ContentValues.TAG;
  */
 public class DatabaseInteractor {
 
-    public static DatabaseInteractor dbInteractor = new DatabaseInteractor();
+    public static final DatabaseInteractor dbInteractor = new DatabaseInteractor();
 
-    private FirebaseFirestore database;
+    private final FirebaseFirestore database;
     public Game game;
 
-    public DatabaseInteractor() {
+    private DatabaseInteractor() {
         // Access a Cloud Firestore instance from your Activity
         database = FirebaseFirestore.getInstance();
     }
@@ -59,14 +54,15 @@ public class DatabaseInteractor {
                 game = new Game(false);
 
                 Object systems = documentSnapshot.get("solar_systems");
+                @SuppressWarnings("unchecked")
                 ArrayList<Object> solarSystemData = (ArrayList<Object>) systems;
-                List<SolarSystem> solarSystemList = loadSolarSystems(solarSystemData);
+                List<SolarSystem> solarSystemList = loadSolarSystems(Objects.requireNonNull(solarSystemData));
                 game.setSolarSystems(solarSystemList);
 
 
                 Object player = documentSnapshot.get("player");
-                HashMap<String, Object> playerData = (HashMap<String, Object>) player;
-                Player playerObj = loadPlayer(playerData);
+                @SuppressWarnings("unchecked") HashMap<String, Object> playerData = (HashMap<String, Object>) player;
+                Player playerObj = loadPlayer(Objects.requireNonNull(playerData));
                 game.setPlayer(playerObj);
 
                 Object difficultyData = documentSnapshot.get("difficulty");
@@ -85,10 +81,10 @@ public class DatabaseInteractor {
 
         for (int i = 0; i < solarSystemData.size(); i++) {
 
-            HashMap<String, Object> data = (HashMap<String, Object>) solarSystemData.get(i);
+            @SuppressWarnings("unchecked") HashMap<String, Object> data = (HashMap<String, Object>) solarSystemData.get(i);
             String name = (String) data.get("name");
 
-            ArrayList<Object> locationData = (ArrayList<Object>) data.get("location");
+            @SuppressWarnings("unchecked") ArrayList<Object> locationData = (ArrayList<Object>) data.get("location");
             Long coord1 = (Long) locationData.get(0);
             Long coord2 = (Long) locationData.get(1);
 
@@ -120,10 +116,10 @@ public class DatabaseInteractor {
         int engineerPoints = ((Long) playerData.get("engineerPoints")).intValue();
         int credits = ((Long) playerData.get("engineerPoints")).intValue();
 
-        HashMap<String, Object> spaceshipData = (HashMap<String, Object>) playerData.get("spaceShip");
+        @SuppressWarnings("unchecked") HashMap<String, Object> spaceshipData = (HashMap<String, Object>) playerData.get("spaceShip");
         SpaceShip shipObj = loadSpaceShip(spaceshipData);
 
-        Player player = new Player(name,
+        @SuppressWarnings("UnnecessaryLocalVariable") Player player = new Player(name,
                 availableSkillPoints,
                 pilotPoints, fighterPoints, traderPoints, engineerPoints,
                 shipObj);
@@ -134,10 +130,10 @@ public class DatabaseInteractor {
         SpaceShipType shipType = SpaceShipType.valueOf((String) shipData.get("shipType"));
         //TODO: Really load cargo
         Map<String, CargoItem> cargo = new HashMap<>();
-        HashMap<String, Object> cargoData = (HashMap<String, Object>) shipData.get("cargo");
+        @SuppressWarnings("unchecked") HashMap<String, Object> cargoData = (HashMap<String, Object>) shipData.get("cargo");
 
         for (String key : cargoData.keySet()) {
-            HashMap<String, Object> data = (HashMap<String, Object>) cargoData.get(key);
+            @SuppressWarnings("unchecked") HashMap<String, Object> data = (HashMap<String, Object>) cargoData.get(key);
             int quanitity = ((Long) data.get("quantity")).intValue();
             int price = ((Long) data.get("price")).intValue();
             TradeGood good = TradeGood.valueOf(key);

@@ -3,6 +3,7 @@ package edu.gatech.macpack.spacetrader.entity;
 /**
  * This is an enumeration for the type of spaceships
  */
+@SuppressWarnings("SameParameterValue")
 public enum SpaceShipType {
     FLEA("Flea"),
     GNAT("Gnat", 100, 2, 20),
@@ -15,7 +16,7 @@ public enum SpaceShipType {
     TERMITE("Termite"),
     WASP("Wasp");
 
-    public String shipType;
+    private final String shipType;
     public int weightCapacity;
     public int mileage;
     public int fuelCapacity;

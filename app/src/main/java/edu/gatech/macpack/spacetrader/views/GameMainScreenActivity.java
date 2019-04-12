@@ -21,29 +21,24 @@ import edu.gatech.macpack.spacetrader.entity.SpaceShip;
  */
 public class GameMainScreenActivity extends AppCompatActivity {
 
-    Game game = DatabaseInteractor.dbInteractor.game;
-    Player player = game.getPlayer();
-    SpaceShip ship = player.getSpaceShip();
-
-    ProgressBar fuelTank;
-    ProgressBar shipHealthBar;
-    TextView shipType;
-
-    final int DEFAULT_HEALTH = 1000;
+    private final Game game = DatabaseInteractor.dbInteractor.game;
+    private final Player player = game.getPlayer();
+    private final SpaceShip ship = player.getSpaceShip();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_main_screen);
 
-        fuelTank = findViewById(R.id.fuelTankBar);
-        shipHealthBar = findViewById(R.id.shipHealthBar);
-        shipType = findViewById(R.id.shipType);
+        ProgressBar fuelTank = findViewById(R.id.fuelTankBar);
+        ProgressBar shipHealthBar = findViewById(R.id.shipHealthBar);
+        TextView shipType = findViewById(R.id.shipType);
 
         fuelTank.setProgress(ship.getFuel());
         // lol never implemented health in ship
+        int DEFAULT_HEALTH = 1000;
         shipHealthBar.setProgress(DEFAULT_HEALTH);
-        shipType.setText("" + ship.getShipType());
+        shipType.setText(ship.getShipType().toString());
     }
 
     /**
@@ -99,7 +94,7 @@ public class GameMainScreenActivity extends AppCompatActivity {
      *
      * @param view UI object
      */
-    public void closeApplication(View view) {
+    private void closeApplication(View view) {
         finish();
         moveTaskToBack(true);
     }

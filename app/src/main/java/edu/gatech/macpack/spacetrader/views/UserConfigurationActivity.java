@@ -26,7 +26,7 @@ import edu.gatech.macpack.spacetrader.viewmodel.UserConfigurationViewModel;
  */
 public class UserConfigurationActivity extends AppCompatActivity {
 
-    Player player = new Player();
+    private final Player player = new Player();
 
     private UserConfigurationViewModel viewModel;
 
@@ -48,22 +48,22 @@ public class UserConfigurationActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(UserConfigurationViewModel.class);
 
         nameField = findViewById(R.id.username_input);
-        nameField.setText("Name");
+        nameField.setText(getString(R.string.name_label));
 
-        skillPoints = findViewById(R.id.avail_skillp_label);
-        skillPoints.setText("Available Skill Points: " + player.getAvailableSkillPoints());
+        skillPoints = findViewById(R.id.available_skill_points_label);
+        skillPoints.setText(getString(R.string.available_skill_points_label, player.getAvailableSkillPoints()));
 
         pilotPoints = findViewById(R.id.pilot_points);
-        pilotPoints.setText(Integer.toString(player.getPilotPoints()));
+        pilotPoints.setText(getString(R.string.pilot_points, player.getPilotPoints()));
 
         fighterPoints = findViewById(R.id.fighter_points);
-        fighterPoints.setText(Integer.toString(player.getFighterPoints()));
+        fighterPoints.setText(getString(R.string.fighter_points, player.getFighterPoints()));
 
         traderPoints = findViewById(R.id.trader_points);
-        traderPoints.setText(Integer.toString(player.getTraderPoints()));
+        traderPoints.setText(getString(R.string.trader_points, player.getTraderPoints()));
 
         engineerPoints = findViewById(R.id.engineer_points);
-        engineerPoints.setText(Integer.toString(player.getEngineerPoints()));
+        engineerPoints.setText(getString(R.string.engineer_points, player.getEngineerPoints()));
 
         difficultySpinner = findViewById(R.id.difficulty_spinner);
         ArrayAdapter<DifficultyType> adapter = new
@@ -77,11 +77,11 @@ public class UserConfigurationActivity extends AppCompatActivity {
      * This method updates the number of points for each skill on the screen as the player adds them and subtracts
      */
     private void updatePointLabels() {
-        skillPoints.setText("Available Skill Points: " + player.getAvailableSkillPoints());
-        pilotPoints.setText(Integer.toString(player.getPilotPoints()));
-        fighterPoints.setText(Integer.toString(player.getFighterPoints()));
-        traderPoints.setText(Integer.toString(player.getTraderPoints()));
-        engineerPoints.setText(Integer.toString(player.getEngineerPoints()));
+        skillPoints.setText(getString(R.string.available_skill_points_label, player.getAvailableSkillPoints()));
+        pilotPoints.setText(getString(R.string.pilot_points, player.getPilotPoints()));
+        fighterPoints.setText(getString(R.string.fighter_points, player.getFighterPoints()));
+        traderPoints.setText(getString(R.string.trader_points, player.getTraderPoints()));
+        engineerPoints.setText(getString(R.string.engineer_points, player.getEngineerPoints()));
     }
 
 
