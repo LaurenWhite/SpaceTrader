@@ -48,7 +48,7 @@ public class SpaceShip {
     // GETTERS
 
     /**
-     * This is a getter method that returns a map of the cargo items in the spaceshhip
+     * This is a getter method that returns a map of the cargo items in the spaceship
      * @return map of the cargo items
      */
     public Map<String, CargoItem> getCargo() { return cargo; }
