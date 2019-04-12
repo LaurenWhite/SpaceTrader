@@ -60,7 +60,7 @@
     <string name="trader_points">%1$d</string>
     <string name="engineer_points">%1$d</string>
     <string name="credits">Credits: %1$d</string>
-    <string name="fuel">%1$d</string>
+    <string name="fuel">Current fuel: %1$d</string>
     <string name="quantity">%1$d</string>
     <string name="price">%1$d</string>
 </resources>
