@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.EncounterActivity"
-    android:background = "@drawable/encountersback">
+    android:background = "@drawable/encounters_background">
 
     <TextView
         android:id="@+id/tvEncounterLocation"

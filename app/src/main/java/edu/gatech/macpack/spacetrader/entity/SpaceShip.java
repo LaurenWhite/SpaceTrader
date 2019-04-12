@@ -9,7 +9,7 @@ import java.util.Map;
 public class SpaceShip {
 
     private SpaceShipType shipType;
-    private Map<String, CargoItem> cargo;
+    private final Map<String, CargoItem> cargo;
     private int weight;
     private Planet location;
     private int fuel;
@@ -29,6 +29,14 @@ public class SpaceShip {
         // add default location here to prevent crash when selling to market before traveling?
     }
 
+    /**
+     * This is a spaceship constructor that creates a spaceship with the following attributes
+     * @param shipType the type of spaceship
+     * @param cargo the cargo on the ship
+     * @param weight the weight the ship can hold
+     * @param location the location of the ship
+     * @param fuel the amount of fuel in the ship
+     */
     public SpaceShip(SpaceShipType shipType, Map<String, CargoItem> cargo, int weight, Planet location, int fuel){
         this.shipType = shipType;
         this.cargo = cargo;
@@ -40,7 +48,7 @@ public class SpaceShip {
     // GETTERS
 
     /**
-     * This is a getter method that returns a map of the cargo items in the spaceshhip
+     * This is a getter method that returns a map of the cargo items in the spaceship
      * @return map of the cargo items
      */
     public Map<String, CargoItem> getCargo() { return cargo; }

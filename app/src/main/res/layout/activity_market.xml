@@ -44,8 +44,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        android:layout_alignParentLeft="true">
+        tools:layout_editor_absoluteY="0dp">
 
         <Button
             android:id="@+id/btnBuy"
@@ -56,9 +55,7 @@
             android:layout_marginBottom="26dp"
             android:layout_marginEnd="42dp"
             android:onClick="buyButtonClicked"
-            android:text="@string/buy_btn_name"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="42dp" />
+            android:text="@string/buy_btn_name" />
 
         <Button
             android:id="@+id/btnSell"
@@ -68,11 +65,10 @@
             android:layout_marginBottom="26dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_toRightOf="@+id/quantityInput"
+            android:layout_toEndOf="@+id/quantityInput"
             android:layout_toStartOf="@+id/btnBuy"
             android:onClick="sellButtonClicked"
-            android:text="@string/sell_btn_text"
-            android:layout_toLeftOf="@+id/btnBuy" />
+            android:text="@string/sell_btn_text" />
 
 
         <TextView
@@ -83,25 +79,21 @@
             android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/tvCredit"
             android:layout_marginBottom="30dp"
-            android:layout_marginLeft="100dp"
             android:layout_marginStart="50dp"
-            android:text="Quantity:"
-            android:layout_alignParentLeft="true"
+            android:text="@string/quantity_label"
             tools:ignore="UnknownId" />
 
         <EditText
             android:id="@+id/quantityInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/btnBuy"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="118dp"
-            android:layout_toRightOf="@+id/quantity_label"
+            android:layout_toEndOf="@+id/quantity_label"
             android:hint="@string/default_number"
             android:inputType="number"
-            android:paddingRight="20dp" />
+            android:padding="10dp" />
 
     </RelativeLayout>
 

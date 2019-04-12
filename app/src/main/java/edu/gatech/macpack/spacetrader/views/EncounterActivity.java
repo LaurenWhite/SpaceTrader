@@ -1,13 +1,11 @@
 package edu.gatech.macpack.spacetrader.views;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import java.util.Map;
 
@@ -24,14 +22,12 @@ import edu.gatech.macpack.spacetrader.entity.SpaceShip;
  */
 public class EncounterActivity extends AppCompatActivity {
 
-    Game game = DatabaseInteractor.dbInteractor.game;
-    Player player = game.getPlayer();
-    SpaceShip ship = player.getSpaceShip();
+    private final Game game = DatabaseInteractor.dbInteractor.game;
+    private final Player player = game.getPlayer();
+    private final SpaceShip ship = player.getSpaceShip();
 
     private TextView tvEncounterLocation;
     private TextView tvEncounterScript;
-
-    Button continueBtn;
 
     private String encounterType;
 
@@ -47,7 +43,6 @@ public class EncounterActivity extends AppCompatActivity {
 
         tvEncounterLocation = findViewById(R.id.tvEncounterLocation);
         tvEncounterScript = findViewById(R.id.tvEncounterScript);
-        continueBtn = findViewById(R.id.continueBtn);
 
         updateLocationLabel();
         updateEncounterScript();

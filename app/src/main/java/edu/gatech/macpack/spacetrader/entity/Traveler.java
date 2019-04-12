@@ -13,14 +13,12 @@ import static java.lang.Math.round;
  */
 public class Traveler {
 
-    private List<SolarSystem> solarSystems = DatabaseInteractor.dbInteractor.game.getSolarSystems();
+    private final List<SolarSystem> solarSystems = DatabaseInteractor.dbInteractor.game.getSolarSystems();
 
-    private SpaceShip ship;
+    private final SpaceShip ship;
     private int distance;
     private int fuelNeeded;
     private Planet newLocation;
-
-    Planet currentLocation;
 
 
     /**
@@ -31,7 +29,6 @@ public class Traveler {
      */
     public Traveler(SpaceShip ship, Planet currentLocation, Planet newLocation) {
         this.ship = ship;
-        this.currentLocation = currentLocation;
         this.newLocation = newLocation;
         distance = calculateDistance(currentLocation.getParentLocation(),
                                         newLocation.getParentLocation());
@@ -48,7 +45,7 @@ public class Traveler {
 
         double d = sqrt((abs(newCoordinate.get(0) - curCoordinate.get(0)))^2
                             + (abs(newCoordinate.get(1) - curCoordinate.get(1)))^2);
-        int roundedDistance = (int) round(d);
+        @SuppressWarnings("UnnecessaryLocalVariable") int roundedDistance = (int) round(d);
         return roundedDistance;
     }
 

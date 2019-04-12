@@ -13,7 +13,7 @@ import java.util.Random;
 public class Planet {
 
     // List of possible solar system names
-    static private List<String> availableNames = new ArrayList<>(
+    static private final List<String> availableNames = new ArrayList<>(
             Arrays.asList("Azelhart", "Ophilia", "Cassardis", "Grigori", "Diomedes", "Torim",
                     "Damascus", "Soren", "Valvatorez", "Fenrich", "Archimedes", "Anri", "Sterling",
                     "Lucis", "Ignis", "Noctis", "Ardyn", "Lunafreya", "Thanatos", "Aranea")
@@ -21,14 +21,14 @@ public class Planet {
 
 
     // ATTRIBUTES
-    private String name;
-    private List<Integer> location;
-    private TechLevel techLevel;
-    private ResourceType resource;
-    private int traderEventChance;
+    private final String name;
+    private final List<Integer> location;
+    private final TechLevel techLevel;
+    private final ResourceType resource;
+    private final int traderEventChance;
     private Map<String, MarketItem> market;
-    private String parentName;
-    private List<Integer> parentLocation;
+    private final String parentName;
+    private final List<Integer> parentLocation;
 
 
     // CONSTRUCTOR

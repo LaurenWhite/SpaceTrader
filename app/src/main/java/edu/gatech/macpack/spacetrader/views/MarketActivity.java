@@ -1,11 +1,11 @@
 package edu.gatech.macpack.spacetrader.views;
 
-import android.support.v7.app.AppCompatActivity;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -32,9 +32,9 @@ import edu.gatech.macpack.spacetrader.viewmodel.MarketListAdapter;
  * Activity for displaying the planet market
  */
 public class MarketActivity extends AppCompatActivity {
-    Game game = DatabaseInteractor.dbInteractor.game;
-    Player player = game.getPlayer();
-    SpaceShip ship = player.getSpaceShip();
+    private final Game game = DatabaseInteractor.dbInteractor.game;
+    private final Player player = game.getPlayer();
+    private final SpaceShip ship = player.getSpaceShip();
 
     // create list view obj for market items
     private ListView lvGoods;
@@ -58,9 +58,6 @@ public class MarketActivity extends AppCompatActivity {
     private TextView tvCredits;
     private EditText quantityEditText;
 
-    Button btnBuy;
-    Button btnSell;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +69,7 @@ public class MarketActivity extends AppCompatActivity {
 
         // initializes the other views in market place screen
         tvCredits = findViewById(R.id.tvCredits);
-        tvCredits.setText("Credits: " + game.getPlayer().getCredits());
-        btnBuy = findViewById(R.id.btnBuy);
-        btnSell = findViewById(R.id.btnSell);
+        tvCredits.setText(getString(R.string.credits, game.getPlayer().getCredits()));
         quantityEditText = findViewById(R.id.quantityInput);
 
     }
@@ -96,7 +91,7 @@ public class MarketActivity extends AppCompatActivity {
         lvGoods.setAdapter(marketListAdapter);
 
         // adds header to the list view
-        View header = getLayoutInflater().inflate(R.layout.market_header, null);
+        @SuppressLint("InflateParams") View header = getLayoutInflater().inflate(R.layout.market_header, null);
         lvGoods.addHeaderView(header);
 
     }
@@ -119,7 +114,7 @@ public class MarketActivity extends AppCompatActivity {
 
         lvCargoItems.setAdapter(cargoListAdapter);
 
-        View header = getLayoutInflater().inflate(R.layout.market_header, null);
+        @SuppressLint("InflateParams") View header = getLayoutInflater().inflate(R.layout.market_header, null);
         lvCargoItems.addHeaderView(header);
 
     }
@@ -160,7 +155,7 @@ public class MarketActivity extends AppCompatActivity {
         int quantity = Integer.parseInt(quantityEditText.getText().toString());
 
         int totalPrice = quantity * selectedItem.getPrice();
-        int totalWeight = quantity;
+        @SuppressWarnings("TooBroadScope") int totalWeight = quantity;
 
         MarketItem purchaseItem = new
                 MarketItem(selectedItem.getGood(), quantity, selectedItem.getPrice());
@@ -187,7 +182,7 @@ public class MarketActivity extends AppCompatActivity {
         // Make transaction
         planet.sellToPlayer(purchaseItem);
         player.setCredits(game.getPlayer().getCredits() - purchaseItem.getPrice());
-        tvCredits.setText("Credits: " + player.getCredits());
+        tvCredits.setText(getString(R.string.credits,player.getCredits()));
         ship.addToCargo(purchaseItem);
 
         // Reload the list views to display changes
@@ -212,6 +207,7 @@ public class MarketActivity extends AppCompatActivity {
                 MarketItem(selectedItem.getGood(), quantity, selectedItem.getPrice());
 
         // Player doesn't have that many items to sell
+        //noinspection SuspiciousMethodCalls
         if(sellItem.getQuantity() > ship.getCargo().get(selectedItem.getGood()).getQuantity()) {
             String message = "Insufficient amount in player cargo";
             Toast.makeText(MarketActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -227,7 +223,7 @@ public class MarketActivity extends AppCompatActivity {
         // Make transaction
         planet.buyFromPlayer(sellItem);
         player.setCredits(player.getCredits() + totalPrice);
-        tvCredits.setText("Credits: " + player.getCredits());
+        tvCredits.setText(getString(R.string.credits, player.getCredits()));
         ship.removeFromCargo(sellItem);
 
         // Reload the list views to display changes
@@ -236,6 +232,7 @@ public class MarketActivity extends AppCompatActivity {
         selectedItem = null;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean infoEntered() {
         // No item selected
         if (selectedItem == null) {

@@ -18,12 +18,12 @@ public enum TradeGood {
 
 
     // ATTRIBUTES
-    private int mtlp;
-    private int mtlu;
-    private int ttp;
-    private int basePrice;
-    private int ipl;
-    private int variance;
+    private final int mtlp;
+    private final int mtlu;
+    private final int ttp;
+    private final int basePrice;
+    private final int ipl;
+    private final int variance;
 
 
     // CONSTRUCTOR
@@ -47,7 +47,7 @@ public enum TradeGood {
     // FUNCTIONALITY
 
     /**
-     * This is a method that returns whether or not the tech level is greater than the mimimun tech level to use
+     * This is a method that returns whether or not the tech level is greater than the minimum tech level to use
      * @param techLevel tech level needed to produce
      * @return true if it can produce, false if not
      */
