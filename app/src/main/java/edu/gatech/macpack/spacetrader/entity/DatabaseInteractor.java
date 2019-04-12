@@ -120,7 +120,7 @@ public class DatabaseInteractor {
         SpaceShip shipObj = loadSpaceShip(spaceshipData);
 
         @SuppressWarnings("UnnecessaryLocalVariable") Player player = new Player(name,
-                availableSkillPoints,
+                credits, availableSkillPoints,
                 pilotPoints, fighterPoints, traderPoints, engineerPoints,
                 shipObj);
         return player;

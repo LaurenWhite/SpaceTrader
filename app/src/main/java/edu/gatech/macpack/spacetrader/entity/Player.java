@@ -55,23 +55,24 @@ public class Player {
     /**
      * Creates player object to be loaded to
      *
-     * @param aName loaded name
-     * @param aSkillPoints loaded skill points
-     * @param aPilotPoints loaded pilot points
-     * @param aFighterPoints loaded fighter points
-     * @param aTraderPoints loaded trader points
-     * @param aEngineerPoints loaded engineer points
+     * @param name loaded name
+     * @param credits loaded credits
+     * @param skillPoints loaded skill points
+     * @param pilotPoints loaded pilot points
+     * @param fighterPoints loaded fighter points
+     * @param traderPoints loaded trader points
+     * @param engineerPoints loaded engineer points
      * @param spaceship loaded space ship object
      */
-    public Player(String aName, int aSkillPoints, int aPilotPoints, int aFighterPoints,
-                  int aTraderPoints, int aEngineerPoints, SpaceShip spaceship) {
-        name = aName;
-        credits = 1000;
-        availableSkillPoints = aSkillPoints;
-        pilotPoints = aPilotPoints;
-        fighterPoints = aFighterPoints;
-        traderPoints = aTraderPoints;
-        engineerPoints = aEngineerPoints;
+    public Player(String name, int credits, int skillPoints, int pilotPoints, int fighterPoints,
+                  int traderPoints, int engineerPoints, SpaceShip spaceship) {
+        this.name = name;
+        this.credits = credits;
+        availableSkillPoints = skillPoints;
+        this.pilotPoints = pilotPoints;
+        this.fighterPoints = fighterPoints;
+        this.traderPoints = traderPoints;
+        this.engineerPoints = engineerPoints;
         this.spaceship = spaceship;
     }
 
