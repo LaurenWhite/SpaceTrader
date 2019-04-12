@@ -34,7 +34,8 @@ public class buyFromPlayerUnitTest {
     public void addNewItem() {
 
         purchaseItem = new MarketItem(TradeGood.WATER, 5, 50);
-        testPlanet.setMarket(new HashMap<String, MarketItem>());
+        market = new HashMap<>();
+        testPlanet.setMarket(market);
 
         testPlanet.buyFromPlayer(purchaseItem);
 
@@ -52,13 +53,15 @@ public class buyFromPlayerUnitTest {
         market = new HashMap<>();
         MarketItem marketStock = new MarketItem(TradeGood.WATER, 5, 50);
         market.put("WATER", marketStock);
+        testPlanet.setMarket(market);
 
         purchaseItem = new MarketItem(TradeGood.WATER, 3, 50);
+        testPlanet.buyFromPlayer(purchaseItem);
 
         Map<String, MarketItem> expected = new HashMap<>();
         expected.put("WATER", new MarketItem(TradeGood.WATER, 8, 50));
-        testPlanet.buyFromPlayer(purchaseItem);
 
-        assertEquals(expected, market);
+
+        assertEquals(expected.get("WATER"), market.get("WATER"));
     }
 }
