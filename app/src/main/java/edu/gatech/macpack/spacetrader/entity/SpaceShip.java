@@ -9,7 +9,7 @@ import java.util.Map;
 public class SpaceShip {
 
     private SpaceShipType shipType;
-    private Map<String, CargoItem> cargo;
+    private final Map<String, CargoItem> cargo;
     private int weight;
     private Planet location;
     private int fuel;

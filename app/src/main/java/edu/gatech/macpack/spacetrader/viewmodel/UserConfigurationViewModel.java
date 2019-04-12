@@ -10,11 +10,11 @@ import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.Player;
 
 /**
- * This creates the UserCongfigurationModel class
+ * This creates the UserConfigurationModel class
  */
 public class UserConfigurationViewModel extends AndroidViewModel {
 
-    Game game = DatabaseInteractor.dbInteractor.game;
+    private final Game game = DatabaseInteractor.dbInteractor.game;
 
     /**
      * This constructor creates an instance of the UserConfigurationModel class

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import java.util.List;
+import java.util.Objects;
 
 import edu.gatech.macpack.spacetrader.R;
 import edu.gatech.macpack.spacetrader.entity.MarketItem;
@@ -20,9 +21,8 @@ import edu.gatech.macpack.spacetrader.entity.TradeGood;
  */
 public class MarketListAdapter extends ArrayAdapter<MarketItem> {
 
-    private static final String TAG = "MarketListAdapter";
-    private Context mContext;
-    private int mResource;
+    private final Context mContext;
+    private final int mResource;
 
     /**
      * Creates new market list adapter
@@ -39,25 +39,25 @@ public class MarketListAdapter extends ArrayAdapter<MarketItem> {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         // get good information
-        TradeGood good = getItem(position).getGood();
-        int quantity = getItem(position).getQuantity();
-        int price = getItem(position).getPrice();
+        TradeGood good = Objects.requireNonNull(Objects.requireNonNull(getItem(position))).getGood();
+        int quantity = Objects.requireNonNull(Objects.requireNonNull(getItem(position))).getQuantity();
+        int price = Objects.requireNonNull(Objects.requireNonNull(getItem(position))).getPrice();
 
         // create marketItem object with information
         MarketItem item = new MarketItem(good, quantity, price);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(mResource, parent, false);
+        if (convertView == null) convertView = inflater.inflate(mResource,parent, false);
 
         TextView tvGoodName = convertView.findViewById(R.id.tvGoodName);
         TextView tvGoodQuantity = convertView.findViewById(R.id.tvGoodQuantity);
         TextView tvGoodPrice = convertView.findViewById(R.id.tvGoodPrice);
 
         tvGoodName.setText(item.getGood().toString());
-        tvGoodQuantity.setText("" + item.getQuantity());
-        tvGoodPrice.setText("" + item.getPrice());
+        tvGoodQuantity.setText(mContext.getString(R.string.quantity, item.getQuantity()));
+        tvGoodPrice.setText(mContext.getString(R.string.price,item.getPrice()));
 
         return convertView;
     }

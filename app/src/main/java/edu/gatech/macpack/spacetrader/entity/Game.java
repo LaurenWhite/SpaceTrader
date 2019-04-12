@@ -89,7 +89,7 @@ public class Game {
      */
     public Planet getStartingLocation() {
         SolarSystem firstSolarSystem = solarSystems.get(0);
-        Planet firstPlanet = firstSolarSystem.getPlanets().get(0);
+        @SuppressWarnings("UnnecessaryLocalVariable") Planet firstPlanet = firstSolarSystem.getPlanets().get(0);
         return firstPlanet;
     }
 
@@ -113,7 +113,7 @@ public class Game {
      *
      * @param systems solar system to print
      */
-    public void universeToString(List<SolarSystem> systems) {
+    private void universeToString(List<SolarSystem> systems) {
         Log.i("INFO","******UNIVERSE GENERATED******");
         for (SolarSystem system : systems) {
             Log.i("INFO","***SOLAR SYSTEM***");

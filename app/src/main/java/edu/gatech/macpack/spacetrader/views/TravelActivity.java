@@ -27,16 +27,12 @@ import edu.gatech.macpack.spacetrader.entity.Traveler;
  * This is the TravelActivity class that displays the Travel Screen
  */
 public class TravelActivity extends AppCompatActivity {
-    Game game = DatabaseInteractor.dbInteractor.game;
-    Player player = game.getPlayer();
-    SpaceShip ship = player.getSpaceShip();
+    private final Game game = DatabaseInteractor.dbInteractor.game;
+    private final Player player = game.getPlayer();
+    private final SpaceShip ship = player.getSpaceShip();
 
     private TextView currentLocationLabel;
     private TextView currentFuelLabel;
-    TextView currentLocation;
-    TextView solarSystem;
-    Spinner solarSystemSpinner;
-    TextView planet;
     private Spinner planetSpinner;
 
     private Planet currentPlanet;
@@ -58,11 +54,8 @@ public class TravelActivity extends AppCompatActivity {
 
         // Connect UI
         currentLocationLabel = findViewById(R.id.currentLocationLabel);
-        currentLocation = findViewById(R.id.currentLocation);
         currentFuelLabel = findViewById(R.id.currentFuelLabel);
-        solarSystem = findViewById(R.id.solarSystem);
-        solarSystemSpinner = findViewById(R.id.solarSystemSpinner);
-        planet = findViewById(R.id.planet);
+        Spinner solarSystemSpinner = findViewById(R.id.solarSystemSpinner);
         planetSpinner = findViewById(R.id.planetSpinner);
 
         // Initialize Variables
@@ -121,9 +114,9 @@ public class TravelActivity extends AppCompatActivity {
 
 
     private void updateLabels() {
-        currentLocationLabel.setText("Current location: " + currentPlanet.getName()
-                + ", " + currentPlanet.getParentName());
-        currentFuelLabel.setText("Current fuel: " + ship.getFuel());
+        currentLocationLabel.setText(getString(R.string.current_location_label,
+                currentPlanet.getName(),currentPlanet.getParentName()));
+        currentFuelLabel.setText(getString(R.string.fuel,ship.getFuel()));
 
         traveler = new Traveler(ship);
         systems = traveler.systemsInRange();

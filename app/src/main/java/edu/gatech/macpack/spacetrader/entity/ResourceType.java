@@ -19,7 +19,7 @@ public enum ResourceType {
     WARLIKE(12);
 
 
-    public int ResourceNumber;
+    private final int ResourceNumber;
 
     ResourceType(int ResourceNumber) {
         this.ResourceNumber = ResourceNumber;

@@ -12,15 +12,15 @@ import java.util.Random;
 public class SolarSystem {
 
     // List of possible solar system names
-    static private List<String> availableNames = new ArrayList<>(
+    static private final List<String> availableNames = new ArrayList<>(
             Arrays.asList("Nix", "Morag", "Xena", "Nobiru", "Vesperia", "Xillia", "Ventus",
                     "Lapis", "Altair", "Zeno", "Valor", "Therion", "Cyrus", "Gaius")
     );
 
 
     // ATTRIBUTES
-    private String name;
-    private List<Integer> location;
+    private final String name;
+    private final List<Integer> location;
     private List<Planet> planets;
 
 

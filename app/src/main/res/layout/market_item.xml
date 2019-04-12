@@ -14,7 +14,7 @@
         android:background = "@color/colorAccent"
         android:ellipsize = "end"
         android:padding = "5dp"
-        android:text = "name of good"
+        android:text = "@string/name_of_good_default"
         android:singleLine = "true" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:background = "@color/colorAccent"
         android:ellipsize = "end"
         android:padding = "5dp"
-        android:text = "number of good"
+        android:text = "@string/number_of_good_default"
         android:singleLine = "true" />
 
     <TextView
@@ -36,6 +36,6 @@
         android:background = "@color/colorAccent"
         android:ellipsize = "end"
         android:padding = "5dp"
-        android:text = "price of good"
+        android:text = "@string/price_of_good_default"
         android:singleLine = "true" />
 </LinearLayout>

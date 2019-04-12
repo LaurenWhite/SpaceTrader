@@ -17,7 +17,7 @@ public class Player {
 
     private int credits;
 
-    private SpaceShip spaceship;
+    private final SpaceShip spaceship;
 
 
     // CONSTRUCTOR
@@ -32,8 +32,9 @@ public class Player {
      * @param aTraderPoints   selected trader points
      * @param aEngineerPoints selected engineer points
      */
-    public Player(String aName, int aSkillPoints, int aPilotPoints, int aFighterPoints,
-                  int aTraderPoints, int aEngineerPoints) {
+    @SuppressWarnings("SameParameterValue")
+    private Player(String aName, int aSkillPoints, int aPilotPoints, int aFighterPoints,
+                   int aTraderPoints, int aEngineerPoints) {
         name = aName;
         credits = 1000;
         availableSkillPoints = aSkillPoints;
