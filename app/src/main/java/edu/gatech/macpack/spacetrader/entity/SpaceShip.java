@@ -24,7 +24,7 @@ public class SpaceShip {
         this.shipType = shipType;
         cargo = new HashMap<>();
         weight = 0;
-        location = DatabaseInteractor.dbInteractor.game.getStartingLocation();
+        //location = DatabaseInteractor.dbInteractor.game.getStartingLocation();
         fuel = shipType.fuelCapacity;
         // add default location here to prevent crash when selling to market before traveling?
     }
@@ -102,6 +102,14 @@ public class SpaceShip {
      * @param fuel the amount of fuel to go in the ship
      */
     public void setFuel(int fuel) { this.fuel = fuel; }
+
+    /**
+     * This is a setter that sets the cargo field
+     * For testing onluy
+     *
+     * @param cargo new cargo
+     */
+    public void setCargo(Map<String, CargoItem> cargo) { this.cargo = cargo; }
 
     // FUNCTIONALITY
 
