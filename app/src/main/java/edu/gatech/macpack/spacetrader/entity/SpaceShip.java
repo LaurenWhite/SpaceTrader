@@ -9,7 +9,7 @@ import java.util.Map;
 public class SpaceShip {
 
     private SpaceShipType shipType;
-    private final Map<String, CargoItem> cargo;
+    private Map<String, CargoItem> cargo;
     private int weight;
     private Planet location;
     private int fuel;
@@ -17,7 +17,7 @@ public class SpaceShip {
     // CONSTRUCTOR
 
     /**
-     * This isi a constructor that creates a spaceship of the given type for the player
+     * This is a constructor that creates a spaceship of the given type for the player
      * @param shipType spaceship type to be created
      */
     public SpaceShip(SpaceShipType shipType, String name){
