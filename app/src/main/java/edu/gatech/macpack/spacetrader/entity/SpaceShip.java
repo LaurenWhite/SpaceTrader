@@ -9,7 +9,7 @@ import java.util.Map;
 public class SpaceShip {
 
     private SpaceShipType shipType;
-    private final Map<String, CargoItem> cargo;
+    private Map<String, CargoItem> cargo;
     private int weight;
     private Planet location;
     private int fuel;
@@ -24,7 +24,7 @@ public class SpaceShip {
         this.shipType = shipType;
         cargo = new HashMap<>();
         weight = 0;
-        //location = DatabaseInteractor.dbInteractor.game.getStartingLocation();
+        location = DatabaseInteractor.dbInteractor.game.getStartingLocation();
         fuel = shipType.fuelCapacity;
         // add default location here to prevent crash when selling to market before traveling?
     }

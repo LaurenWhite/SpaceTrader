@@ -44,7 +44,7 @@ public class TitleScreenActivity extends AppCompatActivity {
      */
     public void loadGamePressed(View view) {
         String username = usernameEditText.getText().toString();
-        //DatabaseInteractor.dbInteractor.loadGame(username);
+        DatabaseInteractor.dbInteractor.loadGame(username);
         Intent intent = new Intent(getBaseContext(), GameMainScreenActivity.class);
         startActivity(intent);
     }
