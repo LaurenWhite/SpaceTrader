@@ -9,7 +9,7 @@ import java.util.Map;
 public class SpaceShip {
 
     private SpaceShipType shipType;
-    private final Map<String, CargoItem> cargo;
+    private Map<String, CargoItem> cargo;
     private int weight;
     private Planet location;
     private int fuel;
@@ -17,10 +17,10 @@ public class SpaceShip {
     // CONSTRUCTOR
 
     /**
-     * This isi a constructor that creates a spaceship of the given type for the player
+     * This is a constructor that creates a spaceship of the given type for the player
      * @param shipType spaceship type to be created
      */
-    public SpaceShip(SpaceShipType shipType){
+    public SpaceShip(SpaceShipType shipType, String name){
         this.shipType = shipType;
         cargo = new HashMap<>();
         weight = 0;
@@ -29,6 +29,14 @@ public class SpaceShip {
         // add default location here to prevent crash when selling to market before traveling?
     }
 
+    public SpaceShip(SpaceShipType shipType){
+        this.shipType = shipType;
+        cargo = new HashMap<>();
+        weight = 0;
+        location = DatabaseInteractor.dbInteractor.game.getStartingLocation();
+        fuel = shipType.fuelCapacity;
+        // add default location here to prevent crash when selling to market before traveling?
+    }
     /**
      * This is a spaceship constructor that creates a spaceship with the following attributes
      * @param shipType the type of spaceship

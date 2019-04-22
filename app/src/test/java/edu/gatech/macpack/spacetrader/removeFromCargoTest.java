@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import edu.gatech.macpack.spacetrader.entity.CargoItem;
 import edu.gatech.macpack.spacetrader.entity.MarketItem;
+import edu.gatech.macpack.spacetrader.entity.SolarSystem;
 import edu.gatech.macpack.spacetrader.entity.SpaceShip;
 import edu.gatech.macpack.spacetrader.entity.SpaceShipType;
 import edu.gatech.macpack.spacetrader.entity.TradeGood;
@@ -29,7 +30,7 @@ public class removeFromCargoTest {
 
   // this method setups the the above variables before they are used for testing
   public void setUp() {
-      testShip = new SpaceShip(SpaceShipType.GNAT);
+      testShip = new SpaceShip(SpaceShipType.GNAT,"GNAT");
       cargo = new HashMap<>();
   }
 
