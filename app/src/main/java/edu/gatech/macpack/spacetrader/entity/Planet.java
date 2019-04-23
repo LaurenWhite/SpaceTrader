@@ -53,6 +53,29 @@ public class Planet {
         printMarket(); // for testing
     }
 
+    /**
+     * Creates planet object from loaded values
+     * @param name loaded name
+     * @param location loaded location
+     * @param techLevel loaded tech level
+     * @param resource loaded resource
+     * @param traderEventChance loaded trader event chance
+     * @param market loaded market
+     * @param parentName loaded parent solar system name
+     * @param parentLocation loaded parent solar system location
+     */
+    public Planet(String name, List<Integer> location, TechLevel techLevel,
+                  ResourceType resource, int traderEventChance, Map<String, MarketItem> market,
+                  String parentName, List<Integer> parentLocation) {
+        this.name = name;
+        this.location = location;
+        this.techLevel = techLevel;
+        this.resource = resource;
+        this.traderEventChance = traderEventChance;
+        this.market = market;
+        this.parentName = parentName;
+        this.parentLocation = parentLocation;
+    }
 
     // GETTERS
 
