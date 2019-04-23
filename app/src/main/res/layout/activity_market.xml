@@ -54,7 +54,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="26dp"
             android:layout_marginEnd="42dp"
-            android:onClick="buyButtonClicked"
+            android:onClick="buyButtonPressed"
             android:text="@string/buy_btn_name" />
 
         <Button
@@ -67,7 +67,7 @@
             android:layout_marginRight="20dp"
             android:layout_toEndOf="@+id/quantityInput"
             android:layout_toStartOf="@+id/btnBuy"
-            android:onClick="sellButtonClicked"
+            android:onClick="sellButtonPressed"
             android:text="@string/sell_btn_text" />
 
 
