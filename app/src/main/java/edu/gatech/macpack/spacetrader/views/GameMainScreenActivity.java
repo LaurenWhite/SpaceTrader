@@ -1,5 +1,6 @@
 package edu.gatech.macpack.spacetrader.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,30 +16,32 @@ import edu.gatech.macpack.spacetrader.entity.DatabaseInteractor;
 import edu.gatech.macpack.spacetrader.entity.Game;
 import edu.gatech.macpack.spacetrader.entity.Player;
 import edu.gatech.macpack.spacetrader.entity.SpaceShip;
+import edu.gatech.macpack.spacetrader.viewmodel.GameMainScreenViewModel;
 
 /**
  * Activity for displaying the main game screen
  */
 public class GameMainScreenActivity extends AppCompatActivity {
 
-    private final Game game = DatabaseInteractor.dbInteractor.game;
-    private final Player player = game.getPlayer();
-    private final SpaceShip ship = player.getSpaceShip();
+
+    private GameMainScreenViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_main_screen);
 
+        viewModel = ViewModelProviders.of(this).get(GameMainScreenViewModel.class);
+
         ProgressBar fuelTank = findViewById(R.id.fuelTankBar);
         ProgressBar shipHealthBar = findViewById(R.id.shipHealthBar);
         TextView shipType = findViewById(R.id.shipType);
 
-        fuelTank.setProgress(ship.getFuel());
+        fuelTank.setProgress(viewModel.getShipFuel());
         // lol never implemented health in ship
         int DEFAULT_HEALTH = 1000;
         shipHealthBar.setProgress(DEFAULT_HEALTH);
-        shipType.setText(ship.getShipType().toString());
+        shipType.setText(viewModel.shipTypeToString());
     }
 
     /**
@@ -84,9 +87,7 @@ public class GameMainScreenActivity extends AppCompatActivity {
     }
 
     private void saveApplication() {
-        Game game = DatabaseInteractor.dbInteractor.game;
-        String username = game.getPlayer().getName();
-        DatabaseInteractor.dbInteractor.saveGame(username, game);
+        viewModel.saveApplication();
     }
 
     /**
