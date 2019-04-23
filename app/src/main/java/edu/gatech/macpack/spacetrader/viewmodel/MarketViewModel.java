@@ -45,8 +45,6 @@ public class MarketViewModel extends AndroidViewModel {
 
         marketList = new ArrayList<>();
         marketList.addAll(market.values());
-
-
     }
 
     public void populateCargoListView() {
